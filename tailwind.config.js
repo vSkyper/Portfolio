@@ -7,12 +7,16 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      animation: {
+        handwriting: 'handwriting 2s linear',
+      },
+      keyframes: {
+        handwriting: {
+          '0%': { strokeDashoffset: 1071 },
+          '100%': { strokeDashoffset: 0 },
+        },
       },
     },
   },
   plugins: [],
-}
+};
