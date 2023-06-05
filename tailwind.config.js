@@ -14,11 +14,22 @@ module.exports = {
       },
       animation: {
         handwriting: 'handwriting 4s linear',
+        'show-up-left': 'show-up-left 0.5s ease-in-out both',
       },
       keyframes: {
         handwriting: {
           '0%': { strokeDashoffset: 4674 },
           '100%': { strokeDashoffset: 0 },
+        },
+        'show-up-left': {
+          '0%': {
+            transform: 'translateX(-100%)',
+            opacity: 0,
+          },
+          '100%': {
+            transform: 'translateX(0)',
+            opacity: 1,
+          },
         },
       },
     },

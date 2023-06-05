@@ -1,8 +1,23 @@
 import { IContactField } from 'interfaces/interfaces';
 
-export default function Field({ label, id, type }: IContactField) {
+interface Props extends IContactField {
+  isVisible: boolean;
+  animationDelay: string;
+}
+
+export default function Field({
+  label,
+  id,
+  type,
+  isVisible,
+  animationDelay,
+}: Props) {
   return (
-    <div className='mb-6'>
+    <div
+      className={`mb-6 ${animationDelay} opacity-0 ${
+        isVisible && 'animate-show-up-left'
+      }`}
+    >
       <label htmlFor={id} className='block mb-2 text-sm font-medium'>
         {label}
       </label>
