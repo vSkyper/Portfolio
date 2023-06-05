@@ -8,11 +8,11 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        handwriting: 'handwriting 2s linear',
+        handwriting: 'handwriting 4s linear',
       },
       keyframes: {
         handwriting: {
-          '0%': { strokeDashoffset: 1071 },
+          '0%': { strokeDashoffset: 4674 },
           '100%': { strokeDashoffset: 0 },
         },
       },
