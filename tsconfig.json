@@ -21,6 +21,7 @@
     ],
     "baseUrl": "./src/",
     "paths": {
+      "@/components": ["@components/*"],
       "@/hooks": ["@hooks/*"]
     }
   },
