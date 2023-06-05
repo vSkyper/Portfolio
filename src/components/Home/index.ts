@@ -1,3 +1,4 @@
-import HelloHandwriting from './HelloHandwriting';
+import Handwriting from './Handwriting';
+import Contact from './Contact';
 
-export { HelloHandwriting };
+export { Handwriting, Contact };
