@@ -25,6 +25,7 @@ export default function Field({
         <textarea
           id={id}
           name={id}
+          rows={5}
           className='resize-none bg-secondary text-sm rounded-lg focus:ring focus:outline-none focus:ring-primary w-full p-2.5'
         />
       ) : (
