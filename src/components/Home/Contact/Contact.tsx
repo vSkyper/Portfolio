@@ -9,11 +9,11 @@ export default function Contact() {
   const [containerRef, isVisible] = useElementOnScreen({
     root: null,
     rootMargin: '0px',
-    threshold: 0.6,
+    threshold: 0.4,
   });
 
   return (
-    <div className='w-full h-full pt-3 sm:pt-9'>
+    <div className='container mx-auto w-11/12 h-full pt-32 sm:pt-56'>
       <div ref={containerRef}>
         <div
           className={`text-2xl sm:text-3xl opacity-0 ${

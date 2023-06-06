@@ -1,24 +1,32 @@
 'use client';
 
-import useElementOnScreen from 'hooks/useElementOnScreen';
+import { motion } from 'framer-motion';
+import { Card } from './components';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Projects() {
-  const [containerRef, isVisible] = useElementOnScreen({
-    root: null,
-    rootMargin: '0px',
-    threshold: 1.0,
-  });
+  const [width, setWidth] = useState<number>(0);
+  const carousel = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!carousel.current) return;
+
+    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
+  }, []);
 
   return (
-    <div className='w-full h-full pt-3 sm:pt-9'>
-      <div
-        ref={containerRef}
-        className={`text-2xl sm:text-3xl  ${
-          isVisible && 'animate-change-font-family'
-        }`}
+    <div ref={carousel} className='pt-3 sm:pt-9 mr-2 sm:mr-10'>
+      <motion.div
+        drag='x'
+        dragConstraints={{ right: 0, left: -width }}
+        whileTap={{ cursor: 'grabbing' }}
+        className='flex cursor-grab'
       >
-        Projects
-      </div>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </motion.div>
     </div>
   );
 }
