@@ -10,10 +10,12 @@ export default function Projects() {
   });
 
   return (
-    <div className='w-full h-full pt-9'>
+    <div className='w-full h-full pt-3 sm:pt-9'>
       <div
         ref={containerRef}
-        className={`text-3xl ${isVisible && 'animate-change-font-family'}`}
+        className={`text-2xl sm:text-3xl  ${
+          isVisible && 'animate-change-font-family'
+        }`}
       >
         Projects
       </div>

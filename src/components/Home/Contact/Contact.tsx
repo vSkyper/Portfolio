@@ -16,7 +16,7 @@ export default function Contact() {
     <div className='w-full h-full pt-3 sm:pt-9'>
       <div ref={containerRef}>
         <div
-          className={`text-3xl opacity-0 ${
+          className={`text-2xl sm:text-3xl opacity-0 ${
             isVisible && 'animate-show-up-left'
           }`}
         >
