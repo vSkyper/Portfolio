@@ -21,9 +21,9 @@ export const contactFields: IContactField[] = [
 
 export const contactLinks: IContactLink[] = [
   {
-    link: 'mateuszpiwowarski887@gmail.com',
-    icon: SiGmail,
-    type: 'mail',
+    link: 'https://www.linkedin.com/in/mateusz-piwowarski',
+    icon: SiLinkedin,
+    type: 'link',
   },
   {
     link: 'https://github.com/vSkyper',
@@ -31,8 +31,8 @@ export const contactLinks: IContactLink[] = [
     type: 'link',
   },
   {
-    link: 'https://www.linkedin.com/in/mateusz-piwowarski',
-    icon: SiLinkedin,
-    type: 'link',
+    link: 'mateuszpiwowarski887@gmail.com',
+    icon: SiGmail,
+    type: 'mail',
   },
 ];
