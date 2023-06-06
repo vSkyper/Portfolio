@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useRef } from 'react';
 import { Fields } from './components';
 import { sendMail } from 'helpers/helpers';
