@@ -15,11 +15,11 @@ export default function Form({ isVisible }: Props) {
   }, []);
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className='mt-7'>
+    <form ref={formRef} onSubmit={handleSubmit} className='basis-full'>
       <Fields isVisible={isVisible} />
       <button
         type='submit'
-        className={`bg-primary text-secondary hover:bg-primaryLight transition-all focus:ring-2 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center [animation-delay:0.8s] opacity-0 ${
+        className={`bg-primary text-secondary hover:bg-primaryLight transition-all focus:ring-2 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm w-full lg:w-auto px-5 py-2.5 text-center [animation-delay:0.8s] opacity-0 ${
           isVisible && 'animate-show-up-left'
         }`}
       >

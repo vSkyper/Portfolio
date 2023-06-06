@@ -1,4 +1,4 @@
-import { contact } from 'constants/constants';
+import { contactFields } from 'constants/constants';
 import { Field } from './components';
 
 interface Props {
@@ -14,7 +14,7 @@ export default function Fields({ isVisible }: Props) {
 
   return (
     <>
-      {contact.map((field, index) => (
+      {contactFields.map((field, index) => (
         <Field
           key={field.id}
           {...field}
