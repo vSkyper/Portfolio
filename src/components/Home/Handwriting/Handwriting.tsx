@@ -2,9 +2,8 @@ export default function Handwriting() {
   return (
     <div className='w-full h-full flex items-center justify-center'>
       <svg
-        transform='scale(0.9)'
         viewBox='0 0 1600 800'
-        className='[stroke-dasharray:4674] animate-handwriting'
+        className='[stroke-dasharray:4674] animate-handwriting scale-90 sm:scale-[.8] md:scale-[.7] lg:scale-50'
       >
         <path
           stroke='url(#a)'
