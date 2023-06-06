@@ -14,7 +14,7 @@ module.exports = {
       },
       animation: {
         handwriting: 'handwriting 4s linear',
-        'change-font-family': 'change-font-family 0.7s ease-in-out both 5',
+        'change-font-family': 'change-font-family 0.7s ease-in-out both 3',
         'show-up-left': 'show-up-left 0.5s ease-in-out both',
       },
       keyframes: {
