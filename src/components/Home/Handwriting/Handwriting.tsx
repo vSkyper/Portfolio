@@ -23,19 +23,18 @@ export default function Handwriting() {
       const { clientX, clientY } = e;
 
       customCursor.classList.add('animate-custom-cursor');
-      customCursor.style.opacity = '1';
       customCursor.style.left = `${clientX}px`;
       customCursor.style.top = `${clientY}px`;
     };
 
     const handleMouseEnter = () => {
+      customCursor.classList.remove('animate-custom-cursor-out');
       customCursor.classList.add('animate-custom-cursor');
-      customCursor.style.opacity = '1';
     };
 
     const handleMouseLeave = () => {
       customCursor.classList.remove('animate-custom-cursor');
-      customCursor.style.opacity = '0';
+      customCursor.classList.add('animate-custom-cursor-out');
     };
 
     container.addEventListener('mousemove', handleMouseMove);

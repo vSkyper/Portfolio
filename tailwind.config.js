@@ -17,6 +17,7 @@ module.exports = {
         'slide-in-left': 'slide-in-left 0.5s ease-in-out both',
         'slide-in-right': 'slide-in-right 0.5s ease-in-out both',
         'custom-cursor': 'custom-cursor 0.5s ease-in-out both',
+        'custom-cursor-out': 'custom-cursor-out 0.2s ease-in-out both',
       },
       keyframes: {
         handwriting: {
@@ -46,9 +47,21 @@ module.exports = {
         'custom-cursor': {
           '0%': {
             transform: 'translate(-50%, -75%) scale(0) rotate(-12deg)',
+            opacity: 0,
           },
           '100%': {
             transform: 'translate(-50%, -75%) scale(1) rotate(-12deg)',
+            opacity: 1,
+          },
+        },
+        'custom-cursor-out': {
+          '0%': {
+            transform: 'translate(-50%, -75%) scale(1) rotate(-12deg)',
+            opacity: 1,
+          },
+          '100%': {
+            transform: 'translate(-50%, -75%) scale(0) rotate(-12deg)',
+            opacity: 0,
           },
         },
       },
