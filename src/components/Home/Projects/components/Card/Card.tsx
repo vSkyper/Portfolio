@@ -1,16 +1,6 @@
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-
 export default function Card() {
   return (
-    <div className='relative min-w-full sm:min-w-[1000px] ml-2 sm:ml-10 transition-all hover:scale-[.98]'>
-      <Image
-        className='rounded-3xl w-full h-auto pointer-events-none'
-        src='/image.webp'
-        alt=''
-        width={1024}
-        height={768}
-      />
+    <div className='relative h-0 pb-[55%] min-w-[85%] lg:pb-[35%] lg:min-w-[55%] xl:pb-[25%] xl:min-w-[45%] bg-[url("/image.webp")] bg-cover bg-no-repeat rounded-3xl ml-2 sm:ml-6 transition-all hover:scale-[.98]'>
       <div className='absolute top-0 left-0 ml-2 mt-2 sm:ml-7 sm:mt-7 text-sm sm:text-lg'>
         REACTJS
       </div>
