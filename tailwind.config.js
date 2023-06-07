@@ -14,15 +14,15 @@ module.exports = {
       },
       animation: {
         handwriting: 'handwriting 4s linear',
-        'show-up-left': 'show-up-left 0.5s ease-in-out both',
-        'show-up-right': 'show-up-right 0.5s ease-in-out both',
+        'slide-in-left': 'slide-in-left 0.5s ease-in-out both',
+        'slide-in-right': 'slide-in-right 0.5s ease-in-out both',
       },
       keyframes: {
         handwriting: {
           '0%': { strokeDashoffset: 4674 },
           '100%': { strokeDashoffset: 0 },
         },
-        'show-up-left': {
+        'slide-in-left': {
           '0%': {
             transform: 'translateX(-100%)',
             opacity: 0,
@@ -32,7 +32,7 @@ module.exports = {
             opacity: 1,
           },
         },
-        'show-up-right': {
+        'slide-in-right': {
           '0%': {
             transform: 'translateX(100%)',
             opacity: 0,

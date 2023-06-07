@@ -15,7 +15,7 @@ export default function Field({
   return (
     <div
       className={`mb-6 ${animationDelay} opacity-0 ${
-        isVisible && 'animate-show-up-left'
+        isVisible && 'animate-slide-in-left'
       }`}
     >
       <label htmlFor={id} className='block mb-2 text-sm font-medium'>

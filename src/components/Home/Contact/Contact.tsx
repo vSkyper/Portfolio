@@ -17,7 +17,7 @@ export default function Contact() {
       <div
         ref={containerRef}
         className={`text-2xl sm:text-3xl opacity-0 ${
-          isVisible && 'animate-show-up-left'
+          isVisible && 'animate-slide-in-left'
         }`}
       >
         Contact me!
