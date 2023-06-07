@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Card } from './components';
+import { Cards } from './components';
 import { useEffect, useRef, useState } from 'react';
 
 export default function Projects() {
@@ -22,10 +22,7 @@ export default function Projects() {
         whileTap={{ cursor: 'grabbing' }}
         className='flex cursor-grab'
       >
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Cards />
       </motion.div>
     </div>
   );

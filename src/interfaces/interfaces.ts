@@ -18,7 +18,14 @@ export interface IContactFormValidationProps {
   mail: string;
 }
 
-export interface FormValidationReturn {
+export interface IFormValidationReturn {
   state: string;
   message: string;
+}
+
+export interface IProject {
+  title: string;
+  technology: string;
+  image: string;
+  image_blurred: string;
 }

@@ -1,5 +1,5 @@
 import {
-  FormValidationReturn,
+  IFormValidationReturn,
   IContactFormValidationProps,
 } from 'interfaces/interfaces';
 import emailjs from '@emailjs/browser';
@@ -15,32 +15,32 @@ function validateForm({ name, message, mail }: IContactFormValidationProps) {
     return {
       state: 'error',
       message: 'Missing form data!',
-    } as FormValidationReturn;
+    } as IFormValidationReturn;
   }
   if (!message) {
     return {
       state: 'error',
       message: 'Missing form data!',
-    } as FormValidationReturn;
+    } as IFormValidationReturn;
   }
   if (!mail) {
     return {
       state: 'error',
       message: 'Missing form data!',
-    } as FormValidationReturn;
+    } as IFormValidationReturn;
   }
 
   if (!validator.isEmail(mail)) {
     return {
       state: 'error',
       message: 'The email address is incorrect!',
-    } as FormValidationReturn;
+    } as IFormValidationReturn;
   }
 
   return {
     state: 'success',
     message: 'Form validated!',
-  } as FormValidationReturn;
+  } as IFormValidationReturn;
 }
 
 function sender(e: React.FormEvent<HTMLFormElement>, form: HTMLFormElement) {
