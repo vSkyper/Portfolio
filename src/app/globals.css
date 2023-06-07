@@ -11,6 +11,18 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  background: transparent;
+}
+
 body {
   color: theme('colors.white');
   background-color: theme('colors.black');
