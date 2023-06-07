@@ -1,4 +1,6 @@
+import { motion } from 'framer-motion';
 import { IProject } from 'interfaces/interfaces';
+import { useCallback } from 'react';
 
 interface Props extends IProject {}
 
@@ -8,10 +10,15 @@ export default function Card({
   image,
   image_blurred,
 }: Props) {
+  const handleTap = useCallback(() => {
+    console.log('tap');
+  }, []);
+
   return (
-    <div
+    <motion.div
       className='relative h-0 pb-[55%] min-w-[85%] md:pb-[40%] md:min-w-[70%] lg:pb-[30%] lg:min-w-[55%] xl:pb-[25%] xl:min-w-[45%] ml-2 sm:ml-6 rounded-3xl bg-cover bg-no-repeat hover:scale-[1.02] transition-all duration-500'
       style={{ backgroundImage: `url(${image_blurred})` }}
+      onTap={handleTap}
     >
       <div
         className='absolute top-0 left-0 h-full w-full flex flex-col justify-between p-2 sm:p-7 bg-cover hover:bg-contain hover:bg-center bg-no-repeat rounded-3xl'
@@ -20,6 +27,6 @@ export default function Card({
         <div className='text-sm sm:text-lg'>{technology}</div>
         <div className='text-sm sm:text-lg text-end'>{title}</div>
       </div>
-    </div>
+    </motion.div>
   );
 }
