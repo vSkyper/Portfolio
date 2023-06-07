@@ -15,12 +15,12 @@ export default function Projects() {
   }, []);
 
   return (
-    <div ref={carousel} className='pt-3 sm:pt-9 mr-2 sm:mr-10'>
+    <div ref={carousel} className='pt-3 sm:pt-9 mx-2 sm:mx-6'>
       <motion.div
         drag='x'
         dragConstraints={{ right: 0, left: -width }}
         whileTap={{ cursor: 'grabbing' }}
-        className='flex cursor-grab'
+        className='flex gap-2 sm:gap-6 cursor-grab'
       >
         <Cards />
       </motion.div>
