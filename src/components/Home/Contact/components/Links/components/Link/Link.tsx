@@ -22,7 +22,7 @@ export default function Link({
         <Icon />
       </div>
       <a
-        className='font-light hover:text-primaryLight transition-all'
+        className='text-sm sm:text-base font-light hover:text-primaryLight transition-all'
         href={type === 'link' ? link : `mailto:${link}`}
         target='_blank'
         rel='noopener noreferrer'
