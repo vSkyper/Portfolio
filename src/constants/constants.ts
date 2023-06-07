@@ -41,19 +41,19 @@ export const projects: IProject[] = [
   {
     title: 'LearnHub',
     technology: 'ReactJS',
-    image: '/learnhub.webp',
-    image_blurred: '/learnhub_blurred.webp',
+    image: '/images/learnhub.webp',
+    image_blurred: '/images/learnhub_blurred.webp',
   },
   {
     title: 'Cryptocurrency Tailwind',
     technology: 'ReactJS',
-    image: '/cryptocurrency-tailwind.webp',
-    image_blurred: '/cryptocurrency-tailwind_blurred.webp',
+    image: '/images/cryptocurrency-tailwind.webp',
+    image_blurred: '/images/cryptocurrency-tailwind_blurred.webp',
   },
   {
     title: 'Cryptocurrency',
     technology: 'ReactJS',
-    image: '/cryptocurrency.webp',
-    image_blurred: '/cryptocurrency_blurred.webp',
+    image: '/images/cryptocurrency.webp',
+    image_blurred: '/images/cryptocurrency_blurred.webp',
   },
 ];
