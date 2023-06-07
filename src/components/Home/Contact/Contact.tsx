@@ -13,7 +13,7 @@ export default function Contact() {
   });
 
   return (
-    <div className='container mx-auto w-11/12 h-full pt-24 sm:pt-28 md:pt-32 lg:pt-40 xl:pt-52'>
+    <div className='container mx-auto w-11/12 h-full pt-24 sm:pt-28 md:pt-32 lg:pt-36 xl:pt-40'>
       <div
         ref={containerRef}
         className={`text-2xl sm:text-3xl opacity-0 ${

@@ -10,7 +10,7 @@ export default function Card({
 }: Props) {
   return (
     <div
-      className='relative h-0 pb-[55%] min-w-[85%] lg:pb-[35%] lg:min-w-[55%] xl:pb-[25%] xl:min-w-[45%] ml-2 sm:ml-6 rounded-3xl bg-cover bg-no-repeat hover:scale-[1.02] transition-all duration-500'
+      className='relative h-0 pb-[55%] min-w-[85%] md:pb-[40%] md:min-w-[70%] lg:pb-[30%] lg:min-w-[55%] xl:pb-[25%] xl:min-w-[45%] ml-2 sm:ml-6 rounded-3xl bg-cover bg-no-repeat hover:scale-[1.02] transition-all duration-500'
       style={{ backgroundImage: `url(${image_blurred})` }}
     >
       <div
