@@ -16,6 +16,7 @@ module.exports = {
         handwriting: 'handwriting 4s linear',
         'slide-in-left': 'slide-in-left 0.5s ease-in-out both',
         'slide-in-right': 'slide-in-right 0.5s ease-in-out both',
+        'custom-cursor': 'custom-cursor 0.5s ease-in-out both',
       },
       keyframes: {
         handwriting: {
@@ -40,6 +41,14 @@ module.exports = {
           '100%': {
             transform: 'translateX(0)',
             opacity: 1,
+          },
+        },
+        'custom-cursor': {
+          '0%': {
+            transform: 'translate(-50%, -75%) scale(0) rotate(-12deg)',
+          },
+          '100%': {
+            transform: 'translate(-50%, -75%) scale(1) rotate(-12deg)',
           },
         },
       },

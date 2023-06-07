@@ -19,19 +19,22 @@ export default function Handwriting() {
 
     if (!container || !customCursor) return;
 
-    customCursor.style.opacity = '1';
-
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
+
+      customCursor.classList.add('animate-custom-cursor');
+      customCursor.style.opacity = '1';
       customCursor.style.left = `${clientX}px`;
       customCursor.style.top = `${clientY}px`;
     };
 
     const handleMouseEnter = () => {
+      customCursor.classList.add('animate-custom-cursor');
       customCursor.style.opacity = '1';
     };
 
     const handleMouseLeave = () => {
+      customCursor.classList.remove('animate-custom-cursor');
       customCursor.style.opacity = '0';
     };
 
@@ -53,7 +56,7 @@ export default function Handwriting() {
     >
       <div
         ref={customCursorRef}
-        className='fixed opacity-0 px-8 py-2 -rotate-12 -translate-x-[50%] -translate-y-[75%] transition-opacity pointer-events-none bg-primary text-secondary rounded-[50%]'
+        className='fixed opacity-0 px-8 py-2 pointer-events-none bg-primary text-secondary rounded-[50%]'
       >
         <div className={`rotate-12 text-lg ${magra.className}`}>Scroll</div>
       </div>
