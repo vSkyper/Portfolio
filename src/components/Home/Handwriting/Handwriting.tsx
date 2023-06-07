@@ -19,6 +19,8 @@ export default function Handwriting() {
 
     if (!container || !customCursor) return;
 
+    if ('ontouchstart' in window) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
 
@@ -51,7 +53,7 @@ export default function Handwriting() {
   return (
     <div
       ref={containerRef}
-      className='w-full h-full flex items-center justify-center touch-none'
+      className='w-full h-full flex items-center justify-center'
     >
       <div
         ref={customCursorRef}
