@@ -14,15 +14,11 @@ export default function Card({
       style={{ backgroundImage: `url(${image_blurred})` }}
     >
       <div
-        className='absolute top-0 left-0 h-full w-full bg-cover hover:bg-contain hover:bg-center bg-no-repeat transition-all duration-500 rounded-3xl'
+        className='absolute top-0 left-0 h-full w-full flex flex-col justify-between p-2 sm:p-7 bg-cover hover:bg-contain hover:bg-center bg-no-repeat transition-all duration-500 rounded-3xl'
         style={{ backgroundImage: `url(${image})` }}
       >
-        <div className='absolute top-0 left-0 ml-2 mt-2 sm:ml-7 sm:mt-7 text-sm sm:text-lg'>
-          {technology}
-        </div>
-        <div className='absolute bottom-0 right-0 mr-2 mb-2 sm:mr-7 sm:mb-7 text-sm sm:text-lg'>
-          {title}
-        </div>
+        <div className='text-sm sm:text-lg'>{technology}</div>
+        <div className='text-sm sm:text-lg text-end'>{title}</div>
       </div>
     </div>
   );
