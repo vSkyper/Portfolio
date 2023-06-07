@@ -51,7 +51,7 @@ export default function Handwriting() {
   return (
     <div
       ref={containerRef}
-      className='w-full h-full flex items-center justify-center'
+      className='w-full h-full flex items-center justify-center touch-none'
     >
       <div
         ref={customCursorRef}
