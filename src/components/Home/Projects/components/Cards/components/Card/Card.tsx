@@ -24,8 +24,12 @@ export default function Card({
         className='absolute top-0 left-0 h-full w-full flex flex-col justify-between p-2 sm:p-7 bg-cover hover:bg-contain hover:bg-center bg-no-repeat rounded-3xl'
         style={{ backgroundImage: `url(${image})` }}
       >
-        <div className='text-sm sm:text-lg'>{technology}</div>
-        <div className='text-sm sm:text-lg text-end'>{title}</div>
+        <div className='text-sm sm:text-lg [text-shadow:1px_1px_1px_rgb(0_0_0_/_40%)]'>
+          {technology}
+        </div>
+        <div className='text-sm sm:text-lg [text-shadow:1px_1px_1px_rgb(0_0_0_/_40%)] text-end'>
+          {title}
+        </div>
       </div>
     </motion.div>
   );

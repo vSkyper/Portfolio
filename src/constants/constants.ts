@@ -40,19 +40,19 @@ export const contactLinks: IContactLink[] = [
 export const projects: IProject[] = [
   {
     title: 'LearnHub',
-    technology: 'ReactJS',
+    technology: 'React',
     image: '/images/learnhub.webp',
     image_blurred: '/images/learnhub_blurred.webp',
   },
   {
     title: 'Cryptocurrency Tailwind',
-    technology: 'ReactJS',
+    technology: 'React',
     image: '/images/cryptocurrency-tailwind.webp',
     image_blurred: '/images/cryptocurrency-tailwind_blurred.webp',
   },
   {
     title: 'Cryptocurrency',
-    technology: 'ReactJS',
+    technology: 'React',
     image: '/images/cryptocurrency.webp',
     image_blurred: '/images/cryptocurrency_blurred.webp',
   },
