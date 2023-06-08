@@ -20,10 +20,8 @@ export default function Projects() {
         const offSetWidth = contentRef.current.scrollWidth;
         const newOffset = offSetWidth - width;
 
-        setTimeout(() => {
-          setOffset(newOffset);
-          setDragField(offSetWidth);
-        }, 500);
+        setOffset(newOffset);
+        setDragField(offSetWidth);
       }
     };
 
