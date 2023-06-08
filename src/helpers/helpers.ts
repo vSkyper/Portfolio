@@ -6,7 +6,7 @@ import emailjs from '@emailjs/browser';
 import { toast } from 'react-toastify';
 import validator from 'validator';
 
-function validateForm({ name, message, mail }: IContactFormValidationProps) {
+const validateForm = ({ name, message, mail }: IContactFormValidationProps) => {
   name = name.trim();
   message = message.trim();
   mail = mail.trim();
@@ -41,9 +41,9 @@ function validateForm({ name, message, mail }: IContactFormValidationProps) {
     state: 'success',
     message: 'Form validated!',
   } as IFormValidationReturn;
-}
+};
 
-function sender(e: React.FormEvent<HTMLFormElement>, form: HTMLFormElement) {
+const sender = (e: React.FormEvent<HTMLFormElement>, form: HTMLFormElement) => {
   if (!process.env.SERVICE_ID) {
     toast.error('Something went wrong!');
     return;
@@ -72,12 +72,12 @@ function sender(e: React.FormEvent<HTMLFormElement>, form: HTMLFormElement) {
     success: 'Message sent successfully!',
     error: 'Message was not sent!',
   });
-}
+};
 
-export function sendMail(
+export const sendMail = (
   e: React.FormEvent<HTMLFormElement>,
   form: HTMLFormElement | null
-) {
+) => {
   if (!form) return;
 
   console.log(form.senderName.value);
@@ -100,4 +100,4 @@ export function sendMail(
     default:
       break;
   }
-}
+};
