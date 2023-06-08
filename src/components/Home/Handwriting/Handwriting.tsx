@@ -29,9 +29,13 @@ export default function Handwriting() {
       customCursor.style.top = `${clientY}px`;
     };
 
-    const handleMouseEnter = () => {
+    const handleMouseEnter = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+
       customCursor.classList.remove('animate-custom-cursor-out');
       customCursor.classList.add('animate-custom-cursor');
+      customCursor.style.left = `${clientX}px`;
+      customCursor.style.top = `${clientY}px`;
     };
 
     const handleMouseLeave = () => {
