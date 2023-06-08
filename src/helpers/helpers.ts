@@ -80,8 +80,6 @@ export const sendMail = (
 ) => {
   if (!form) return;
 
-  console.log(form.senderName.value);
-
   const validatedForm = validateForm({
     name: form.senderName.value,
     mail: form.email.value,
