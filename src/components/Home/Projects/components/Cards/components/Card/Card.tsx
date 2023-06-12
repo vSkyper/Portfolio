@@ -19,7 +19,7 @@ export default function Card({
 
   return (
     <motion.div
-      className='relative h-0 pb-[55%] min-w-[85%] md:pb-[40%] md:min-w-[70%] lg:pb-[30%] lg:min-w-[55%] xl:pb-[25%] xl:min-w-[45%] rounded-3xl bg-cover bg-no-repeat hover:scale-[1.02] transition-transform duration-500'
+      className='relative h-0 pb-[55%] min-w-[85%] md:pb-[40%] md:min-w-[70%] lg:pb-[30%] lg:min-w-[55%] xl:pb-[25%] xl:min-w-[45%] rounded-3xl bg-cover bg-no-repeat hover:scale-[1.02] transition-transform duration-500 outline-none'
       style={{ backgroundImage: `url(${image_blurred})` }}
       onTap={handleTap}
     >
