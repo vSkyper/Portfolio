@@ -99,12 +99,3 @@ export const sendMail = (
       break;
   }
 };
-
-export function closeDetailsOnESC(
-  event: KeyboardEvent,
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-) {
-  if (event.key === 'Escape') {
-    setIsOpen(false);
-  }
-}

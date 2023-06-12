@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { Logic } from './components';
-import { closeDetailsOnESC } from 'helpers/helpers';
-
 interface Props {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -19,7 +17,9 @@ export default function Project({ setIsOpen }: Props) {
 
   useEffect(() => {
     function handleEscape(event: KeyboardEvent) {
-      closeDetailsOnESC(event, setIsOpen);
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
     }
 
     document.addEventListener('keyup', handleEscape);
