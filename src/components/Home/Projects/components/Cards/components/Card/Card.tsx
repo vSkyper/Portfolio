@@ -1,6 +1,7 @@
+import { Project } from 'components/Home';
 import { motion } from 'framer-motion';
 import { IProject } from 'interfaces/interfaces';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 interface Props extends IProject {}
 
@@ -10,8 +11,10 @@ export default function Card({
   image,
   image_blurred,
 }: Props) {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const handleTap = useCallback(() => {
-    console.log('tap');
+    setIsOpen(true);
   }, []);
 
   return (
@@ -31,6 +34,7 @@ export default function Card({
           {title}
         </div>
       </div>
+      {isOpen && <Project setIsOpen={setIsOpen} />}
     </motion.div>
   );
 }
