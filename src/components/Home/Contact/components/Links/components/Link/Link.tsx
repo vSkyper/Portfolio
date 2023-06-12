@@ -1,34 +1,24 @@
 import { IContactLink } from 'interfaces/interfaces';
+import { motion as m } from 'framer-motion';
+import { slideInRightAnimation } from 'animations/animations';
 
-interface Props extends IContactLink {
-  isVisible: boolean;
-  animationDelay: string;
-}
-
-export default function Link({
-  link,
-  icon: Icon,
-  type,
-  isVisible,
-  animationDelay,
-}: Props) {
+export default function Link({ link, icon: Icon, type }: IContactLink) {
   return (
-    <div
-      className={`flex items-center mt-4 sm:mt-6 ${animationDelay} opacity-0 ${
-        isVisible && 'animate-slide-in-right'
-      }`}
+    <m.div
+      variants={slideInRightAnimation}
+      className='flex items-center gap-4 sm:gap-5'
     >
-      <div className='w-4 h-4 mr-4 sm:mr-5'>
+      <div className='w-4 h-4'>
         <Icon />
       </div>
       <a
-        className='text-sm sm:text-base font-light hover:text-primaryLight transition-all'
+        className='text-sm sm:text-base font-light hover:text-primaryLight transition-colors'
         href={type === 'link' ? link : `mailto:${link}`}
         target='_blank'
         rel='noopener noreferrer'
       >
         {link}
       </a>
-    </div>
+    </m.div>
   );
 }

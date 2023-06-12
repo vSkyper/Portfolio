@@ -1,23 +1,10 @@
+import { slideInLeftAnimation } from 'animations/animations';
+import { motion as m } from 'framer-motion';
 import { IContactField } from 'interfaces/interfaces';
 
-interface Props extends IContactField {
-  isVisible: boolean;
-  animationDelay: string;
-}
-
-export default function Field({
-  label,
-  id,
-  type,
-  isVisible,
-  animationDelay,
-}: Props) {
+export default function Field({ label, id, type }: IContactField) {
   return (
-    <div
-      className={`mb-6 ${animationDelay} opacity-0 ${
-        isVisible && 'animate-slide-in-left'
-      }`}
-    >
+    <m.div variants={slideInLeftAnimation}>
       <label htmlFor={id} className='block mb-2 text-sm font-medium'>
         {label}
       </label>
@@ -36,6 +23,6 @@ export default function Field({
           className='bg-secondary text-sm rounded-lg focus:ring focus:outline-none focus:ring-primary w-full p-2.5'
         />
       )}
-    </div>
+    </m.div>
   );
 }

@@ -14,8 +14,6 @@ module.exports = {
       },
       animation: {
         handwriting: 'handwriting 4s linear',
-        'slide-in-left': 'slide-in-left 0.5s ease-in-out both',
-        'slide-in-right': 'slide-in-right 0.5s ease-in-out both',
         'custom-cursor': 'custom-cursor 0.5s ease-in-out both',
         'custom-cursor-out': 'custom-cursor-out 0.2s ease-in-out both',
       },
@@ -24,43 +22,23 @@ module.exports = {
           '0%': { strokeDashoffset: 4674 },
           '100%': { strokeDashoffset: 0 },
         },
-        'slide-in-left': {
-          '0%': {
-            transform: 'translateX(-100%)',
-            opacity: 0,
-          },
-          '100%': {
-            transform: 'translateX(0)',
-            opacity: 1,
-          },
-        },
-        'slide-in-right': {
-          '0%': {
-            transform: 'translateX(100%)',
-            opacity: 0,
-          },
-          '100%': {
-            transform: 'translateX(0)',
-            opacity: 1,
-          },
-        },
         'custom-cursor': {
           '0%': {
-            transform: 'translate(-50%, -75%) scale(0) rotate(-12deg)',
+            scale: 0,
             opacity: 0,
           },
           '100%': {
-            transform: 'translate(-50%, -75%) scale(1) rotate(-12deg)',
+            scale: 1,
             opacity: 1,
           },
         },
         'custom-cursor-out': {
           '0%': {
-            transform: 'translate(-50%, -75%) scale(1) rotate(-12deg)',
+            scale: 1,
             opacity: 1,
           },
           '100%': {
-            transform: 'translate(-50%, -75%) scale(0) rotate(-12deg)',
+            scale: 0,
             opacity: 0,
           },
         },

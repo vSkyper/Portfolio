@@ -21,6 +21,7 @@
     ],
     "baseUrl": "./src/",
     "paths": {
+      "@/animations": ["@animations/*"],
       "@/components": ["@components/*"],
       "@/constans": ["@constans/*"],
       "@/helpers": ["@helpers/*"],

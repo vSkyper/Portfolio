@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion as m } from 'framer-motion';
 import { Cards } from './components';
 import { useEffect, useRef, useState } from 'react';
 
@@ -48,7 +48,7 @@ export default function Projects() {
           width: `${dragField}px`,
         }}
       ></div>
-      <motion.div
+      <m.div
         ref={contentRef}
         drag={'x'}
         dragConstraints={dragFieldRef}
@@ -56,7 +56,7 @@ export default function Projects() {
         className='flex gap-2 sm:gap-6 cursor-grab'
       >
         <Cards />
-      </motion.div>
+      </m.div>
     </div>
   );
 }

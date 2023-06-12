@@ -57,7 +57,7 @@ export default function CustomCursor({ containerRef }: Props) {
   return (
     <div
       ref={customCursorRef}
-      className='fixed opacity-0 px-8 py-2 pointer-events-none bg-primary text-secondary rounded-[50%] z-10'
+      className='fixed opacity-0 px-8 py-2 pointer-events-none bg-primary text-secondary rounded-[50%] z-10 -rotate-12 -translate-x-1/2 -translate-y-3/4'
     >
       <div className={`rotate-12 text-lg ${magra.className}`}>Scroll</div>
     </div>

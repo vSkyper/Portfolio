@@ -1,5 +1,5 @@
 import { Project } from 'components/Home';
-import { motion } from 'framer-motion';
+import { motion as m } from 'framer-motion';
 import { IProject } from 'interfaces/interfaces';
 import { useCallback, useState } from 'react';
 
@@ -18,7 +18,7 @@ export default function Card({
   }, []);
 
   return (
-    <motion.div
+    <m.div
       className='relative h-0 pb-[55%] min-w-[85%] md:pb-[40%] md:min-w-[70%] lg:pb-[30%] lg:min-w-[55%] xl:pb-[25%] xl:min-w-[45%] rounded-3xl bg-cover bg-no-repeat hover:scale-[1.02] transition-transform duration-500 outline-none'
       style={{ backgroundImage: `url(${image_blurred})` }}
       onTap={handleTap}
@@ -35,6 +35,6 @@ export default function Card({
         </div>
       </div>
       {isOpen && <Project setIsOpen={setIsOpen} />}
-    </motion.div>
+    </m.div>
   );
 }
