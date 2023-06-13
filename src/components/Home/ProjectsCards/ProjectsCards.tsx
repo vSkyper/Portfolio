@@ -4,7 +4,7 @@ import { motion as m } from 'framer-motion';
 import { Cards } from './components';
 import { useEffect, useRef, useState } from 'react';
 
-export default function Projects() {
+export default function ProjectsCards() {
   const [offset, setOffset] = useState<number>(0);
   const [dragField, setDragField] = useState<number>(0);
 

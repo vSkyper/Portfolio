@@ -1,5 +1,5 @@
 import Handwriting from './Handwriting';
-import Projects from './Projects';
+import ProjectsCards from './ProjectsCards';
 import Contact from './Contact';
 
-export { Handwriting, Projects, Contact };
+export { Handwriting, ProjectsCards, Contact };

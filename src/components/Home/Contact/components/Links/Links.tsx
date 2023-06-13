@@ -10,7 +10,7 @@ export default function Links() {
       initial='hidden'
       whileInView='show'
       viewport={{ once: true }}
-      className='basis-full  flex flex-col gap-4 sm:gap-6 mt-6'
+      className='basis-full flex flex-col gap-4 sm:gap-6 mt-6'
     >
       {contactLinks.map((link) => (
         <Link key={link.link} {...link} />

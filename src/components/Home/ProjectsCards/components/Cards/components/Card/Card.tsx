@@ -1,5 +1,5 @@
 import { motion as m } from 'framer-motion';
-import { IProject } from 'interfaces/interfaces';
+import { IProjectCard } from 'interfaces/interfaces';
 import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 
@@ -9,7 +9,7 @@ export default function Card({
   technology,
   image,
   image_blurred,
-}: IProject) {
+}: IProjectCard) {
   const router = useRouter();
 
   const handleTap = useCallback(

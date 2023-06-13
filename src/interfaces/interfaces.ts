@@ -23,10 +23,17 @@ export interface IFormValidationReturn {
   message: string;
 }
 
-export interface IProject {
+export interface IProjectCard {
   id: string;
   title: string;
   technology: string;
   image: string;
   image_blurred: string;
+}
+
+export interface IProjectDetails {
+  id: string;
+  title: string;
+  description: string;
+  images: string[];
 }
