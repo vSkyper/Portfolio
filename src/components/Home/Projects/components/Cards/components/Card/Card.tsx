@@ -3,14 +3,12 @@ import { motion as m } from 'framer-motion';
 import { IProject } from 'interfaces/interfaces';
 import { useCallback, useState } from 'react';
 
-interface Props extends IProject {}
-
 export default function Card({
   title,
   technology,
   image,
   image_blurred,
-}: Props) {
+}: IProject) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleTap = useCallback(() => {
