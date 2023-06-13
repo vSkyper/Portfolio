@@ -39,18 +39,21 @@ export const contactLinks: IContactLink[] = [
 
 export const projects: IProject[] = [
   {
+    id: 'learnhub',
     title: 'LearnHub',
     technology: 'React',
     image: '/images/learnhub.webp',
     image_blurred: '/images/learnhub_blurred.webp',
   },
   {
+    id: 'cryptocurrency-tailwind',
     title: 'Cryptocurrency Tailwind',
     technology: 'React',
     image: '/images/cryptocurrency-tailwind.webp',
     image_blurred: '/images/cryptocurrency-tailwind_blurred.webp',
   },
   {
+    id: 'cryptocurrency',
     title: 'Cryptocurrency',
     technology: 'React',
     image: '/images/cryptocurrency.webp',

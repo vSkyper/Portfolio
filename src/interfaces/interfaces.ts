@@ -24,6 +24,7 @@ export interface IFormValidationReturn {
 }
 
 export interface IProject {
+  id: string;
   title: string;
   technology: string;
   image: string;

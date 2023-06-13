@@ -1,19 +1,21 @@
-import { Project } from 'components/Home';
 import { motion as m } from 'framer-motion';
 import { IProject } from 'interfaces/interfaces';
-import { useCallback, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useCallback } from 'react';
 
 export default function Card({
+  id,
   title,
   technology,
   image,
   image_blurred,
 }: IProject) {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const router = useRouter();
 
-  const handleTap = useCallback(() => {
-    setIsOpen(true);
-  }, []);
+  const handleTap = useCallback(
+    () => router.push(`/project/${id}`),
+    [router, id]
+  );
 
   return (
     <m.div
@@ -32,7 +34,6 @@ export default function Card({
           {title}
         </div>
       </div>
-      {isOpen && <Project setIsOpen={setIsOpen} />}
     </m.div>
   );
 }
