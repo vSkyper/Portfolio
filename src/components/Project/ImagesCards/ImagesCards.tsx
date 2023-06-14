@@ -38,7 +38,7 @@ export default function ImagesCards({ images }: Props) {
   }, []);
 
   return (
-    <div ref={wrapperRef} className='relative pt-9 md:pt-20 mx-2 sm:mx-6'>
+    <div ref={wrapperRef} className='relative pt-9 md:pt-16 mx-2 sm:mx-6'>
       <div
         ref={dragFieldRef}
         className='absolute inset-0 pointer-events-none'

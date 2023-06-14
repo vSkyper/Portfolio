@@ -5,6 +5,7 @@ import {
   IProjectDetails,
 } from 'interfaces/interfaces';
 import { SiGithub, SiGmail, SiLinkedin } from 'react-icons/si';
+import { AiOutlineGlobal } from 'react-icons/ai';
 
 export const contactFields: IContactField[] = [
   {
@@ -76,6 +77,51 @@ export const projectsDetails: IProjectDetails[] = [
       '/images/project/learnhub-1.webp',
       '/images/project/learnhub-2.webp',
       '/images/project/learnhub-3.webp',
+    ],
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Firebase', 'WebRTC'],
+    links: [],
+  },
+  {
+    id: 'cryptocurrency-tailwind',
+    title: 'Cryptocurrency Tailwind',
+    description:
+      'The goal of the project is to provide a cryptocurrency dashboard. Features of the project include: the ability to search for a specific cryptocurrency, the ability to sort cryptocurrencies in table, the ability to display the price of a cryptocurrency in a specific time interval.',
+    images: [
+      '/images/project/cryptocurrency-tailwind-1.webp',
+      '/images/project/cryptocurrency-tailwind-2.webp',
+    ],
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'CoinGecko API'],
+    links: [
+      {
+        link: 'https://vcryptocurrency.netlify.app',
+        icon: AiOutlineGlobal,
+      },
+      {
+        link: 'https://github.com/vSkyper/CryptocurrencyTailwind',
+        icon: SiGithub,
+      },
+    ],
+  },
+  {
+    id: 'cryptocurrency',
+    title: 'Cryptocurrency',
+    description:
+      'The goal of the project is to provide a cryptocurrency dashboard. Features of the project include: the ability to search for a specific cryptocurrency, the ability to sort cryptocurrencies in table, the ability to display the price of a cryptocurrency in a specific time interval, the ability to exchange cryptocurrencies.',
+    images: [
+      '/images/project/cryptocurrency-1.webp',
+      '/images/project/cryptocurrency-2.webp',
+      '/images/project/cryptocurrency-3.webp',
+    ],
+    technologies: ['React', 'TypeScript', 'MUI', 'CoinGecko API'],
+    links: [
+      {
+        link: 'https://vcryptocurrencyjs.netlify.app',
+        icon: AiOutlineGlobal,
+      },
+      {
+        link: 'https://github.com/vSkyper/cryptocurrency',
+        icon: SiGithub,
+      },
     ],
   },
 ];
