@@ -1,9 +1,11 @@
 import { motion as m } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Cards } from './components';
+import { StaticImageData } from 'next/image';
+import { updateOffset } from 'helpers/helpers';
 
 interface Props {
-  images: string[];
+  images: StaticImageData[];
 }
 
 export default function ImagesCards({ images }: Props) {
@@ -15,25 +17,12 @@ export default function ImagesCards({ images }: Props) {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const updateOffset = () => {
-      if (wrapperRef.current && contentRef.current) {
-        const { width } = wrapperRef.current.getBoundingClientRect();
+    const updateOffsetListener = () =>
+      updateOffset(wrapperRef, contentRef, setOffset, setDragField);
 
-        const offSetWidth = contentRef.current.scrollWidth;
-        const newOffset = offSetWidth - width;
-
-        setTimeout(() => {
-          setOffset(newOffset);
-          setDragField(offSetWidth);
-        }, 500);
-      }
-    };
-
-    updateOffset();
-
-    window.addEventListener('resize', updateOffset);
+    window.addEventListener('resize', updateOffsetListener);
     return () => {
-      window.removeEventListener('resize', updateOffset);
+      window.removeEventListener('resize', updateOffsetListener);
     };
   }, []);
 
@@ -52,7 +41,7 @@ export default function ImagesCards({ images }: Props) {
         drag={'x'}
         dragConstraints={dragFieldRef}
         whileTap={{ cursor: 'grabbing' }}
-        className='flex gap-2 sm:gap-6 cursor-grab'
+        className='flex gap-2 sm:gap-6 cursor-grab outline-none'
       >
         <Cards images={images} />
       </m.div>

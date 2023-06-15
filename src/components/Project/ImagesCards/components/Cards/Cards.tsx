@@ -1,7 +1,8 @@
+import { StaticImageData } from 'next/image';
 import { Card } from './components';
 
 interface Props {
-  images: string[];
+  images: StaticImageData[];
 }
 
 export default function Cards({ images }: Props) {

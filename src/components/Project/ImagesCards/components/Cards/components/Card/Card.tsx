@@ -1,12 +1,18 @@
+import Image, { StaticImageData } from 'next/image';
+
 interface Props {
-  image: string;
+  image: StaticImageData;
 }
 
 export default function Card({ image }: Props) {
   return (
-    <div
-      className='h-0 pb-[55%] min-w-[85%] md:pb-[40%] md:min-w-[70%] lg:pb-[30%] lg:min-w-[55%] xl:pb-[25%] xl:min-w-[45%] rounded-3xl bg-cover bg-no-repeat outline-none'
-      style={{ backgroundImage: `url(${image})` }}
-    />
+    <div className='min-w-[85%] md:min-w-[70%] lg:min-w-[55%] xl:min-w-[45%] h-auto'>
+      <Image
+        src={image}
+        alt='project'
+        placeholder='blur'
+        className='w-full h-auto rounded-3xl outline-none pointer-events-none'
+      />
+    </div>
   );
 }

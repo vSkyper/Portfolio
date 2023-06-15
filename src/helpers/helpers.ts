@@ -5,6 +5,7 @@ import {
 import emailjs from '@emailjs/browser';
 import { toast } from 'react-toastify';
 import validator from 'validator';
+import { RefObject } from 'react';
 
 const validateForm = ({ name, message, mail }: IContactFormValidationProps) => {
   name = name.trim();
@@ -97,5 +98,24 @@ export const sendMail = (
       break;
     default:
       break;
+  }
+};
+
+export const updateOffset = (
+  wrapperRef: RefObject<HTMLDivElement>,
+  contentRef: RefObject<HTMLDivElement>,
+  setOffset: React.Dispatch<React.SetStateAction<number>>,
+  setDragField: React.Dispatch<React.SetStateAction<number>>
+) => {
+  if (wrapperRef.current && contentRef.current) {
+    const { width } = wrapperRef.current.getBoundingClientRect();
+
+    const offSetWidth = contentRef.current.scrollWidth;
+    const newOffset = offSetWidth - width;
+
+    setTimeout(() => {
+      setOffset(newOffset);
+      setDragField(offSetWidth);
+    }, 500);
   }
 };

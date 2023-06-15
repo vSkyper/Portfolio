@@ -1,3 +1,4 @@
+import { StaticImageData } from 'next/image';
 import { IconType } from 'react-icons/lib';
 
 export interface IContactField {
@@ -44,7 +45,7 @@ export interface IProjectDetails {
   id: string;
   title: string;
   description: string;
-  images: string[];
+  images: StaticImageData[];
   technologies: string[];
   links: IProjectDetailsLink[];
 }
