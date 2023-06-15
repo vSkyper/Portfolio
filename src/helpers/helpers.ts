@@ -107,15 +107,15 @@ export const updateOffset = (
   setOffset: React.Dispatch<React.SetStateAction<number>>,
   setDragField: React.Dispatch<React.SetStateAction<number>>
 ) => {
-  if (wrapperRef.current && contentRef.current) {
-    const { width } = wrapperRef.current.getBoundingClientRect();
+  if (!wrapperRef.current || !contentRef.current) return;
 
-    const offSetWidth = contentRef.current.scrollWidth;
-    const newOffset = offSetWidth - width;
+  const { width } = wrapperRef.current.getBoundingClientRect();
 
-    setTimeout(() => {
-      setOffset(newOffset);
-      setDragField(offSetWidth);
-    }, 500);
-  }
+  const offSetWidth = contentRef.current.scrollWidth;
+  const newOffset = offSetWidth - width;
+
+  setTimeout(() => {
+    setOffset(newOffset);
+    setDragField(offSetWidth);
+  }, 500);
 };

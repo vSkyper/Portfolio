@@ -14,6 +14,8 @@ export default function ProjectsCards() {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    updateOffset(wrapperRef, contentRef, setOffset, setDragField);
+
     const updateOffsetListener = () =>
       updateOffset(wrapperRef, contentRef, setOffset, setDragField);
 
