@@ -119,3 +119,13 @@ export const updateOffset = (
     setDragField(offSetWidth);
   }, 500);
 };
+
+export const after = (count: number, f: () => void) => {
+  let noOfCalls = 0;
+  return function () {
+    noOfCalls++;
+    if (noOfCalls === count) {
+      f();
+    }
+  };
+};

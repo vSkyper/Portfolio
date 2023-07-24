@@ -1,7 +1,7 @@
 import { motion as m } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { Cards } from './components';
-import { updateOffset } from 'helpers/helpers';
+import { after, updateOffset } from 'helpers/helpers';
 
 interface Props {
   images: string[];
@@ -14,6 +14,10 @@ export default function ImagesCards({ images }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const dragFieldRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  const imagesLoaded = after(images.length, () => {
+    updateOffset(wrapperRef, contentRef, setOffset, setDragField);
+  });
 
   useEffect(() => {
     updateOffset(wrapperRef, contentRef, setOffset, setDragField);
@@ -44,7 +48,7 @@ export default function ImagesCards({ images }: Props) {
         whileTap={{ cursor: 'grabbing' }}
         className='flex gap-2 sm:gap-6 cursor-grab outline-none'
       >
-        <Cards images={images} />
+        <Cards images={images} imagesLoaded={imagesLoaded} />
       </m.div>
     </div>
   );
