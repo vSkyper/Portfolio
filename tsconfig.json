@@ -24,7 +24,6 @@
       "@/animations": ["@animations/*"],
       "@/constants": ["@constants/*"],
       "@/helpers": ["@helpers/*"],
-      "@/hooks": ["@hooks/*"],
       "@/interfaces": ["@interfaces/*"],
       "@/pages": ["@pages/*"]
     }
