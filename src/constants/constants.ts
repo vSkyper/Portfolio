@@ -91,7 +91,13 @@ export const projectsDetails: IProjectDetails[] = [
       '/images/project/cryptocurrency-tailwind-2.webp',
       '/images/project/cryptocurrency-tailwind-3.webp',
     ],
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'CoinGecko API'],
+    technologies: [
+      'React',
+      'Vite',
+      'TypeScript',
+      'Tailwind CSS',
+      'CoinGecko API',
+    ],
     links: [
       {
         link: 'https://vcryptocurrency.netlify.app',
@@ -113,7 +119,7 @@ export const projectsDetails: IProjectDetails[] = [
       '/images/project/cryptocurrency-2.webp',
       '/images/project/cryptocurrency-3.webp',
     ],
-    technologies: ['React', 'TypeScript', 'MUI', 'CoinGecko API'],
+    technologies: ['React', 'Vite', 'TypeScript', 'MUI', 'CoinGecko API'],
     links: [
       {
         link: 'https://vcryptocurrencyjs.netlify.app',
