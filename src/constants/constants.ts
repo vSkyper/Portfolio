@@ -126,7 +126,7 @@ export const projectsDetails: IProjectDetails[] = [
         icon: AiOutlineGlobal,
       },
       {
-        link: 'https://github.com/vSkyper/cryptocurrency',
+        link: 'https://github.com/vSkyper/Cryptocurrency',
         icon: SiGithub,
       },
     ],
