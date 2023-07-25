@@ -2,6 +2,8 @@ import { IProjectDetails } from 'interfaces/interfaces';
 import { ImagesCards, Links, Technologies } from './components';
 import { projectsDetails } from 'constants/constants';
 import { useParams } from 'react-router-dom';
+import { motion as m } from 'framer-motion';
+import { slideInTopAnimation } from 'animations/animations';
 
 export default function Project() {
   const { id } = useParams();
@@ -15,7 +17,12 @@ export default function Project() {
   }
 
   return (
-    <main className='h-full w-full'>
+    <m.main
+      variants={slideInTopAnimation}
+      initial='hidden'
+      animate='show'
+      className='h-full w-full'
+    >
       <div className='container mx-auto w-11/12'>
         <div className='text-3xl sm:text-4xl font-bold pt-8'>
           {project.title}
@@ -25,6 +32,6 @@ export default function Project() {
         <Links links={project.links} />
       </div>
       <ImagesCards images={project.images} />
-    </main>
+    </m.main>
   );
 }
