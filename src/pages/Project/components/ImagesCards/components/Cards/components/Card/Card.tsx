@@ -1,9 +1,8 @@
-interface Props {
-  image: string;
-  imagesLoaded: () => void;
-}
+import { CardProps } from './interface';
 
-export default function Card({ image, imagesLoaded }: Props) {
+export default function Card(props: CardProps) {
+  const { image, imagesLoaded } = props;
+
   return (
     <div className='min-w-[85%] md:min-w-[70%] lg:min-w-[55%] xl:min-w-[45%] h-auto'>
       <img

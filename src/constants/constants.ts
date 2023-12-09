@@ -1,29 +1,10 @@
 import {
-  IContactField,
   IContactLink,
   IProjectCard,
   IProjectDetails,
 } from 'interfaces/interfaces';
 import { SiGithub, SiGmail, SiLinkedin } from 'react-icons/si';
 import { AiOutlineGlobal } from 'react-icons/ai';
-
-export const contactFields: IContactField[] = [
-  {
-    label: 'Name',
-    id: 'senderName',
-    type: 'text',
-  },
-  {
-    label: 'Email',
-    id: 'email',
-    type: 'text',
-  },
-  {
-    label: 'Message',
-    id: 'message',
-    type: 'textarea',
-  },
-];
 
 export const contactLinks: IContactLink[] = [
   {

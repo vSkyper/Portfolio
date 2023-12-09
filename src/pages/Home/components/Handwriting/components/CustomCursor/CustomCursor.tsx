@@ -1,10 +1,9 @@
 import { useEffect, useRef } from 'react';
+import { CustomCursorProps } from './interface';
 
-interface Props {
-  containerRef: React.RefObject<HTMLDivElement>;
-}
+export default function CustomCursor(props: CustomCursorProps) {
+  const { containerRef } = props;
 
-export default function CustomCursor({ containerRef }: Props) {
   const customCursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

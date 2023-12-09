@@ -2,12 +2,11 @@ import { motion as m } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { Cards } from './components';
 import { after, updateOffset } from 'helpers/helpers';
+import { ImagesCardsProps } from './interface';
 
-interface Props {
-  images: string[];
-}
+export default function ImagesCards(props: ImagesCardsProps) {
+  const { images } = props;
 
-export default function ImagesCards({ images }: Props) {
   const [offset, setOffset] = useState<number>(0);
   const [dragField, setDragField] = useState<number>(0);
 

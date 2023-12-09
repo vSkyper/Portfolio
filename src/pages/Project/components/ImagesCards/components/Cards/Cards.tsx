@@ -1,11 +1,9 @@
 import { Card } from './components';
+import { CardsProps } from './interface';
 
-interface Props {
-  images: string[];
-  imagesLoaded: () => void;
-}
+export default function Cards(props: CardsProps) {
+  const { images, imagesLoaded } = props;
 
-export default function Cards({ images, imagesLoaded }: Props) {
   return (
     <>
       {images.map((image, index) => (

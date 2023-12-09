@@ -1,10 +1,9 @@
 import { Technology } from './components';
+import { TechnologiesProps } from './interface';
 
-interface Props {
-  technologies: string[];
-}
+export default function Technologies(props: TechnologiesProps) {
+  const { technologies } = props;
 
-export default function Technologies({ technologies }: Props) {
   return (
     <div className='flex flex-wrap gap-3 mt-6'>
       {technologies.map((technology) => (

@@ -1,19 +1,23 @@
-import { useCallback, useRef } from 'react';
 import { Fields } from './components';
-import { sendMail } from 'helpers/helpers';
 import { motion as m } from 'framer-motion';
 import {
   containerAnimation,
   slideInLeftAnimation,
 } from 'animations/animations';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { ISendMailForm } from 'interfaces/interfaces';
+import OnSubmit from './hook';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 export default function Form() {
-  const formRef = useRef<HTMLFormElement>(null);
+  const { register, handleSubmit, formState } = useForm<ISendMailForm>();
 
-  const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    sendMail(e, formRef.current);
-  }, []);
+  const onSubmit: SubmitHandler<ISendMailForm> = OnSubmit();
+
+  useEffect(() => {
+    if (formState.errors.email) toast.error('Invalid email!');
+  }, [formState]);
 
   return (
     <m.form
@@ -21,11 +25,10 @@ export default function Form() {
       initial='hidden'
       whileInView='show'
       viewport={{ once: true }}
-      ref={formRef}
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       className='basis-full flex flex-col gap-6'
     >
-      <Fields />
+      <Fields register={register} />
       <m.button
         variants={slideInLeftAnimation}
         type='submit'

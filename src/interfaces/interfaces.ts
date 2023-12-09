@@ -1,26 +1,9 @@
 import { IconType } from 'react-icons/lib';
 
-export interface IContactField {
-  label: string;
-  id: string;
-  type: string;
-}
-
 export interface IContactLink {
   link: string;
   icon: IconType;
   type: string;
-}
-
-export interface IContactFormValidationProps {
-  name: string;
-  message: string;
-  mail: string;
-}
-
-export interface IFormValidationReturn {
-  state: string;
-  message: string;
 }
 
 export interface IProjectCard {
@@ -47,4 +30,10 @@ export interface IProjectDetails {
   images: string[];
   technologies: string[];
   links: IProjectDetailsLink[];
+}
+
+export interface ISendMailForm {
+  senderName: string;
+  email: string;
+  message: string;
 }
