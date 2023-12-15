@@ -11,9 +11,9 @@ import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 
 export default function Form() {
-  const { register, handleSubmit, formState } = useForm<ISendMailForm>();
+  const { register, handleSubmit, formState, reset } = useForm<ISendMailForm>();
 
-  const onSubmit: SubmitHandler<ISendMailForm> = OnSubmit();
+  const onSubmit: SubmitHandler<ISendMailForm> = OnSubmit({ reset });
 
   useEffect(() => {
     if (formState.errors.email) toast.error('Invalid email!');
