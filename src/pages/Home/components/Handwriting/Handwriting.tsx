@@ -11,6 +11,10 @@ export default function Handwriting() {
     >
       <CustomCursor containerRef={containerRef} />
       <Svg />
+      <div
+        aria-hidden
+        className='absolute bottom-0 left-1/2 h-px w-[90%] -translate-x-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent'
+      />
     </div>
   );
 }

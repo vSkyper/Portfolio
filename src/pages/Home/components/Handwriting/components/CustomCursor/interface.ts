@@ -1,3 +1,3 @@
 export interface CustomCursorProps {
-  containerRef: React.RefObject<HTMLDivElement>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
 }

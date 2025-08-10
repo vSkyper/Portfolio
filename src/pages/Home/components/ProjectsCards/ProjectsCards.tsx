@@ -7,9 +7,15 @@ export default function ProjectsCards() {
   const [offset, setOffset] = useState<number>(0);
   const [dragField, setDragField] = useState<number>(0);
 
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const dragFieldRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(
+    null
+  ) as React.RefObject<HTMLDivElement>;
+  const dragFieldRef = useRef<HTMLDivElement>(
+    null
+  ) as React.RefObject<HTMLDivElement>;
+  const contentRef = useRef<HTMLDivElement>(
+    null
+  ) as React.RefObject<HTMLDivElement>;
 
   useEffect(() => {
     updateOffset(wrapperRef, contentRef, setOffset, setDragField);
@@ -24,10 +30,7 @@ export default function ProjectsCards() {
   }, []);
 
   return (
-    <div
-      ref={wrapperRef}
-      className='relative pt-3 sm:pt-9 lg:pt-20 xl:pt-28 mx-2 sm:mx-6'
-    >
+    <div ref={wrapperRef} className='relative pt-2 sm:pt-6 lg:pt-10 xl:pt-12'>
       <div
         ref={dragFieldRef}
         className='absolute inset-0 pointer-events-none'
@@ -35,13 +38,13 @@ export default function ProjectsCards() {
           left: `-${offset}px`,
           width: `${dragField}px`,
         }}
-      ></div>
+      />
       <m.div
         ref={contentRef}
         drag={'x'}
         dragConstraints={dragFieldRef}
         whileTap={{ cursor: 'grabbing' }}
-        className='flex gap-2 sm:gap-6 cursor-grab outline-none'
+        className='flex gap-3 sm:gap-6 cursor-grab outline-none'
       >
         <Cards />
       </m.div>

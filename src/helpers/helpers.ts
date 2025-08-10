@@ -8,8 +8,8 @@ import { RefObject } from 'react';
  * @param setDragField Set drag field
  */
 export const updateOffset = (
-  wrapperRef: RefObject<HTMLDivElement>,
-  contentRef: RefObject<HTMLDivElement>,
+  wrapperRef: RefObject<HTMLDivElement | null>,
+  contentRef: RefObject<HTMLDivElement | null>,
   setOffset: React.Dispatch<React.SetStateAction<number>>,
   setDragField: React.Dispatch<React.SetStateAction<number>>
 ) => {

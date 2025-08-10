@@ -31,7 +31,7 @@ export default function ImagesCards(props: ImagesCardsProps) {
   }, []);
 
   return (
-    <div ref={wrapperRef} className='relative pt-9 md:pt-16 mx-2 sm:mx-6'>
+    <div ref={wrapperRef} className='relative z-[1] pt-9 md:pt-16'>
       <div
         ref={dragFieldRef}
         className='absolute inset-0 pointer-events-none'
@@ -39,13 +39,13 @@ export default function ImagesCards(props: ImagesCardsProps) {
           left: `-${offset}px`,
           width: `${dragField}px`,
         }}
-      ></div>
+      />
       <m.div
         ref={contentRef}
         drag={'x'}
         dragConstraints={dragFieldRef}
         whileTap={{ cursor: 'grabbing' }}
-        className='flex gap-2 sm:gap-6 cursor-grab outline-none'
+        className='flex gap-3 sm:gap-6 cursor-grab outline-none'
       >
         <Cards images={images} imagesLoaded={imagesLoaded} />
       </m.div>

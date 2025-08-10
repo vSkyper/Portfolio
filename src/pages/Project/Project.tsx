@@ -21,17 +21,23 @@ export default function Project() {
       variants={slideInTopAnimation}
       initial='hidden'
       animate='show'
-      className='h-full w-full'
+      className='relative w-full min-h-full'
     >
-      <div className='container mx-auto w-11/12'>
-        <div className='text-3xl sm:text-4xl font-bold pt-8'>
-          {project.title}
+      <section className='container mx-auto w-11/12 py-8 sm:py-10 md:py-12'>
+        <div className='rounded-3xl bg-white/[0.03] ring-1 ring-white/10 backdrop-blur-md p-5 sm:p-7 md:p-8'>
+          <div className='text-3xl sm:text-4xl font-bold tracking-tight'>
+            {project.title}
+          </div>
+          <div className='text-sm sm:text-lg mt-3 text-white/80'>
+            {project.description}
+          </div>
+          <Technologies technologies={project.technologies} />
+          <Links links={project.links} />
         </div>
-        <div className='text-sm sm:text-lg mt-4'>{project.description}</div>
-        <Technologies technologies={project.technologies} />
-        <Links links={project.links} />
-      </div>
-      <ImagesCards images={project.images} />
+      </section>
+      <section className='container mx-auto w-11/12'>
+        <ImagesCards images={project.images} />
+      </section>
     </m.main>
   );
 }

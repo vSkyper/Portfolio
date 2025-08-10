@@ -2,18 +2,16 @@ import { IProjectDetailsLink } from 'interfaces/interfaces';
 
 export default function Link({ link, icon: Icon }: IProjectDetailsLink) {
   return (
-    <div className='flex items-center gap-4 sm:gap-5'>
-      <div className='w-4 h-4'>
+    <a
+      className='group inline-flex items-center gap-3 sm:gap-4 text-sm sm:text-base font-light hover:text-primaryLight transition-colors'
+      href={link}
+      target='_blank'
+      rel='noopener noreferrer'
+    >
+      <span className='inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/[0.06] ring-1 ring-white/10 text-white group-hover:text-primaryLight'>
         <Icon />
-      </div>
-      <a
-        className='text-sm sm:text-base font-light hover:text-primaryLight transition-colors'
-        href={link}
-        target='_blank'
-        rel='noopener noreferrer'
-      >
-        {link}
-      </a>
-    </div>
+      </span>
+      <span className='truncate'>{link}</span>
+    </a>
   );
 }

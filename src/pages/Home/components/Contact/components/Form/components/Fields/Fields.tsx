@@ -14,7 +14,10 @@ export default function Fields(props: FieldsProps) {
         </label>
         <input
           title='Name'
-          className='bg-secondary text-sm rounded-lg focus:ring focus:outline-none focus:ring-primary w-full p-2.5'
+          id='senderName'
+          type='text'
+          autoComplete='name'
+          className='bg-white/5 placeholder-white/40 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/60 focus:ring-offset-0 ring-1 ring-white/10 w-full p-2.5'
           {...register('senderName', { required: true })}
         />
       </m.div>
@@ -24,7 +27,11 @@ export default function Fields(props: FieldsProps) {
         </label>
         <input
           title='Email'
-          className='bg-secondary text-sm rounded-lg focus:ring focus:outline-none focus:ring-primary w-full p-2.5'
+          id='email'
+          type='email'
+          inputMode='email'
+          autoComplete='email'
+          className='bg-white/5 placeholder-white/40 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/60 ring-1 ring-white/10 w-full p-2.5'
           {...register('email', {
             required: true,
             validate: (value) => validator.isEmail(value),
@@ -37,7 +44,8 @@ export default function Fields(props: FieldsProps) {
         </label>
         <textarea
           rows={5}
-          className='resize-none bg-secondary text-sm rounded-lg focus:ring focus:outline-none focus:ring-primary w-full p-2.5'
+          id='message'
+          className='resize-none bg-white/5 placeholder-white/40 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/60 ring-1 ring-white/10 w-full p-2.5'
           {...register('message', { required: true })}
         />
       </m.div>

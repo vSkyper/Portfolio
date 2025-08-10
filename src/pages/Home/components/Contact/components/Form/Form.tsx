@@ -32,7 +32,7 @@ export default function Form() {
       <m.button
         variants={slideInLeftAnimation}
         type='submit'
-        className='bg-primary text-secondary hover:bg-primaryLight transition-colors focus:ring-2 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm w-full lg:max-w-fit px-5 py-2.5 text-center'
+        className='relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-secondary transition-colors hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-primary/70 w-full lg:max-w-fit'
       >
         Submit
       </m.button>

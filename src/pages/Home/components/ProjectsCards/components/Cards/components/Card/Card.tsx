@@ -19,18 +19,28 @@ export default function Card({
 
   return (
     <m.div
-      className='relative h-0 pb-[55%] min-w-[85%] md:pb-[40%] md:min-w-[70%] lg:pb-[30%] lg:min-w-[55%] xl:pb-[25%] xl:min-w-[45%] rounded-3xl bg-cover bg-no-repeat hover:scale-[1.02] transition-transform duration-500 outline-none'
+      whileHover={{ scale: 1.02 }}
+      transition={{ type: 'spring', stiffness: 240, damping: 20, mass: 0.3 }}
+      className='group relative z-[1] h-0 pb-[55%] min-w-[85%] md:pb-[40%] md:min-w-[70%] lg:pb-[30%] lg:min-w-[55%] xl:pb-[25%] xl:min-w-[45%] rounded-3xl bg-cover bg-no-repeat outline-none shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] will-change-transform [transform:translateZ(0)]'
       style={{ backgroundImage: `url(${image_blurred})` }}
       onTap={handleTap}
     >
+      {/* hover border glow */}
       <div
-        className='absolute inset-0 flex flex-col justify-between p-2 sm:p-7 bg-cover hover:bg-contain hover:bg-center bg-no-repeat rounded-3xl'
+        aria-hidden
+        className='pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-white/10 group-hover:ring-primary/40 transition-all duration-300'
+      />
+      <div
+        className='absolute inset-0 bg-cover bg-center bg-no-repeat rounded-3xl will-change-transform'
         style={{ backgroundImage: `url(${image})` }}
-      >
-        <div className='text-sm sm:text-lg [text-shadow:1px_1px_1px_rgb(0_0_0_/_40%)]'>
+      />
+      <div className='absolute inset-0 rounded-3xl bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-opacity duration-300' />
+      <div className='absolute inset-0 rounded-3xl flex flex-col justify-between p-3 sm:p-6'>
+        <div className='inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-white/90 backdrop-blur-[2px] px-2 py-1 rounded-md bg-black/30 ring-1 ring-white/10 w-max'>
+          <span className='h-1.5 w-1.5 rounded-full bg-primary inline-block' />
           {technology}
         </div>
-        <div className='text-sm sm:text-lg [text-shadow:1px_1px_1px_rgb(0_0_0_/_40%)] text-end'>
+        <div className='text-base sm:text-lg md:text-xl font-semibold tracking-tight text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)] text-end'>
           {title}
         </div>
       </div>
