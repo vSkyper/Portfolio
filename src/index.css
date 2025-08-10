@@ -14,8 +14,9 @@ body {
 html {
   -ms-overflow-style: none;
   scrollbar-width: none;
-  overflow: scroll;
   overflow-x: hidden;
+  background-color: #000;
+  overscroll-behavior: none;
 }
 ::-webkit-scrollbar {
   display: none;
@@ -25,6 +26,7 @@ html {
 
 body {
   color: #fff;
+  overscroll-behavior: none;
   /* layered ambient background */
   background: radial-gradient(
       900px 600px at 10% -10%,
