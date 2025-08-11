@@ -68,8 +68,6 @@ export default function ImagesCards(props: ImagesCardsProps) {
         ref={contentRef}
         drag={offset > 0 ? 'x' : false}
         dragConstraints={dragFieldRef}
-        dragElastic={0.1} // Reduce elastic effect for smoother mobile experience
-        dragTransition={{ bounceStiffness: 100, bounceDamping: 10 }} // Optimize drag physics
         whileTap={{ cursor: 'grabbing' }}
         className={`flex gap-3 sm:gap-6 outline-none will-change-transform ${
           offset > 0 ? 'cursor-grab' : 'cursor-default'
