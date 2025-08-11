@@ -17,15 +17,35 @@ export default function ProjectsCards() {
     null
   ) as React.RefObject<HTMLDivElement>;
 
-  useEffect(() => {
+  const handleImagesLoaded = () => {
     updateOffset(wrapperRef, contentRef, setOffset, setDragField);
+  };
+
+  useEffect(() => {
+    // Initial calculation
+    updateOffset(wrapperRef, contentRef, setOffset, setDragField);
+
+    // Multiple fallback calculations to handle different loading scenarios
+    const timers = [
+      setTimeout(() => {
+        updateOffset(wrapperRef, contentRef, setOffset, setDragField);
+      }, 500),
+      setTimeout(() => {
+        updateOffset(wrapperRef, contentRef, setOffset, setDragField);
+      }, 1000),
+      setTimeout(() => {
+        updateOffset(wrapperRef, contentRef, setOffset, setDragField);
+      }, 2000),
+    ];
 
     const updateOffsetListener = () =>
       updateOffset(wrapperRef, contentRef, setOffset, setDragField);
 
     window.addEventListener('resize', updateOffsetListener);
+
     return () => {
       window.removeEventListener('resize', updateOffsetListener);
+      timers.forEach(clearTimeout);
     };
   }, []);
 
@@ -44,12 +64,14 @@ export default function ProjectsCards() {
       />
       <m.div
         ref={contentRef}
-        drag={'x'}
+        drag={offset > 0 ? 'x' : false} // Only enable drag if there's content to scroll
         dragConstraints={dragFieldRef}
         whileTap={{ cursor: 'grabbing' }}
-        className='flex gap-3 sm:gap-6 cursor-grab outline-none'
+        className={`flex gap-3 sm:gap-6 outline-none ${
+          offset > 0 ? 'cursor-grab' : 'cursor-default'
+        }`}
       >
-        <Cards />
+        <Cards onImagesLoaded={handleImagesLoaded} />
       </m.div>
     </div>
   );
