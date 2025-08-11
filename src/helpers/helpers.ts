@@ -48,3 +48,23 @@ export const after = (count: number, f: () => void) => {
     }
   };
 };
+
+/**
+ * Check if the device is mobile based on screen width and user agent
+ * @returns true if mobile device
+ */
+export const isMobile = (): boolean => {
+  if (typeof window === 'undefined') return false;
+
+  // Check screen width (mobile breakpoint)
+  const isMobileWidth = window.innerWidth < 768;
+
+  // Check user agent for mobile devices
+  const userAgent = navigator.userAgent.toLowerCase();
+  const isMobileUA =
+    /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
+      userAgent
+    );
+
+  return isMobileWidth || isMobileUA;
+};

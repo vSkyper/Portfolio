@@ -28,9 +28,15 @@ export default function Card(props: CardProps) {
       <img
         src={image}
         alt='project'
-        className='w-full h-auto rounded-3xl outline-none pointer-events-none'
+        className='w-full h-auto rounded-3xl outline-none pointer-events-none will-change-transform'
         onLoad={handleImageLoad}
         onError={handleImageError}
+        loading='lazy' // Native lazy loading for better performance
+        decoding='async' // Async image decoding
+        style={{
+          transform: 'translateZ(0)', // Force hardware acceleration
+          backfaceVisibility: 'hidden',
+        }}
       />
     </div>
   );

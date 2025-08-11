@@ -1,7 +1,7 @@
 import { motion as m } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { Cards } from './components';
-import { after, updateOffset } from 'helpers/helpers';
+import { after, updateOffset, isMobile } from 'helpers/helpers';
 import { ImagesCardsProps } from './interface';
 
 export default function ImagesCards(props: ImagesCardsProps) {
@@ -20,37 +20,39 @@ export default function ImagesCards(props: ImagesCardsProps) {
   });
 
   // Enhanced image loaded callback to track progress
-  const onImageLoad = () => {
+  const onImageLoad = useCallback(() => {
     imagesLoaded();
     setImagesLoadedCount((prev) => prev + 1);
-  };
+  }, [imagesLoaded]);
+
+  const updateOffsetCallback = useCallback(() => {
+    updateOffset(wrapperRef, contentRef, setOffset, setDragField);
+  }, []);
 
   useEffect(() => {
     // Initial calculation
-    updateOffset(wrapperRef, contentRef, setOffset, setDragField);
+    updateOffsetCallback();
 
-    // Fallback: Recalculate after a delay to ensure all images are rendered
-    const fallbackTimer = setTimeout(() => {
-      updateOffset(wrapperRef, contentRef, setOffset, setDragField);
-    }, 1000);
+    // Reduce fallback timer for mobile devices for better responsiveness
+    const mobile = isMobile();
+    const fallbackDelay = mobile ? 500 : 1000;
 
-    const updateOffsetListener = () =>
-      updateOffset(wrapperRef, contentRef, setOffset, setDragField);
+    const fallbackTimer = setTimeout(updateOffsetCallback, fallbackDelay);
 
-    window.addEventListener('resize', updateOffsetListener);
+    window.addEventListener('resize', updateOffsetCallback);
 
     return () => {
-      window.removeEventListener('resize', updateOffsetListener);
+      window.removeEventListener('resize', updateOffsetCallback);
       clearTimeout(fallbackTimer);
     };
-  }, []);
+  }, [updateOffsetCallback]);
 
   // Recalculate when images are loaded
   useEffect(() => {
     if (imagesLoadedCount > 0) {
-      updateOffset(wrapperRef, contentRef, setOffset, setDragField);
+      updateOffsetCallback();
     }
-  }, [imagesLoadedCount]);
+  }, [imagesLoadedCount, updateOffsetCallback]);
 
   return (
     <div ref={wrapperRef} className='relative z-[1] pt-9 md:pt-16'>
@@ -64,12 +66,20 @@ export default function ImagesCards(props: ImagesCardsProps) {
       />
       <m.div
         ref={contentRef}
-        drag={offset > 0 ? 'x' : false} // Only enable drag if there's content to scroll
+        drag={offset > 0 ? 'x' : false}
         dragConstraints={dragFieldRef}
+        dragElastic={0.1} // Reduce elastic effect for smoother mobile experience
+        dragTransition={{ bounceStiffness: 100, bounceDamping: 10 }} // Optimize drag physics
         whileTap={{ cursor: 'grabbing' }}
-        className={`flex gap-3 sm:gap-6 outline-none ${
+        className={`flex gap-3 sm:gap-6 outline-none will-change-transform ${
           offset > 0 ? 'cursor-grab' : 'cursor-default'
         }`}
+        style={{
+          // Force hardware acceleration for smoother scrolling
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          perspective: 1000,
+        }}
       >
         <Cards images={images} imagesLoaded={onImageLoad} />
       </m.div>

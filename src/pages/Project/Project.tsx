@@ -3,7 +3,12 @@ import { ImagesCards, Links, Technologies } from './components';
 import { projectsDetails } from 'constants/constants';
 import { useParams } from 'react-router-dom';
 import { motion as m } from 'framer-motion';
-import { slideInTopAnimation } from 'animations/animations';
+import {
+  slideInTopAnimation,
+  slideInTopAnimationMobile,
+} from 'animations/animations';
+import { isMobile } from 'helpers/helpers';
+import { useMemo } from 'react';
 
 export default function Project() {
   const { id } = useParams();
@@ -12,16 +17,30 @@ export default function Project() {
     (project) => project.id === id
   );
 
+  // Determine animation based on device type
+  const animation = useMemo(() => {
+    if (typeof window === 'undefined') return slideInTopAnimation;
+
+    const mobile = isMobile();
+    // Use fade animation for very low-end mobile devices, mobile slide for others
+    return mobile ? slideInTopAnimationMobile : slideInTopAnimation;
+  }, []);
+
   if (!project) {
     return null;
   }
 
   return (
     <m.main
-      variants={slideInTopAnimation}
+      variants={animation}
       initial='hidden'
       animate='show'
       className='relative w-full min-h-full'
+      style={{
+        // Force hardware acceleration for smoother animations on mobile
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden',
+      }}
     >
       <section className='container mx-auto w-11/12 py-8 sm:py-10 md:py-12'>
         <div className='rounded-3xl bg-white/[0.03] ring-1 ring-white/10 backdrop-blur-md p-5 sm:p-7 md:p-8'>

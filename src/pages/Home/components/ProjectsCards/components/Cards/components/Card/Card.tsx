@@ -30,7 +30,11 @@ export default function Card({
       whileHover={{ scale: 1.02 }}
       transition={{ type: 'spring', stiffness: 240, damping: 20, mass: 0.3 }}
       className='group relative h-0 pb-[55%] min-w-[85%] md:pb-[40%] md:min-w-[70%] lg:pb-[30%] lg:min-w-[55%] xl:pb-[25%] xl:min-w-[45%] rounded-3xl bg-cover bg-no-repeat outline-none shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] will-change-transform [transform:translateZ(0)]'
-      style={{ backgroundImage: `url(${image_blurred})` }}
+      style={{
+        backgroundImage: `url(${image_blurred})`,
+        backfaceVisibility: 'hidden',
+        perspective: 1000,
+      }}
       onTap={handleTap}
     >
       {/* hover border glow */}
