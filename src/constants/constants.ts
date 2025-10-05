@@ -33,13 +33,6 @@ export const projectsCards: IProjectCard[] = [
     image_blurred: '/images/home/learnhub_blurred.webp',
   },
   {
-    id: 'cryptocurrency-tailwind',
-    title: 'Cryptocurrency Tailwind',
-    technology: 'React',
-    image: '/images/home/cryptocurrency-tailwind.webp',
-    image_blurred: '/images/home/cryptocurrency-tailwind_blurred.webp',
-  },
-  {
     id: 'cryptocurrency',
     title: 'Cryptocurrency',
     technology: 'React',
@@ -61,34 +54,6 @@ export const projectsDetails: IProjectDetails[] = [
     ],
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Firebase', 'WebRTC'],
     links: [],
-  },
-  {
-    id: 'cryptocurrency-tailwind',
-    title: 'Cryptocurrency Tailwind',
-    description:
-      'The goal of the project is to provide a cryptocurrency dashboard. Features of the project include: the ability to search for a specific cryptocurrency, the ability to sort cryptocurrencies in table, the ability to display the price of a cryptocurrency in a specific time interval.',
-    images: [
-      '/images/project/cryptocurrency-tailwind-1.webp',
-      '/images/project/cryptocurrency-tailwind-2.webp',
-      '/images/project/cryptocurrency-tailwind-3.webp',
-    ],
-    technologies: [
-      'React',
-      'Vite',
-      'TypeScript',
-      'Tailwind CSS',
-      'CoinGecko API',
-    ],
-    links: [
-      {
-        link: 'https://vcryptocurrency.netlify.app',
-        icon: AiOutlineGlobal,
-      },
-      {
-        link: 'https://github.com/vSkyper/CryptocurrencyTailwind',
-        icon: SiGithub,
-      },
-    ],
   },
   {
     id: 'cryptocurrency',
