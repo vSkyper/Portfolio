@@ -52,7 +52,7 @@ export default function ImageModal(props: ImageModalProps) {
             className='relative z-10 flex items-center justify-center'
             onClick={(e) => e.stopPropagation()}
           >
-            <div className='relative bg-white/[0.05] ring-1 ring-white/20 rounded-2xl p-2 backdrop-blur-md'>
+            <div className='relative rounded-2xl'>
               {/* Close button */}
               <button
                 onClick={onClose}
