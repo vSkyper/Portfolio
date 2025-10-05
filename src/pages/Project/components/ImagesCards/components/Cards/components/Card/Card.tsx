@@ -1,43 +1,29 @@
-import { useState, useRef } from 'react';
+import { useState, useCallback } from 'react';
 import { CardProps } from './interface';
 import { ImageModal } from './components';
+import { motion as m } from 'framer-motion';
 
 export default function Card(props: CardProps) {
   const { image, imagesLoaded } = props;
   const [imageError, setImageError] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const dragStartPos = useRef<{ x: number; y: number } | null>(null);
 
-  const handleImageLoad = () => {
+  const handleImageLoad = useCallback(() => {
     imagesLoaded();
-  };
+  }, [imagesLoaded]);
 
-  const handleImageError = () => {
+  const handleImageError = useCallback(() => {
     setImageError(true);
     imagesLoaded();
-  };
+  }, [imagesLoaded]);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    dragStartPos.current = { x: e.clientX, y: e.clientY };
-  };
+  const handleTap = useCallback(() => {
+    setIsModalOpen(true);
+  }, []);
 
-  const handleImageClick = (e: React.MouseEvent) => {
-    if (dragStartPos.current) {
-      const deltaX = Math.abs(e.clientX - dragStartPos.current.x);
-      const deltaY = Math.abs(e.clientY - dragStartPos.current.y);
-      const dragThreshold = 5;
-
-      if (deltaX < dragThreshold && deltaY < dragThreshold) {
-        setIsModalOpen(true);
-      }
-    } else {
-      setIsModalOpen(true);
-    }
-  };
-
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     setIsModalOpen(false);
-  };
+  }, []);
 
   if (imageError) {
     return (
@@ -49,10 +35,9 @@ export default function Card(props: CardProps) {
 
   return (
     <>
-      <div
+      <m.div
         className='min-w-[85%] md:min-w-[70%] lg:min-w-[55%] xl:min-w-[45%] h-auto cursor-pointer group'
-        onMouseDown={handleMouseDown}
-        onClick={handleImageClick}
+        onTap={handleTap}
       >
         <img
           src={image}
@@ -67,7 +52,7 @@ export default function Card(props: CardProps) {
             backfaceVisibility: 'hidden',
           }}
         />
-      </div>
+      </m.div>
 
       <ImageModal
         isOpen={isModalOpen}
