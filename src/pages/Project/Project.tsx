@@ -17,12 +17,10 @@ export default function Project() {
     (project) => project.id === id
   );
 
-  // Determine animation based on device type
   const animation = useMemo(() => {
     if (typeof window === 'undefined') return slideInTopAnimation;
 
     const mobile = isMobile();
-    // Use fade animation for very low-end mobile devices, mobile slide for others
     return mobile ? slideInTopAnimationMobile : slideInTopAnimation;
   }, []);
 
@@ -37,7 +35,6 @@ export default function Project() {
       animate='show'
       className='relative w-full min-h-full'
       style={{
-        // Force hardware acceleration for smoother animations on mobile
         transform: 'translateZ(0)',
         backfaceVisibility: 'hidden',
       }}

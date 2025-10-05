@@ -32,7 +32,6 @@ export const slideInTopAnimation: Variants = {
   },
 };
 
-// Mobile-optimized version with less movement and faster duration
 export const slideInTopAnimationMobile: Variants = {
   hidden: { opacity: 0, y: -20 },
   show: {
@@ -42,7 +41,6 @@ export const slideInTopAnimationMobile: Variants = {
   },
 };
 
-// Fade animation for very smooth mobile experience
 export const fadeInAnimation: Variants = {
   hidden: { opacity: 0 },
   show: {

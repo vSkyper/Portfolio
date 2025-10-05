@@ -19,7 +19,6 @@ export default function Card({
   );
 
   useEffect(() => {
-    // Preload the main image
     const img = new Image();
     img.onload = () => setImageLoaded(true);
     img.src = image;

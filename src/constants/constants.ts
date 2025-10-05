@@ -39,6 +39,13 @@ export const projectsCards: IProjectCard[] = [
     image: '/images/home/cryptocurrency.webp',
     image_blurred: '/images/home/cryptocurrency_blurred.webp',
   },
+  {
+    id: 'terminal',
+    title: 'Terminal',
+    technology: 'Vanilla JS',
+    image: '/images/home/terminal.webp',
+    image_blurred: '/images/home/terminal_blurred.webp',
+  },
 ];
 
 export const projectsDetails: IProjectDetails[] = [
@@ -73,6 +80,28 @@ export const projectsDetails: IProjectDetails[] = [
       },
       {
         link: 'https://github.com/vSkyper/Cryptocurrency',
+        icon: SiGithub,
+      },
+    ],
+  },
+  {
+    id: 'terminal',
+    title: 'Terminal',
+    description:
+      "The project's goal is to provide a simple terminal interface in the browser. The application is built using pure Vanilla JavaScript with TypeScript and styled with Sass, without relying on any external frameworks, ensuring it is lightweight and fast. Key features include basic system commands such as: help, clear, history, echo [text], and information utilities like: time, date, ping, whoami, version, config, pwd, and dir/ls.",
+    images: [
+      '/images/project/terminal-1.webp',
+      '/images/project/terminal-2.webp',
+      '/images/project/terminal-3.webp',
+    ],
+    technologies: ['JavaScript', 'TypeScript', 'HTML', 'Sass'],
+    links: [
+      {
+        link: 'https://vterminal.netlify.app',
+        icon: AiOutlineGlobal,
+      },
+      {
+        link: 'https://github.com/vSkyper/Terminal',
         icon: SiGithub,
       },
     ],

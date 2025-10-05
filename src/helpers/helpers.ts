@@ -15,21 +15,19 @@ export const updateOffset = (
 ) => {
   if (!wrapperRef.current || !contentRef.current) return;
 
-  // Use requestAnimationFrame to ensure DOM is ready
   requestAnimationFrame(() => {
     if (!wrapperRef.current || !contentRef.current) return;
 
     const { width } = wrapperRef.current.getBoundingClientRect();
     const offSetWidth = contentRef.current.scrollWidth;
 
-    // Only update if we have valid dimensions
     if (width > 0 && offSetWidth > 0) {
       const newOffset = Math.max(0, offSetWidth - width);
 
       setTimeout(() => {
         setOffset(newOffset);
         setDragField(offSetWidth);
-      }, 100); // Reduced timeout for better responsiveness
+      }, 100);
     }
   });
 };
@@ -56,10 +54,8 @@ export const after = (count: number, f: () => void) => {
 export const isMobile = (): boolean => {
   if (typeof window === 'undefined') return false;
 
-  // Check screen width (mobile breakpoint)
   const isMobileWidth = window.innerWidth < 768;
 
-  // Check user agent for mobile devices
   const userAgent = navigator.userAgent.toLowerCase();
   const isMobileUA =
     /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(

@@ -19,7 +19,6 @@ export default function ImagesCards(props: ImagesCardsProps) {
     updateOffset(wrapperRef, contentRef, setOffset, setDragField);
   });
 
-  // Enhanced image loaded callback to track progress
   const onImageLoad = useCallback(() => {
     imagesLoaded();
     setImagesLoadedCount((prev) => prev + 1);
@@ -30,10 +29,8 @@ export default function ImagesCards(props: ImagesCardsProps) {
   }, []);
 
   useEffect(() => {
-    // Initial calculation
     updateOffsetCallback();
 
-    // Reduce fallback timer for mobile devices for better responsiveness
     const mobile = isMobile();
     const fallbackDelay = mobile ? 500 : 1000;
 
@@ -47,7 +44,6 @@ export default function ImagesCards(props: ImagesCardsProps) {
     };
   }, [updateOffsetCallback]);
 
-  // Recalculate when images are loaded
   useEffect(() => {
     if (imagesLoadedCount > 0) {
       updateOffsetCallback();
@@ -73,7 +69,6 @@ export default function ImagesCards(props: ImagesCardsProps) {
           offset > 0 ? 'cursor-grab' : 'cursor-default'
         }`}
         style={{
-          // Force hardware acceleration for smoother scrolling
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden',
           perspective: 1000,

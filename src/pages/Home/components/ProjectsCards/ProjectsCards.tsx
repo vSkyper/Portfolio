@@ -22,10 +22,8 @@ export default function ProjectsCards() {
   };
 
   useEffect(() => {
-    // Initial calculation
     updateOffset(wrapperRef, contentRef, setOffset, setDragField);
 
-    // Multiple fallback calculations to handle different loading scenarios
     const timers = [
       setTimeout(() => {
         updateOffset(wrapperRef, contentRef, setOffset, setDragField);
@@ -64,7 +62,7 @@ export default function ProjectsCards() {
       />
       <m.div
         ref={contentRef}
-        drag={offset > 0 ? 'x' : false} // Only enable drag if there's content to scroll
+        drag={offset > 0 ? 'x' : false}
         dragConstraints={dragFieldRef}
         whileTap={{ cursor: 'grabbing' }}
         className={`flex gap-3 sm:gap-6 outline-none ${
