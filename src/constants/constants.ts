@@ -68,7 +68,7 @@ export const projectsDetails: IProjectDetails[] = [
     technologies: ['React', 'Vite', 'TypeScript', 'MUI', 'CoinGecko API'],
     links: [
       {
-        link: 'https://vcryptocurrencyjs.netlify.app',
+        link: 'https://vcryptocurrency.netlify.app',
         icon: AiOutlineGlobal,
       },
       {
