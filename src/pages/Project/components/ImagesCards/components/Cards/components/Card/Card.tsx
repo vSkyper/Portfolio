@@ -50,6 +50,7 @@ export default function Card(props: CardProps) {
           style={{
             transform: 'translateZ(0)',
             backfaceVisibility: 'hidden',
+            perspective: 1000,
           }}
         />
       </m.div>

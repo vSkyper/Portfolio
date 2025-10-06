@@ -1,7 +1,7 @@
 import { motion as m } from 'framer-motion';
 import { Cards } from './components';
-import { useEffect, useRef, useState } from 'react';
-import { updateOffset } from 'helpers/helpers';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { isMobile, updateOffset } from 'helpers/helpers';
 
 export default function ProjectsCards() {
   const [offset, setOffset] = useState<number>(0);
@@ -21,31 +21,35 @@ export default function ProjectsCards() {
     updateOffset(wrapperRef, contentRef, setOffset, setDragField);
   };
 
-  useEffect(() => {
+  const updateOffsetCallback = useCallback(() => {
     updateOffset(wrapperRef, contentRef, setOffset, setDragField);
+  }, []);
 
-    const timers = [
-      setTimeout(() => {
-        updateOffset(wrapperRef, contentRef, setOffset, setDragField);
-      }, 500),
-      setTimeout(() => {
-        updateOffset(wrapperRef, contentRef, setOffset, setDragField);
-      }, 1000),
-      setTimeout(() => {
-        updateOffset(wrapperRef, contentRef, setOffset, setDragField);
-      }, 2000),
-    ];
+  useEffect(() => {
+    updateOffsetCallback();
 
-    const updateOffsetListener = () =>
-      updateOffset(wrapperRef, contentRef, setOffset, setDragField);
+    const mobile = isMobile();
+    const fallbackDelay = mobile ? 500 : 1000;
 
-    window.addEventListener('resize', updateOffsetListener);
+    const fallbackTimer = setTimeout(updateOffsetCallback, fallbackDelay);
+
+    const handleOrientationChange = () => {
+      if (contentRef.current) {
+        contentRef.current.style.transform = 'translateX(0px) translateZ(0)';
+      }
+      setTimeout(updateOffsetCallback, 100);
+      setTimeout(updateOffsetCallback, 300);
+    };
+
+    window.addEventListener('resize', updateOffsetCallback);
+    window.addEventListener('orientationchange', handleOrientationChange);
 
     return () => {
-      window.removeEventListener('resize', updateOffsetListener);
-      timers.forEach(clearTimeout);
+      window.removeEventListener('resize', updateOffsetCallback);
+      window.removeEventListener('orientationchange', handleOrientationChange);
+      clearTimeout(fallbackTimer);
     };
-  }, []);
+  }, [updateOffsetCallback]);
 
   return (
     <div

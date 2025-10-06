@@ -11,9 +11,15 @@ export default function ImagesCards(props: ImagesCardsProps) {
   const [dragField, setDragField] = useState<number>(0);
   const [imagesLoadedCount, setImagesLoadedCount] = useState<number>(0);
 
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const dragFieldRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(
+    null
+  ) as React.RefObject<HTMLDivElement>;
+  const dragFieldRef = useRef<HTMLDivElement>(
+    null
+  ) as React.RefObject<HTMLDivElement>;
+  const contentRef = useRef<HTMLDivElement>(
+    null
+  ) as React.RefObject<HTMLDivElement>;
 
   const imagesLoaded = after(images.length, () => {
     updateOffset(wrapperRef, contentRef, setOffset, setDragField);
@@ -36,10 +42,21 @@ export default function ImagesCards(props: ImagesCardsProps) {
 
     const fallbackTimer = setTimeout(updateOffsetCallback, fallbackDelay);
 
+    const handleOrientationChange = () => {
+      // Reset position and recalculate after orientation change
+      if (contentRef.current) {
+        contentRef.current.style.transform = 'translateX(0px) translateZ(0)';
+      }
+      setTimeout(updateOffsetCallback, 100);
+      setTimeout(updateOffsetCallback, 300);
+    };
+
     window.addEventListener('resize', updateOffsetCallback);
+    window.addEventListener('orientationchange', handleOrientationChange);
 
     return () => {
       window.removeEventListener('resize', updateOffsetCallback);
+      window.removeEventListener('orientationchange', handleOrientationChange);
       clearTimeout(fallbackTimer);
     };
   }, [updateOffsetCallback]);
@@ -65,14 +82,9 @@ export default function ImagesCards(props: ImagesCardsProps) {
         drag={offset > 0 ? 'x' : false}
         dragConstraints={dragFieldRef}
         whileTap={{ cursor: 'grabbing' }}
-        className={`flex gap-3 sm:gap-6 outline-none will-change-transform ${
+        className={`flex gap-3 sm:gap-6 outline-none ${
           offset > 0 ? 'cursor-grab' : 'cursor-default'
         }`}
-        style={{
-          transform: 'translateZ(0)',
-          backfaceVisibility: 'hidden',
-          perspective: 1000,
-        }}
       >
         <Cards images={images} imagesLoaded={onImageLoad} />
       </m.div>
