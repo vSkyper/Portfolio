@@ -6,15 +6,16 @@ export default function Cards(props: CardsProps) {
   const { images, onImagesLoaded } = props;
 
   useEffect(() => {
-    const imagePromises = images.map(
-      (image) =>
-        new Promise<void>((resolve) => {
-          const img = new Image();
-          img.onload = () => resolve();
-          img.onerror = () => resolve();
-          img.src = image;
-        })
-    );
+    const imagePromises = images.map((image) => {
+      const imageSrc = typeof image === 'string' ? image : image.thumbnail;
+
+      return new Promise<void>((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve();
+        img.onerror = () => resolve();
+        img.src = imageSrc;
+      });
+    });
 
     Promise.all(imagePromises).then(() => {
       if (onImagesLoaded) {

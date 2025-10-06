@@ -1,3 +1,5 @@
+import { IProjectMedia } from 'interfaces/interfaces';
+
 export interface ImagesCardsProps {
-  images: string[];
+  images: (string | IProjectMedia)[];
 }

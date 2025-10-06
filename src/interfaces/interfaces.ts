@@ -19,6 +19,11 @@ export interface IProjectDetailsLink {
   icon: IconType;
 }
 
+export interface IProjectMedia {
+  src: string;
+  thumbnail: string;
+}
+
 export interface IProjectDetailsLinks {
   links: IProjectDetailsLink[];
 }
@@ -27,7 +32,7 @@ export interface IProjectDetails {
   id: string;
   title: string;
   description: string;
-  images: string[];
+  images: (string | IProjectMedia)[];
   technologies: string[];
   links: IProjectDetailsLink[];
 }

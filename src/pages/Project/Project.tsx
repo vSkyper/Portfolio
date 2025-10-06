@@ -80,9 +80,10 @@ export default function Project() {
           <div className='text-3xl sm:text-4xl font-bold tracking-tight'>
             {project.title}
           </div>
-          <div className='text-sm sm:text-lg mt-3 text-white/80'>
-            {project.description}
-          </div>
+          <div
+            className='text-sm sm:text-lg mt-3 text-white/80'
+            dangerouslySetInnerHTML={{ __html: project.description }}
+          />
           <Technologies technologies={project.technologies} />
           <Links links={project.links} />
         </div>

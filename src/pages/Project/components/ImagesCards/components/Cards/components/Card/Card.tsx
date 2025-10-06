@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { CardProps } from './interface';
 import { ImageModal } from './components';
 import { motion as m } from 'framer-motion';
@@ -7,6 +7,11 @@ export default function Card(props: CardProps) {
   const { image } = props;
   const [imageError, setImageError] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const isVideo = useMemo(() => typeof image !== 'string', [image]);
+
+  const thumbnailSrc = typeof image === 'string' ? image : image.thumbnail;
+  const mediaUrl = typeof image === 'string' ? image : image.src;
 
   const handleImageError = useCallback(() => {
     setImageError(true);
@@ -31,15 +36,15 @@ export default function Card(props: CardProps) {
   return (
     <>
       <m.div
-        className='min-w-[85%] md:min-w-[70%] lg:min-w-[55%] xl:min-w-[45%] h-auto cursor-pointer group select-none'
+        className='min-w-[85%] md:min-w-[70%] lg:min-w-[55%] xl:min-w-[45%] h-auto cursor-pointer group select-none relative'
         onTap={handleTap}
         draggable='false'
         style={{ userSelect: 'none', WebkitUserSelect: 'none' }}
       >
         <img
-          src={image}
+          src={thumbnailSrc}
           alt='project'
-          className='w-full h-auto rounded-3xl outline-none will-change-transform group-hover:opacity-80 transition-opacity duration-200 pointer-events-none'
+          className='w-full h-[300px] sm:h-[350px] md:h-[400px] object-cover rounded-3xl outline-none will-change-transform group-hover:opacity-80 transition-opacity duration-200 pointer-events-none'
           onError={handleImageError}
           loading='lazy'
           decoding='async'
@@ -52,13 +57,41 @@ export default function Card(props: CardProps) {
             WebkitUserSelect: 'none',
           }}
         />
+        {isVideo && (
+          <>
+            {/* Small corner badge - always visible */}
+            <div className='absolute top-3 right-3 w-10 h-10 bg-black/60 backdrop-blur-sm rounded-full flex items-center justify-center ring-1 ring-white/30 pointer-events-none z-10'>
+              <svg
+                className='w-5 h-5 text-white'
+                fill='currentColor'
+                viewBox='0 0 24 24'
+              >
+                <path d='M8 5v14l11-7z' />
+              </svg>
+            </div>
+
+            {/* Large center play button - visible on hover */}
+            <div className='absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200'>
+              <div className='w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center ring-2 ring-white/40'>
+                <svg
+                  className='w-8 h-8 sm:w-10 sm:h-10 text-white'
+                  fill='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path d='M8 5v14l11-7z' />
+                </svg>
+              </div>
+            </div>
+          </>
+        )}
       </m.div>
 
       <ImageModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        imageSrc={image}
-        imageAlt='project'
+        src={mediaUrl}
+        alt='project'
+        isVideo={isVideo}
       />
     </>
   );

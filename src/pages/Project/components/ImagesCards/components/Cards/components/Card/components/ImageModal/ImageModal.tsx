@@ -5,12 +5,21 @@ import { createPortal } from 'react-dom';
 interface ImageModalProps {
   isOpen: boolean;
   onClose: () => void;
-  imageSrc: string;
-  imageAlt: string;
+  src: string;
+  alt: string;
+  isVideo?: boolean;
 }
 
+const getGoogleDriveEmbedUrl = (url: string): string => {
+  const fileIdMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  if (fileIdMatch) {
+    return `https://drive.google.com/file/d/${fileIdMatch[1]}/preview`;
+  }
+  return url;
+};
+
 export default function ImageModal(props: ImageModalProps) {
-  const { isOpen, onClose, imageSrc, imageAlt } = props;
+  const { isOpen, onClose, src, alt, isVideo = false } = props;
 
   const clearSelection = () => {
     window.getSelection()?.removeAllRanges();
@@ -116,12 +125,23 @@ export default function ImageModal(props: ImageModalProps) {
                 </svg>
               </button>
 
-              {/* Image */}
-              <img
-                src={imageSrc}
-                alt={imageAlt}
-                className='rounded-xl max-w-[90vw] max-h-[90vh] w-auto h-auto block'
-              />
+              {/* Image or Video */}
+              {isVideo ? (
+                <iframe
+                  key={src}
+                  src={getGoogleDriveEmbedUrl(src)}
+                  className='rounded-xl w-[90vw] h-[50vh] sm:w-[80vw] sm:h-[60vh] md:w-[70vw] md:h-[70vh] block'
+                  allow='autoplay; fullscreen'
+                  allowFullScreen
+                  loading='eager'
+                />
+              ) : (
+                <img
+                  src={src}
+                  alt={alt}
+                  className='rounded-xl max-w-[90vw] max-h-[90vh] w-auto h-auto block'
+                />
+              )}
             </div>
           </m.div>
         </m.div>
