@@ -20,8 +20,17 @@ export default function ImageModal(props: ImageModalProps) {
     };
 
     if (isOpen) {
+      // Dispatch custom event to notify that modal is open
+      window.dispatchEvent(
+        new CustomEvent('modalStateChange', { detail: { isOpen: true } })
+      );
       document.addEventListener('keydown', handleEscapeKey);
       document.body.style.overflow = 'hidden';
+    } else {
+      // Dispatch custom event to notify that modal is closed
+      window.dispatchEvent(
+        new CustomEvent('modalStateChange', { detail: { isOpen: false } })
+      );
     }
 
     return () => {
@@ -37,7 +46,7 @@ export default function ImageModal(props: ImageModalProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className='fixed inset-0 z-[20] flex items-center justify-center p-4'
+          className='fixed inset-0 z-[9999] flex items-center justify-center p-4'
           onClick={onClose}
         >
           {/* Backdrop */}

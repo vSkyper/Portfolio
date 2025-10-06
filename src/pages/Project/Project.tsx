@@ -1,17 +1,19 @@
 import { IProjectDetails } from 'interfaces/interfaces';
 import { ImagesCards, Links, Technologies } from './components';
 import { projectsDetails } from 'constants/constants';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { motion as m } from 'framer-motion';
 import {
   slideInTopAnimation,
   slideInTopAnimationMobile,
 } from 'animations/animations';
 import { isMobile } from 'helpers/helpers';
-import { useMemo } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 
 export default function Project() {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const project: IProjectDetails | undefined = projectsDetails.find(
     (project) => project.id === id
@@ -23,6 +25,40 @@ export default function Project() {
     const mobile = isMobile();
     return mobile ? slideInTopAnimationMobile : slideInTopAnimation;
   }, []);
+
+  useEffect(() => {
+    const handleModalStateChange = (
+      event: CustomEvent<{ isOpen: boolean }>
+    ) => {
+      setIsModalOpen(event.detail.isOpen);
+    };
+
+    window.addEventListener(
+      'modalStateChange',
+      handleModalStateChange as EventListener
+    );
+
+    return () => {
+      window.removeEventListener(
+        'modalStateChange',
+        handleModalStateChange as EventListener
+      );
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleEscapeKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && !isModalOpen) {
+        navigate('/');
+      }
+    };
+
+    document.addEventListener('keydown', handleEscapeKey);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [navigate, isModalOpen]);
 
   if (!project) {
     return null;
