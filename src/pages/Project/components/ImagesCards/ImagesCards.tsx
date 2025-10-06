@@ -9,6 +9,7 @@ export default function ImagesCards(props: ImagesCardsProps) {
 
   const [offset, setOffset] = useState<number>(0);
   const [resetKey, setResetKey] = useState<number>(0);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -22,6 +23,26 @@ export default function ImagesCards(props: ImagesCardsProps) {
   }, [updateOffsetCallback]);
 
   useEffect(() => {
+    const handleModalStateChange = (
+      event: CustomEvent<{ isOpen: boolean }>
+    ) => {
+      setIsModalOpen(event.detail.isOpen);
+    };
+
+    window.addEventListener(
+      'modalStateChange',
+      handleModalStateChange as EventListener
+    );
+
+    return () => {
+      window.removeEventListener(
+        'modalStateChange',
+        handleModalStateChange as EventListener
+      );
+    };
+  }, []);
+
+  useEffect(() => {
     updateOffsetCallback();
 
     const mobile = isMobile();
@@ -30,6 +51,9 @@ export default function ImagesCards(props: ImagesCardsProps) {
     const fallbackTimer = setTimeout(updateOffsetCallback, fallbackDelay);
 
     const handleOrientationChange = () => {
+      // Don't reset if modal is open
+      if (isModalOpen) return;
+
       // Force reset drag position
       setOffset(0);
       if (contentRef.current) {
@@ -55,7 +79,7 @@ export default function ImagesCards(props: ImagesCardsProps) {
       window.removeEventListener('orientationchange', handleOrientationChange);
       clearTimeout(fallbackTimer);
     };
-  }, [updateOffsetCallback]);
+  }, [updateOffsetCallback, isModalOpen]);
 
   return (
     <div ref={wrapperRef} className='relative z-[1] pt-9 md:pt-16'>

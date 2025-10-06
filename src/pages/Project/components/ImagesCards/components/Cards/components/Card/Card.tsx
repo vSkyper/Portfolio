@@ -44,7 +44,7 @@ export default function Card(props: CardProps) {
         <img
           src={thumbnailSrc}
           alt='project'
-          className='w-full h-[300px] sm:h-[350px] md:h-[400px] object-cover rounded-3xl outline-none will-change-transform group-hover:opacity-80 transition-opacity duration-200 pointer-events-none'
+          className='w-full h-[250px] sm:h-[350px] md:h-[400px] object-cover rounded-3xl outline-none will-change-transform group-hover:opacity-80 transition-opacity duration-200 pointer-events-none'
           onError={handleImageError}
           loading='lazy'
           decoding='async'
