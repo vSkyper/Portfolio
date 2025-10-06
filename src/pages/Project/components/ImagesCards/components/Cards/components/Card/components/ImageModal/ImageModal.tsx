@@ -39,6 +39,29 @@ export default function ImageModal(props: ImageModalProps) {
     };
   }, [isOpen, onClose]);
 
+  useEffect(() => {
+    const handlePopState = () => {
+      if (isOpen) {
+        // If modal is open and back button is pressed, close the modal
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      // Push a state to history so back button closes modal
+      window.history.pushState({ modalOpen: true }, '');
+      window.addEventListener('popstate', handlePopState);
+    }
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      // When modal closes (not via back button), remove the history state we added
+      if (isOpen && window.history.state?.modalOpen) {
+        window.history.back();
+      }
+    };
+  }, [isOpen, onClose]);
+
   return createPortal(
     <AnimatePresence>
       {isOpen && (
