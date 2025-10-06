@@ -66,13 +66,17 @@ export default function ImagesCards(props: ImagesCardsProps) {
         dragConstraints={offset > 0 ? { left: -offset, right: 0 } : undefined}
         initial={{ x: 0 }}
         whileTap={{ cursor: 'grabbing' }}
-        className={`flex gap-3 sm:gap-6 outline-none will-change-transform ${
+        className={`flex gap-3 sm:gap-6 outline-none will-change-transform select-none ${
           offset > 0 ? 'cursor-grab' : 'cursor-default'
         }`}
         style={{
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden',
           perspective: 1000,
+          userSelect: 'none',
+          WebkitUserSelect: 'none',
+          WebkitTouchCallout: 'none',
+          pointerEvents: 'auto',
         }}
       >
         <Cards images={images} onImagesLoaded={handleImagesLoaded} />

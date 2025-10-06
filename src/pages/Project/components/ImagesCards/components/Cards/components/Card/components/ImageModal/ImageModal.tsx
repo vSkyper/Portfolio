@@ -12,65 +12,75 @@ interface ImageModalProps {
 export default function ImageModal(props: ImageModalProps) {
   const { isOpen, onClose, imageSrc, imageAlt } = props;
 
+  const clearSelection = () => {
+    window.getSelection()?.removeAllRanges();
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+    document.body.focus();
+  };
+
+  const handleClose = () => {
+    clearSelection();
+    onClose();
+
+    // Trigger synthetic mousemove to refresh Framer Motion drag detection
+    setTimeout(() => {
+      document.dispatchEvent(new MouseEvent('mousemove', { bubbles: true }));
+      clearSelection();
+    }, 0);
+  };
+
   useEffect(() => {
-    const handleEscapeKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
+    if (!isOpen) return;
+
+    const handleEscapeKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleClose();
     };
 
-    if (isOpen) {
-      // Dispatch custom event to notify that modal is open
-      window.dispatchEvent(
-        new CustomEvent('modalStateChange', { detail: { isOpen: true } })
-      );
-      document.addEventListener('keydown', handleEscapeKey);
-      document.body.style.overflow = 'hidden';
-    } else {
-      // Dispatch custom event to notify that modal is closed
-      window.dispatchEvent(
-        new CustomEvent('modalStateChange', { detail: { isOpen: false } })
-      );
-    }
+    clearSelection();
+    document.addEventListener('keydown', handleEscapeKey);
+    document.body.style.overflow = 'hidden';
+    window.dispatchEvent(
+      new CustomEvent('modalStateChange', { detail: { isOpen: true } })
+    );
 
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
       document.body.style.overflow = 'unset';
+      clearSelection();
+      window.dispatchEvent(
+        new CustomEvent('modalStateChange', { detail: { isOpen: false } })
+      );
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   useEffect(() => {
-    const handlePopState = () => {
-      if (isOpen) {
-        // If modal is open and back button is pressed, close the modal
-        onClose();
-      }
-    };
+    if (!isOpen) return;
 
-    if (isOpen) {
-      // Push a state to history so back button closes modal
-      window.history.pushState({ modalOpen: true }, '');
-      window.addEventListener('popstate', handlePopState);
-    }
+    const handlePopState = () => handleClose();
+
+    window.history.pushState({ modalOpen: true }, '');
+    window.addEventListener('popstate', handlePopState);
 
     return () => {
       window.removeEventListener('popstate', handlePopState);
-      // When modal closes (not via back button), remove the history state we added
-      if (isOpen && window.history.state?.modalOpen) {
+      if (window.history.state?.modalOpen) {
         window.history.back();
       }
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   return createPortal(
-    <AnimatePresence>
+    <AnimatePresence mode='wait'>
       {isOpen && (
         <m.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          animate={{ opacity: 1, pointerEvents: 'auto' }}
+          exit={{ opacity: 0, pointerEvents: 'none' }}
+          transition={{ duration: 0.2 }}
           className='fixed inset-0 z-[9999] flex items-center justify-center p-4'
-          onClick={onClose}
+          onClick={handleClose}
         >
           {/* Backdrop */}
           <div className='absolute inset-0 bg-black/80 backdrop-blur-sm' />
@@ -87,7 +97,7 @@ export default function ImageModal(props: ImageModalProps) {
             <div className='relative bg-white/[0.05] ring-1 ring-white/20 rounded-2xl p-2 backdrop-blur-md'>
               {/* Close button */}
               <button
-                onClick={onClose}
+                onClick={handleClose}
                 className='absolute -top-2 -right-2 z-10 w-8 h-8 bg-white/10 hover:bg-white/20 ring-1 ring-white/20 rounded-full flex items-center justify-center text-white transition-colors duration-200'
                 aria-label='Close modal'
               >
