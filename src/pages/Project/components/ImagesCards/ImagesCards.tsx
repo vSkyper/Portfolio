@@ -10,6 +10,8 @@ export default function ImagesCards(props: ImagesCardsProps) {
   const [offset, setOffset] = useState<number>(0);
   const [resetKey, setResetKey] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [needsResetAfterModal, setNeedsResetAfterModal] =
+    useState<boolean>(false);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -22,53 +24,57 @@ export default function ImagesCards(props: ImagesCardsProps) {
     updateOffsetCallback();
   }, [updateOffsetCallback]);
 
+  const resetCarousel = useCallback(() => {
+    setOffset(0);
+    if (contentRef.current) {
+      contentRef.current.style.transform = 'translateX(0px) translateZ(0)';
+    }
+    setResetKey((prev) => prev + 1);
+
+    [100, 300, 500].forEach((delay) => {
+      setTimeout(updateOffsetCallback, delay);
+    });
+  }, [updateOffsetCallback]);
+
+  // Handle modal state changes
   useEffect(() => {
     const handleModalStateChange = (
       event: CustomEvent<{ isOpen: boolean }>
     ) => {
-      setIsModalOpen(event.detail.isOpen);
+      const modalIsOpen = event.detail.isOpen;
+      setIsModalOpen(modalIsOpen);
+
+      if (!modalIsOpen && needsResetAfterModal) {
+        setNeedsResetAfterModal(false);
+        resetCarousel();
+      }
     };
 
     window.addEventListener(
       'modalStateChange',
       handleModalStateChange as EventListener
     );
-
     return () => {
       window.removeEventListener(
         'modalStateChange',
         handleModalStateChange as EventListener
       );
     };
-  }, []);
+  }, [needsResetAfterModal, resetCarousel]);
 
+  // Handle resize and orientation changes
   useEffect(() => {
     updateOffsetCallback();
 
     const mobile = isMobile();
-    const fallbackDelay = mobile ? 500 : 1000;
-
-    const fallbackTimer = setTimeout(updateOffsetCallback, fallbackDelay);
+    const fallbackTimer = setTimeout(updateOffsetCallback, mobile ? 500 : 1000);
 
     const handleOrientationChange = () => {
-      // Don't reset if modal is open
-      if (isModalOpen) return;
-
-      // Force reset drag position
-      setOffset(0);
-      if (contentRef.current) {
-        contentRef.current.style.transform = 'translateX(0px) translateZ(0)';
+      if (isModalOpen) {
+        setNeedsResetAfterModal(true);
+      } else {
+        resetCarousel();
       }
-      setResetKey((prev) => prev + 1);
-      setTimeout(() => {
-        updateOffsetCallback();
-      }, 100);
-      setTimeout(() => {
-        updateOffsetCallback();
-      }, 300);
-      setTimeout(() => {
-        updateOffsetCallback();
-      }, 500);
     };
 
     window.addEventListener('resize', updateOffsetCallback);
@@ -79,10 +85,13 @@ export default function ImagesCards(props: ImagesCardsProps) {
       window.removeEventListener('orientationchange', handleOrientationChange);
       clearTimeout(fallbackTimer);
     };
-  }, [updateOffsetCallback, isModalOpen]);
+  }, [updateOffsetCallback, isModalOpen, resetCarousel]);
 
   return (
-    <div ref={wrapperRef} className='relative z-[1] pt-9 md:pt-16'>
+    <div
+      ref={wrapperRef}
+      className='relative z-[1] pt-9 md:pt-16 pb-20 md:pb-24'
+    >
       <m.div
         key={resetKey}
         ref={contentRef}
