@@ -5,13 +5,11 @@ import { RefObject } from 'react';
  * @param wrapperRef Wrapper reference
  * @param contentRef Content reference
  * @param setOffset Set offset
- * @param setDragField Set drag field
  */
 export const updateOffset = (
   wrapperRef: RefObject<HTMLDivElement | null>,
   contentRef: RefObject<HTMLDivElement | null>,
-  setOffset: React.Dispatch<React.SetStateAction<number>>,
-  setDragField: React.Dispatch<React.SetStateAction<number>>
+  setOffset: React.Dispatch<React.SetStateAction<number>>
 ) => {
   if (!wrapperRef.current || !contentRef.current) return;
 
@@ -26,7 +24,6 @@ export const updateOffset = (
 
       setTimeout(() => {
         setOffset(newOffset);
-        setDragField(offSetWidth);
       }, 100);
     }
   });

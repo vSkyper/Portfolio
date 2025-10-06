@@ -1,7 +1,11 @@
 import { motion as m } from 'framer-motion';
 import { IProjectCard } from 'interfaces/interfaces';
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
+
+interface CardProps extends IProjectCard {
+  imagesReady: boolean;
+}
 
 export default function Card({
   id,
@@ -9,20 +13,14 @@ export default function Card({
   technology,
   image,
   image_blurred,
-}: IProjectCard) {
+  imagesReady,
+}: CardProps) {
   const navigate: NavigateFunction = useNavigate();
-  const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleTap = useCallback(
     () => navigate(`/project/${id}`),
     [navigate, id]
   );
-
-  useEffect(() => {
-    const img = new Image();
-    img.onload = () => setImageLoaded(true);
-    img.src = image;
-  }, [image]);
 
   return (
     <m.div
@@ -43,7 +41,7 @@ export default function Card({
       />
       <div
         className={`absolute inset-0 bg-cover bg-center bg-no-repeat rounded-3xl transition-opacity duration-500 will-change-transform ${
-          imageLoaded ? 'opacity-100' : 'opacity-0'
+          imagesReady ? 'opacity-100' : 'opacity-0'
         }`}
         style={{ backgroundImage: `url(${image})` }}
       />

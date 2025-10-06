@@ -5,25 +5,18 @@ import { isMobile, updateOffset } from 'helpers/helpers';
 
 export default function ProjectsCards() {
   const [offset, setOffset] = useState<number>(0);
-  const [dragField, setDragField] = useState<number>(0);
+  const [resetKey, setResetKey] = useState<number>(0);
 
-  const wrapperRef = useRef<HTMLDivElement>(
-    null
-  ) as React.RefObject<HTMLDivElement>;
-  const dragFieldRef = useRef<HTMLDivElement>(
-    null
-  ) as React.RefObject<HTMLDivElement>;
-  const contentRef = useRef<HTMLDivElement>(
-    null
-  ) as React.RefObject<HTMLDivElement>;
-
-  const handleImagesLoaded = () => {
-    updateOffset(wrapperRef, contentRef, setOffset, setDragField);
-  };
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const updateOffsetCallback = useCallback(() => {
-    updateOffset(wrapperRef, contentRef, setOffset, setDragField);
+    updateOffset(wrapperRef, contentRef, setOffset);
   }, []);
+
+  const handleImagesLoaded = useCallback(() => {
+    updateOffsetCallback();
+  }, [updateOffsetCallback]);
 
   useEffect(() => {
     updateOffsetCallback();
@@ -34,11 +27,21 @@ export default function ProjectsCards() {
     const fallbackTimer = setTimeout(updateOffsetCallback, fallbackDelay);
 
     const handleOrientationChange = () => {
+      // Force reset drag position
+      setOffset(0);
       if (contentRef.current) {
         contentRef.current.style.transform = 'translateX(0px) translateZ(0)';
       }
-      setTimeout(updateOffsetCallback, 100);
-      setTimeout(updateOffsetCallback, 300);
+      setResetKey((prev) => prev + 1);
+      setTimeout(() => {
+        updateOffsetCallback();
+      }, 100);
+      setTimeout(() => {
+        updateOffsetCallback();
+      }, 300);
+      setTimeout(() => {
+        updateOffsetCallback();
+      }, 500);
     };
 
     window.addEventListener('resize', updateOffsetCallback);
@@ -56,22 +59,21 @@ export default function ProjectsCards() {
       ref={wrapperRef}
       className='relative z-[1] pt-2 sm:pt-6 lg:pt-10 xl:pt-12'
     >
-      <div
-        ref={dragFieldRef}
-        className='absolute inset-0 pointer-events-none'
-        style={{
-          left: `-${offset}px`,
-          width: `${dragField}px`,
-        }}
-      />
       <m.div
+        key={resetKey}
         ref={contentRef}
         drag={offset > 0 ? 'x' : false}
-        dragConstraints={dragFieldRef}
+        dragConstraints={offset > 0 ? { left: -offset, right: 0 } : undefined}
+        initial={{ x: 0 }}
         whileTap={{ cursor: 'grabbing' }}
-        className={`flex gap-3 sm:gap-6 outline-none ${
+        className={`flex gap-3 sm:gap-6 outline-none will-change-transform ${
           offset > 0 ? 'cursor-grab' : 'cursor-default'
         }`}
+        style={{
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          perspective: 1000,
+        }}
       >
         <Cards onImagesLoaded={handleImagesLoaded} />
       </m.div>

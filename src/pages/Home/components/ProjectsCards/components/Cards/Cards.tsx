@@ -1,15 +1,15 @@
 import { projectsCards } from 'constants/constants';
 import { Card } from './components';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface CardsProps {
   onImagesLoaded?: () => void;
 }
 
 export default function Cards({ onImagesLoaded }: CardsProps = {}) {
-  useEffect(() => {
-    if (!onImagesLoaded) return;
+  const [imagesReady, setImagesReady] = useState(false);
 
+  useEffect(() => {
     const imagePromises = projectsCards.flatMap((project) => [
       new Promise<void>((resolve) => {
         const img = new Image();
@@ -26,14 +26,17 @@ export default function Cards({ onImagesLoaded }: CardsProps = {}) {
     ]);
 
     Promise.all(imagePromises).then(() => {
-      setTimeout(onImagesLoaded, 100);
+      setImagesReady(true);
+      if (onImagesLoaded) {
+        setTimeout(onImagesLoaded, 100);
+      }
     });
   }, [onImagesLoaded]);
 
   return (
     <>
       {projectsCards.map((project) => (
-        <Card key={project.title} {...project} />
+        <Card key={project.title} {...project} imagesReady={imagesReady} />
       ))}
     </>
   );

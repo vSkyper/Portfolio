@@ -4,18 +4,13 @@ import { ImageModal } from './components';
 import { motion as m } from 'framer-motion';
 
 export default function Card(props: CardProps) {
-  const { image, imagesLoaded } = props;
+  const { image } = props;
   const [imageError, setImageError] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleImageLoad = useCallback(() => {
-    imagesLoaded();
-  }, [imagesLoaded]);
-
   const handleImageError = useCallback(() => {
     setImageError(true);
-    imagesLoaded();
-  }, [imagesLoaded]);
+  }, []);
 
   const handleTap = useCallback(() => {
     setIsModalOpen(true);
@@ -43,7 +38,6 @@ export default function Card(props: CardProps) {
           src={image}
           alt='project'
           className='w-full h-auto rounded-3xl outline-none pointer-events-none will-change-transform group-hover:opacity-80 transition-opacity duration-200'
-          onLoad={handleImageLoad}
           onError={handleImageError}
           loading='lazy'
           decoding='async'

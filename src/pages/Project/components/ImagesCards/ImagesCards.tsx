@@ -1,38 +1,25 @@
 import { motion as m } from 'framer-motion';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { Cards } from './components';
-import { after, updateOffset, isMobile } from 'helpers/helpers';
+import { updateOffset, isMobile } from 'helpers/helpers';
 import { ImagesCardsProps } from './interface';
 
 export default function ImagesCards(props: ImagesCardsProps) {
   const { images } = props;
 
   const [offset, setOffset] = useState<number>(0);
-  const [dragField, setDragField] = useState<number>(0);
-  const [imagesLoadedCount, setImagesLoadedCount] = useState<number>(0);
+  const [resetKey, setResetKey] = useState<number>(0);
 
-  const wrapperRef = useRef<HTMLDivElement>(
-    null
-  ) as React.RefObject<HTMLDivElement>;
-  const dragFieldRef = useRef<HTMLDivElement>(
-    null
-  ) as React.RefObject<HTMLDivElement>;
-  const contentRef = useRef<HTMLDivElement>(
-    null
-  ) as React.RefObject<HTMLDivElement>;
-
-  const imagesLoaded = after(images.length, () => {
-    updateOffset(wrapperRef, contentRef, setOffset, setDragField);
-  });
-
-  const onImageLoad = useCallback(() => {
-    imagesLoaded();
-    setImagesLoadedCount((prev) => prev + 1);
-  }, [imagesLoaded]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const updateOffsetCallback = useCallback(() => {
-    updateOffset(wrapperRef, contentRef, setOffset, setDragField);
+    updateOffset(wrapperRef, contentRef, setOffset);
   }, []);
+
+  const handleImagesLoaded = useCallback(() => {
+    updateOffsetCallback();
+  }, [updateOffsetCallback]);
 
   useEffect(() => {
     updateOffsetCallback();
@@ -43,12 +30,21 @@ export default function ImagesCards(props: ImagesCardsProps) {
     const fallbackTimer = setTimeout(updateOffsetCallback, fallbackDelay);
 
     const handleOrientationChange = () => {
-      // Reset position and recalculate after orientation change
+      // Force reset drag position
+      setOffset(0);
       if (contentRef.current) {
         contentRef.current.style.transform = 'translateX(0px) translateZ(0)';
       }
-      setTimeout(updateOffsetCallback, 100);
-      setTimeout(updateOffsetCallback, 300);
+      setResetKey((prev) => prev + 1);
+      setTimeout(() => {
+        updateOffsetCallback();
+      }, 100);
+      setTimeout(() => {
+        updateOffsetCallback();
+      }, 300);
+      setTimeout(() => {
+        updateOffsetCallback();
+      }, 500);
     };
 
     window.addEventListener('resize', updateOffsetCallback);
@@ -61,32 +57,25 @@ export default function ImagesCards(props: ImagesCardsProps) {
     };
   }, [updateOffsetCallback]);
 
-  useEffect(() => {
-    if (imagesLoadedCount > 0) {
-      updateOffsetCallback();
-    }
-  }, [imagesLoadedCount, updateOffsetCallback]);
-
   return (
     <div ref={wrapperRef} className='relative z-[1] pt-9 md:pt-16'>
-      <div
-        ref={dragFieldRef}
-        className='absolute inset-0 pointer-events-none'
-        style={{
-          left: `-${offset}px`,
-          width: `${dragField}px`,
-        }}
-      />
       <m.div
+        key={resetKey}
         ref={contentRef}
         drag={offset > 0 ? 'x' : false}
-        dragConstraints={dragFieldRef}
+        dragConstraints={offset > 0 ? { left: -offset, right: 0 } : undefined}
+        initial={{ x: 0 }}
         whileTap={{ cursor: 'grabbing' }}
-        className={`flex gap-3 sm:gap-6 outline-none ${
+        className={`flex gap-3 sm:gap-6 outline-none will-change-transform ${
           offset > 0 ? 'cursor-grab' : 'cursor-default'
         }`}
+        style={{
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          perspective: 1000,
+        }}
       >
-        <Cards images={images} imagesLoaded={onImageLoad} />
+        <Cards images={images} onImagesLoaded={handleImagesLoaded} />
       </m.div>
     </div>
   );
