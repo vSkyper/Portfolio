@@ -71,8 +71,8 @@ export default function Card(props: CardProps) {
             </div>
 
             {/* Large center play button - visible on hover */}
-            <div className='absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200'>
-              <div className='w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center ring-2 ring-white/40'>
+            <div className='absolute inset-0 flex items-center justify-center pointer-events-none'>
+              <div className='w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center ring-2 ring-white/40 transform scale-0 group-hover:scale-100 transition-transform duration-200 ease-out opacity-0 group-hover:opacity-100'>
                 <svg
                   className='w-8 h-8 sm:w-10 sm:h-10 text-white'
                   fill='currentColor'
