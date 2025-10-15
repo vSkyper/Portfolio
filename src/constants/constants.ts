@@ -110,13 +110,20 @@ export const projectsDetails: IProjectDetails[] = [
     id: 'cryptocurrency',
     title: 'Cryptocurrency',
     description:
-      'The goal of the project is to provide a cryptocurrency dashboard. Features of the project include: the ability to search for a specific cryptocurrency, the ability to sort cryptocurrencies in table, the ability to display the price of a cryptocurrency in a specific time interval, the ability to exchange cryptocurrencies.',
+      'The goal of this project is to create a comprehensive and intuitive cryptocurrency dashboard that serves as a central hub for market analysis. The platform offers a powerful set of features designed to enhance user interaction and provide deep market insights. Users are empowered with the ability to search for a specific cryptocurrency instantly, allowing for quick retrieval of detailed asset information without navigating extensive lists. Furthermore, the dashboard includes a highly functional data table where users can sort cryptocurrencies based on multiple performance indicators, such as price, market capitalization, and volume, to easily identify market trends and leaders. A key analytical feature is the capability to display the price of a cryptocurrency across a specific time interval, utilizing interactive charts to visualize historical data and track price movements over various periods. Finally, to support transactional planning and understanding, the project incorporates an exchange utility that allows users to seamlessly calculate the conversion or exchange value of one cryptocurrency for another, or into fiat currencies. This collection of features makes the dashboard a complete tool for monitoring and engaging with the dynamic digital asset market.',
     images: [
       '/images/project/cryptocurrency-1.webp',
       '/images/project/cryptocurrency-2.webp',
       '/images/project/cryptocurrency-3.webp',
     ],
-    technologies: ['React', 'Vite', 'TypeScript', 'MUI', 'CoinGecko API'],
+    technologies: [
+      'React',
+      'Vite',
+      'TypeScript',
+      'Tailwind CSS',
+      'MUI',
+      'CoinGecko API',
+    ],
     links: [
       {
         link: 'https://vcryptocurrency.netlify.app',
