@@ -1,5 +1,5 @@
 import { motion as m } from 'framer-motion';
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Cards } from './components';
 import { updateOffset, isMobile } from 'helpers/helpers';
 import { ImagesCardsProps } from './interface';
@@ -16,15 +16,15 @@ export default function ImagesCards(props: ImagesCardsProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const updateOffsetCallback = useCallback(() => {
+  const updateOffsetCallback = () => {
     updateOffset(wrapperRef, contentRef, setOffset);
-  }, []);
+  };
 
-  const handleImagesLoaded = useCallback(() => {
+  const handleImagesLoaded = () => {
     updateOffsetCallback();
-  }, [updateOffsetCallback]);
+  };
 
-  const resetCarousel = useCallback(() => {
+  const resetCarousel = () => {
     setOffset(0);
     if (contentRef.current) {
       contentRef.current.style.transform = 'translateX(0px) translateZ(0)';
@@ -34,7 +34,7 @@ export default function ImagesCards(props: ImagesCardsProps) {
     [100, 300, 500].forEach((delay) => {
       setTimeout(updateOffsetCallback, delay);
     });
-  }, [updateOffsetCallback]);
+  };
 
   // Handle modal state changes
   useEffect(() => {

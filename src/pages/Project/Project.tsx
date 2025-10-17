@@ -8,7 +8,7 @@ import {
   slideInTopAnimationMobile,
 } from 'animations/animations';
 import { isMobile } from 'helpers/helpers';
-import { useMemo, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Project() {
   const { id } = useParams();
@@ -19,12 +19,12 @@ export default function Project() {
     (project) => project.id === id
   );
 
-  const animation = useMemo(() => {
+  const animation = () => {
     if (typeof window === 'undefined') return slideInTopAnimation;
 
     const mobile = isMobile();
     return mobile ? slideInTopAnimationMobile : slideInTopAnimation;
-  }, []);
+  };
 
   useEffect(() => {
     const handleModalStateChange = (
@@ -66,7 +66,7 @@ export default function Project() {
 
   return (
     <m.main
-      variants={animation}
+      variants={animation()}
       initial='hidden'
       animate='show'
       className='relative w-full min-h-full'

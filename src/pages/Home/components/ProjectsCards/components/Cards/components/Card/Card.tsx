@@ -1,6 +1,5 @@
 import { motion as m } from 'framer-motion';
 import { IProjectCard } from 'interfaces/interfaces';
-import { useCallback } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 interface CardProps extends IProjectCard {
@@ -17,10 +16,7 @@ export default function Card({
 }: CardProps) {
   const navigate: NavigateFunction = useNavigate();
 
-  const handleTap = useCallback(
-    () => navigate(`/project/${id}`),
-    [navigate, id]
-  );
+  const handleTap = () => navigate(`/project/${id}`);
 
   return (
     <m.div

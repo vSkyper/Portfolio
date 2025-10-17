@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState } from 'react';
 import { CardProps } from './interface';
 import { ImageModal } from './components';
 import { motion as m } from 'framer-motion';
@@ -8,22 +8,22 @@ export default function Card(props: CardProps) {
   const [imageError, setImageError] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const isVideo = useMemo(() => typeof image !== 'string', [image]);
+  const isVideo = typeof image !== 'string';
 
   const thumbnailSrc = typeof image === 'string' ? image : image.thumbnail;
   const mediaUrl = typeof image === 'string' ? image : image.src;
 
-  const handleImageError = useCallback(() => {
+  const handleImageError = () => {
     setImageError(true);
-  }, []);
+  };
 
-  const handleTap = useCallback(() => {
+  const handleTap = () => {
     setIsModalOpen(true);
-  }, []);
+  };
 
-  const handleCloseModal = useCallback(() => {
+  const handleCloseModal = () => {
     setIsModalOpen(false);
-  }, []);
+  };
 
   if (imageError) {
     return (

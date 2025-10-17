@@ -1,6 +1,6 @@
 import { motion as m } from 'framer-motion';
 import { Cards } from './components';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { isMobile, updateOffset } from 'helpers/helpers';
 
 export default function ProjectsCards() {
@@ -10,13 +10,13 @@ export default function ProjectsCards() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const updateOffsetCallback = useCallback(() => {
+  const updateOffsetCallback = () => {
     updateOffset(wrapperRef, contentRef, setOffset);
-  }, []);
+  };
 
-  const handleImagesLoaded = useCallback(() => {
+  const handleImagesLoaded = () => {
     updateOffsetCallback();
-  }, [updateOffsetCallback]);
+  };
 
   useEffect(() => {
     updateOffsetCallback();
