@@ -1,42 +1,67 @@
 import { projectsCards } from 'constants/constants';
 import { Card } from './components';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface CardsProps {
   onImagesLoaded?: () => void;
 }
 
 export default function Cards({ onImagesLoaded }: CardsProps = {}) {
-  const [imagesReady, setImagesReady] = useState(false);
+  const onImagesLoadedRef = useRef(onImagesLoaded);
+
+  // Keep ref updated without triggering useEffect
+  useEffect(() => {
+    onImagesLoadedRef.current = onImagesLoaded;
+  }, [onImagesLoaded]);
 
   useEffect(() => {
-    const imagePromises = projectsCards.flatMap((project) => [
-      new Promise<void>((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve();
-        img.onerror = () => resolve();
-        img.src = project.image;
-      }),
-      new Promise<void>((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve();
-        img.onerror = () => resolve();
-        img.src = project.image_blurred;
-      }),
-    ]);
+    let isMounted = true;
 
-    Promise.all(imagePromises).then(() => {
-      setImagesReady(true);
-      if (onImagesLoaded) {
-        setTimeout(onImagesLoaded, 100);
+    const preloadImages = async () => {
+      const imagePromises = projectsCards.map((project) => {
+        return new Promise<void>((resolve) => {
+          const img = new Image();
+
+          const handleLoad = () => {
+            resolve();
+          };
+
+          img.onload = handleLoad;
+          img.onerror = handleLoad;
+
+          img.src = project.image;
+        });
+      });
+
+      try {
+        await Promise.all(imagePromises);
+
+        if (isMounted) {
+          if (onImagesLoadedRef.current) {
+            setTimeout(() => {
+              if (isMounted) {
+                onImagesLoadedRef.current?.();
+              }
+            }, 100);
+          }
+        }
+      } catch (error) {
+        // Handle any unexpected errors
+        console.error('Error preloading images:', error);
       }
-    });
-  }, [onImagesLoaded]);
+    };
+
+    preloadImages();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <>
       {projectsCards.map((project) => (
-        <Card key={project.title} {...project} imagesReady={imagesReady} />
+        <Card key={project.id || project.title} {...project} />
       ))}
     </>
   );

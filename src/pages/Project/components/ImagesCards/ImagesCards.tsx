@@ -1,12 +1,10 @@
 import { motion as m } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { Cards } from './components';
 import { updateOffset, isMobile } from 'helpers/helpers';
 import { ImagesCardsProps } from './interface';
 
-export default function ImagesCards(props: ImagesCardsProps) {
-  const { images } = props;
-
+export default function ImagesCards({ images }: ImagesCardsProps) {
   const [offset, setOffset] = useState<number>(0);
   const [resetKey, setResetKey] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -16,25 +14,27 @@ export default function ImagesCards(props: ImagesCardsProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const updateOffsetCallback = () => {
+  // Memoize callback to prevent unnecessary re-renders
+  const updateOffsetCallback = useCallback(() => {
     updateOffset(wrapperRef, contentRef, setOffset);
-  };
+  }, []);
 
-  const handleImagesLoaded = () => {
+  const handleImagesLoaded = useCallback(() => {
     updateOffsetCallback();
-  };
+  }, [updateOffsetCallback]);
 
-  const resetCarousel = () => {
+  const resetCarousel = useCallback(() => {
     setOffset(0);
     if (contentRef.current) {
       contentRef.current.style.transform = 'translateX(0px) translateZ(0)';
     }
     setResetKey((prev) => prev + 1);
 
+    // Multiple updates to ensure layout is correct
     [100, 300, 500].forEach((delay) => {
       setTimeout(updateOffsetCallback, delay);
     });
-  };
+  }, [updateOffsetCallback]);
 
   // Handle modal state changes
   useEffect(() => {
@@ -54,6 +54,7 @@ export default function ImagesCards(props: ImagesCardsProps) {
       'modalStateChange',
       handleModalStateChange as EventListener
     );
+
     return () => {
       window.removeEventListener(
         'modalStateChange',
@@ -67,7 +68,8 @@ export default function ImagesCards(props: ImagesCardsProps) {
     updateOffsetCallback();
 
     const mobile = isMobile();
-    const fallbackTimer = setTimeout(updateOffsetCallback, mobile ? 500 : 1000);
+    const fallbackDelay = mobile ? 500 : 1000;
+    const fallbackTimer = setTimeout(updateOffsetCallback, fallbackDelay);
 
     const handleOrientationChange = () => {
       if (isModalOpen) {

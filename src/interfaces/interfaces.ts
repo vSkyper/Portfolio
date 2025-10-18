@@ -11,7 +11,6 @@ export interface IProjectCard {
   title: string;
   technology: string;
   image: string;
-  image_blurred: string;
 }
 
 export interface IProjectDetailsLink {
