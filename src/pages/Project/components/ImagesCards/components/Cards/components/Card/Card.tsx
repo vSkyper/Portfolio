@@ -20,7 +20,7 @@ export default function Card({ image }: CardProps) {
   useEffect(() => {
     setImagesReady(false);
 
-    const src = thumbnailSrc ?? mediaUrl;
+    const src = thumbnailSrc;
     if (!src) {
       setImagesReady(true);
       return;
@@ -36,7 +36,7 @@ export default function Card({ image }: CardProps) {
       img.onload = null;
       img.onerror = null;
     };
-  }, [thumbnailSrc, mediaUrl]);
+  }, [thumbnailSrc]);
 
   const handleTap = () => {
     setIsModalOpen(true);
