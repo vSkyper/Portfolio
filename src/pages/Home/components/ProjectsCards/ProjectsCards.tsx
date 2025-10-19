@@ -68,15 +68,6 @@ export default function ProjectsCards() {
         className={`flex gap-3 sm:gap-6 outline-none will-change-transform select-none ${
           offset > 0 ? 'cursor-grab' : 'cursor-default'
         }`}
-        style={{
-          transform: 'translateZ(0)',
-          backfaceVisibility: 'hidden',
-          perspective: 1000,
-          userSelect: 'none',
-          WebkitUserSelect: 'none',
-          WebkitTouchCallout: 'none',
-          pointerEvents: 'auto',
-        }}
       >
         <Cards onImagesLoaded={handleImagesLoaded} />
       </m.div>

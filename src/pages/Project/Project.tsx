@@ -70,10 +70,6 @@ export default function Project() {
       initial='hidden'
       animate='show'
       className='relative w-full min-h-full'
-      style={{
-        transform: 'translateZ(0)',
-        backfaceVisibility: 'hidden',
-      }}
     >
       <section className='container mx-auto w-11/12 py-8 sm:py-10 md:py-12'>
         <div className='rounded-3xl bg-white/[0.03] ring-1 ring-white/10 backdrop-blur-md p-5 sm:p-7 md:p-8'>

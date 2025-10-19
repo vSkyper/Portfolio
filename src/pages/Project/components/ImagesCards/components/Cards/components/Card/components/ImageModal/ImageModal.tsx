@@ -7,7 +7,7 @@ interface ImageModalProps {
   onClose: () => void;
   src: string;
   alt: string;
-  isVideo?: boolean;
+  isVideo: boolean;
 }
 
 const getGoogleDriveEmbedUrl = (url: string): string => {
@@ -19,7 +19,7 @@ const getGoogleDriveEmbedUrl = (url: string): string => {
 };
 
 export default function ImageModal(props: ImageModalProps) {
-  const { isOpen, onClose, src, alt, isVideo = false } = props;
+  const { isOpen, onClose, src, alt, isVideo } = props;
 
   const clearSelection = () => {
     window.getSelection()?.removeAllRanges();
@@ -126,22 +126,24 @@ export default function ImageModal(props: ImageModalProps) {
               </button>
 
               {/* Image or Video */}
-              {isVideo ? (
-                <iframe
-                  key={src}
-                  src={getGoogleDriveEmbedUrl(src)}
-                  className='rounded-xl w-[90vw] h-[50vh] sm:w-[80vw] sm:h-[60vh] md:w-[70vw] md:h-[70vh] block'
-                  allow='autoplay; fullscreen'
-                  allowFullScreen
-                  loading='eager'
-                />
-              ) : (
-                <img
-                  src={src}
-                  alt={alt}
-                  className='rounded-xl max-w-[90vw] max-h-[90vh] w-auto h-auto block'
-                />
-              )}
+              <div className='rounded-xl overflow-hidden bg-black'>
+                {isVideo ? (
+                  <iframe
+                    key={src}
+                    src={getGoogleDriveEmbedUrl(src)}
+                    className='w-[90vw] sm:w-[70vw] aspect-video block'
+                    allow='autoplay; fullscreen'
+                    allowFullScreen
+                    loading='eager'
+                  />
+                ) : (
+                  <img
+                    src={src}
+                    alt={alt}
+                    className='max-w-[90vw] max-h-[90vh] w-auto h-auto block'
+                  />
+                )}
+              </div>
             </div>
           </m.div>
         </m.div>
