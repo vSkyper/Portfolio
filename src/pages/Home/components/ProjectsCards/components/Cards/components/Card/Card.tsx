@@ -47,7 +47,7 @@ export default function Card({ id, title, technology, image }: IProjectCard) {
         controls.start({ scale: 1, transition: { duration: 0.06 } })
       }
       transition={{ type: 'spring', stiffness: 240, damping: 20, mass: 0.3 }}
-      className='group relative h-0 min-w-[85%] md:pb-[40%] md:min-w-[70%] lg:pb-[30%] lg:min-w-[55%] xl:pb-[25%] xl:min-w-[45%] rounded-3xl outline-none ring-0 hover:ring-1 hover:ring-blue-400 focus-visible:ring-1 focus-visible:ring-blue-400 transition-shadow duration-200 ease-out hover:shadow-[0_10px_30px_-6px_rgba(59,130,246,0.25)] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] will-change-transform cursor-pointer select-none overflow-hidden'
+      className='group relative h-0 min-w-[85%] pb-[55%] md:pb-[40%] md:min-w-[70%] lg:pb-[30%] lg:min-w-[55%] xl:pb-[25%] xl:min-w-[45%] rounded-3xl outline-none ring-0 hover:ring-1 hover:ring-blue-400 focus-visible:ring-1 focus-visible:ring-blue-400 transition-shadow duration-200 ease-out hover:shadow-[0_10px_30px_-6px_rgba(59,130,246,0.25)] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] will-change-transform cursor-pointer select-none overflow-hidden'
       // handleTap is invoked inside the onTap callback above (via framer controls)
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') handleTap();
