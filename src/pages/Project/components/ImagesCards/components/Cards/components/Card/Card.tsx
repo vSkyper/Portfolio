@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ImageModal } from './components';
-import { motion as m } from 'framer-motion';
-import { useAnimation } from 'framer-motion';
+import { motion as m, useAnimation } from 'framer-motion';
 import { IProjectMedia } from 'interfaces/interfaces';
 
 interface CardProps {
@@ -63,7 +62,7 @@ export default function Card({ image }: CardProps) {
           controls.start({ scale: 1, transition: { duration: 0.06 } })
         }
         transition={{ type: 'spring', stiffness: 240, damping: 20, mass: 0.3 }}
-        className='min-w-[85%] md:min-w-[70%] lg:min-w-[55%] xl:min-w-[45%] h-[200px] sm:h-[300px] md:h-[400px] cursor-pointer group select-none relative rounded-3xl outline-none ring-0 hover:ring-1 hover:ring-blue-400 focus-visible:ring-1 focus-visible:ring-blue-400 transition-shadow duration-200 ease-out hover:shadow-[0_10px_30px_-6px_rgba(59,130,246,0.25)] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] will-change-transform overflow-hidden'
+        className='min-w-[85%] md:min-w-[70%] lg:min-w-[55%] xl:min-w-[45%] h-[200px] sm:h-[300px] md:h-[400px] cursor-pointer group select-none relative rounded-3xl outline-none ring-0 hover:ring-1 hover:ring-blue-400 focus-visible:ring-1 focus-visible:ring-blue-400 transition-shadow duration-200 ease-out hover:shadow-[0_10px_30px_-6px_rgba(59,130,246,0.25)] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] will-change-transform overflow-hidden bg-[#1a1a1a]'
         role='button'
         tabIndex={0}
         onKeyDown={(e) => {
@@ -71,6 +70,42 @@ export default function Card({ image }: CardProps) {
         }}
         aria-label={isVideo ? 'Open video' : 'Open image'}
       >
+        {/* Loading indicator */}
+        {!imagesReady && (
+          <div
+            className='absolute inset-0 flex items-center justify-center z-10'
+            aria-hidden='true'
+          >
+            <div className='relative'>
+              {/* Spinning ring */}
+              <m.div
+                className='w-12 h-12 rounded-full border-2 border-white/10 border-t-primary'
+                animate={{ rotate: 360 }}
+                transition={{
+                  duration: 1,
+                  repeat: Infinity,
+                  ease: 'linear',
+                }}
+              />
+              {/* Pulsing center dot */}
+              <m.div
+                className='absolute inset-0 flex items-center justify-center'
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.5, 0.8, 0.5],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+              >
+                <div className='w-2 h-2 rounded-full bg-primary' />
+              </m.div>
+            </div>
+          </div>
+        )}
+
         {/* Background image */}
         <div
           className={`absolute inset-0 bg-cover bg-center bg-no-repeat rounded-3xl transition-all duration-500 z-1 ${
