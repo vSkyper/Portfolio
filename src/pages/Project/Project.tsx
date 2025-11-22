@@ -9,7 +9,7 @@ import {
   slideInTopAnimationMobile,
 } from 'animations/animations';
 import { isMobile } from 'helpers/helpers';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 
 export default function Project() {
   const { id } = useParams();
@@ -99,10 +99,27 @@ export default function Project() {
                 {project.title}
               </h1>
               <div className='prose prose-invert max-w-none'>
-                <div
-                  className='text-sm sm:text-lg text-white/70 leading-relaxed'
-                  dangerouslySetInnerHTML={{ __html: project.description }}
-                />
+                <div className='text-sm sm:text-lg text-white/70 leading-relaxed'>
+                  {project.description
+                    .split(/<br\s*\/?>/i)
+                    .map((line, i, arr) => (
+                      <Fragment key={i}>
+                        {line.split('`').map((part, j) =>
+                          j % 2 === 1 ? (
+                            <code
+                              key={j}
+                              className='bg-white/10 text-white px-1.5 py-0.5 rounded text-sm font-mono'
+                            >
+                              {part}
+                            </code>
+                          ) : (
+                            part
+                          )
+                        )}
+                        {i < arr.length - 1 && <br />}
+                      </Fragment>
+                    ))}
+                </div>
               </div>
             </div>
 

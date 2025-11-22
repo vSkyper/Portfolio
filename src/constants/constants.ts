@@ -56,7 +56,7 @@ export const projectsDetails: IProjectDetails[] = [
     id: 'Aukciszek',
     title: 'Aukciszek',
     description:
-      "This project, which was successfully developed and completed as a Master's Thesis, focuses on creating a secure and reliable platform for conducting online auctions. <br>My main contribution was centered on the backend system development and the implementation of a sophisticated algorithm designed to facilitate safe auctions. The backend infrastructure was built using Python with the FastAPI framework, utilizing Supabase for database management and real-time capabilities. I was responsible for designing and implementing the core logic for secure bidding and transaction finalization.<br>Additionally, I made contributions to the client-side application, ensuring seamless integration with the backend services. The entire system is split into two main components: the server-side logic (GitHub: Aukciszek/backend) and the user interface (GitHub: Aukciszek/client).",
+      "This privacy-first platform for conducting anonymous reverse auctions was successfully built as a collaborative Master's Thesis. The system eliminates the need to trust a central authority by utilizing Multi-Party Computation (MPC) and Secret Sharing schemes.<br /><br />Sensitive bid data is split into cryptographic 'shares' directly in the user's browser before ever reaching the network. These shares are distributed across independent Python servers, which collaborate to mathematically determine the winning offer without ever seeing or reconstructing the actual bid amounts.<br /><br />While we built the system as a team, my primary role involved implementing these cryptographic protocols and designing the secure, synchronous communication architecture between the computation servers. On the client side, I helped the team integrate the frontend logic to ensure a smooth user experience. The project is split into two repositories: the server logic (backend) and the user interface (client).",
     images: [
       '/images/projects/aukciszek/aukciszek-1.webp',
       '/images/projects/aukciszek/aukciszek-2.webp',
@@ -93,7 +93,7 @@ export const projectsDetails: IProjectDetails[] = [
     id: 'learnhub',
     title: 'LearnHub',
     description:
-      "The primary goal of this initiative was to deliver a remote learning platform specifically tailored for small class groups. This platform was designed to effectively teach both children and teenagers. The project was successfully completed as an Engineering Thesis (praca inżynierska). Key features of the system include the teacher's ability to present any educational material and tool to the students. Furthermore, it supports voice and video communication among all meeting participants. The teacher can also observe students' work in real-time and has the capability to provide one-on-one assistance to a selected student. Finally, students are able to collaborate with each other live through built-in cooperation mechanisms.",
+      'Developed as a collaborative Engineering Thesis, LearnHub is a dedicated remote learning platform tailored for small study groups. Working closely with my team, we aimed to create a virtual classroom environment that feels personal and effective. The system provides teachers with a suite of powerful tools to present educational materials, manage the class flow, and observe student progress in real-time. A key focus was enabling seamless interaction; using WebRTC, we implemented full voice and video communication to ensure smooth connectivity. Teachers can also step in to offer one-on-one assistance to specific students, mimicking the direct support found in physical classrooms.',
     images: [
       '/images/projects/learnhub/learnhub-1.webp',
       '/images/projects/learnhub/learnhub-2.webp',
@@ -106,7 +106,7 @@ export const projectsDetails: IProjectDetails[] = [
     id: 'cryptocurrency',
     title: 'Cryptocurrency',
     description:
-      'The goal of this project is to create a comprehensive and intuitive cryptocurrency dashboard that serves as a central hub for market analysis. The platform offers a powerful set of features designed to enhance user interaction and provide deep market insights. Users are empowered with the ability to search for a specific cryptocurrency instantly, allowing for quick retrieval of detailed asset information without navigating extensive lists. Furthermore, the dashboard includes a highly functional data table where users can sort cryptocurrencies based on multiple performance indicators, such as price, market capitalization, and volume, to easily identify market trends and leaders. A key analytical feature is the capability to display the price of a cryptocurrency across a specific time interval, utilizing interactive charts to visualize historical data and track price movements over various periods. Finally, to support transactional planning and understanding, the project incorporates an exchange utility that allows users to seamlessly calculate the conversion or exchange value of one cryptocurrency for another, or into fiat currencies. This collection of features makes the dashboard a complete tool for monitoring and engaging with the dynamic digital asset market.',
+      "This dashboard serves as a central hub for tracking the crypto market. I designed it to be intuitive and fast, allowing users to instantly search for assets without digging through endless lists. Key features include a detailed data table for sorting by price or volume, interactive charts for visualizing historical price movements, and a built-in currency converter. It's a complete tool for anyone looking to monitor digital assets and analyze market trends.",
     images: [
       '/images/projects/cryptocurrency/cryptocurrency-1.webp',
       '/images/projects/cryptocurrency/cryptocurrency-2.webp',
@@ -135,7 +135,7 @@ export const projectsDetails: IProjectDetails[] = [
     id: 'terminal',
     title: 'Terminal',
     description:
-      "The project's goal is to provide a simple terminal interface in the browser. The application is built using pure Vanilla JavaScript with TypeScript and styled with Sass, without relying on any external frameworks, ensuring it is lightweight and fast. Key features include basic system commands such as: help, clear, history, echo [text], and information utilities like: time, date, ping, whoami, version, config, pwd, and dir/ls.",
+      "A fun, browser-based simulation of a terminal interface. I built this primarily to sharpen my Vanilla JS skills without relying on frameworks. While it's not a real system shell, I programmed it to mimic the look and feel of one, creating my own logic for standard commands like `help`, `clear`, `history`, and `echo`, as well as simulated utilities like `ping` and file navigation commands like `pwd` and `ls`.",
     images: [
       '/images/projects/terminal/terminal-1.webp',
       '/images/projects/terminal/terminal-2.webp',
