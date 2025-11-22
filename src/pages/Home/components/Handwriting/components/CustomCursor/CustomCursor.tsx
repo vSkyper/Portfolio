@@ -8,62 +8,80 @@ export default function CustomCursor(props: CustomCursorProps) {
 
   useEffect(() => {
     const container = containerRef.current;
-    const customCursor = customCursorRef.current;
+    const cursor = customCursorRef.current;
 
-    if (!container || !customCursor) return;
-
-    if ('ontouchstart' in window) return;
+    if (!container || !cursor || 'ontouchstart' in window) return;
 
     let rafId: number | null = null;
-    let nextX = 0;
-    let nextY = 0;
+    let lastX = 0;
+    let lastY = 0;
+    let isScrolling = false;
+    let scrollTimeout: number;
 
-    const updatePos = () => {
-      if (!customCursor) return;
-      customCursor.style.left = `${nextX}px`;
-      customCursor.style.top = `${nextY}px`;
-      rafId = null;
+    const toggleCursor = (show: boolean) => {
+      cursor.classList.toggle('animate-custom-cursor', show);
+      cursor.classList.toggle('animate-custom-cursor-out', !show);
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      nextX = e.clientX;
-      nextY = e.clientY;
-
-      if (customCursor.classList.contains('animate-custom-cursor-out')) {
-        customCursor.classList.remove('animate-custom-cursor-out');
-        customCursor.classList.add('animate-custom-cursor');
-      }
-
-      if (rafId == null) {
-        rafId = requestAnimationFrame(updatePos);
-      }
+    const updatePosition = (x: number, y: number) => {
+      cursor.style.left = `${x}px`;
+      cursor.style.top = `${y}px`;
     };
 
-    const handleMouseEnter = (e: MouseEvent) => {
+    const onScroll = () => {
+      isScrolling = true;
+      toggleCursor(false);
+      window.clearTimeout(scrollTimeout);
+      scrollTimeout = window.setTimeout(() => {
+        isScrolling = false;
+      }, 100);
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      if (isScrolling) return;
       const { clientX, clientY } = e;
 
-      customCursor.classList.remove('animate-custom-cursor-out');
-      customCursor.classList.add('animate-custom-cursor');
-      customCursor.style.left = `${clientX}px`;
-      customCursor.style.top = `${clientY}px`;
+      if (clientX === lastX && clientY === lastY) return;
+      lastX = clientX;
+      lastY = clientY;
+
+      if (cursor.classList.contains('animate-custom-cursor-out')) {
+        toggleCursor(true);
+      }
+
+      if (!rafId) {
+        rafId = requestAnimationFrame(() => {
+          updatePosition(lastX, lastY);
+          rafId = null;
+        });
+      }
     };
 
-    const handleMouseLeave = () => {
-      customCursor.classList.remove('animate-custom-cursor');
-      customCursor.classList.add('animate-custom-cursor-out');
+    const onMouseEnter = (e: MouseEvent) => {
+      if (isScrolling) return;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      updatePosition(lastX, lastY);
+      toggleCursor(true);
     };
 
-    container.addEventListener('mousemove', handleMouseMove);
-    container.addEventListener('mouseenter', handleMouseEnter);
-    container.addEventListener('mouseleave', handleMouseLeave);
-    window.addEventListener('scroll', handleMouseLeave, { passive: true });
+    const onMouseLeave = () => toggleCursor(false);
+
+    container.addEventListener('mousemove', onMouseMove);
+    container.addEventListener('mouseenter', onMouseEnter);
+    container.addEventListener('mouseleave', onMouseLeave);
+    window.addEventListener('scroll', onScroll, {
+      passive: true,
+      capture: true,
+    });
 
     return () => {
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('mouseenter', handleMouseEnter);
-      container.removeEventListener('mouseleave', handleMouseLeave);
-      window.removeEventListener('scroll', handleMouseLeave);
+      container.removeEventListener('mousemove', onMouseMove);
+      container.removeEventListener('mouseenter', onMouseEnter);
+      container.removeEventListener('mouseleave', onMouseLeave);
+      window.removeEventListener('scroll', onScroll, { capture: true });
       if (rafId) cancelAnimationFrame(rafId);
+      window.clearTimeout(scrollTimeout);
     };
   }, [containerRef]);
 
