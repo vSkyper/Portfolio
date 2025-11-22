@@ -28,6 +28,12 @@ export default function CustomCursor(props: CustomCursorProps) {
     const handleMouseMove = (e: MouseEvent) => {
       nextX = e.clientX;
       nextY = e.clientY;
+
+      if (customCursor.classList.contains('animate-custom-cursor-out')) {
+        customCursor.classList.remove('animate-custom-cursor-out');
+        customCursor.classList.add('animate-custom-cursor');
+      }
+
       if (rafId == null) {
         rafId = requestAnimationFrame(updatePos);
       }
@@ -50,11 +56,13 @@ export default function CustomCursor(props: CustomCursorProps) {
     container.addEventListener('mousemove', handleMouseMove);
     container.addEventListener('mouseenter', handleMouseEnter);
     container.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('scroll', handleMouseLeave, { passive: true });
 
     return () => {
       container.removeEventListener('mousemove', handleMouseMove);
       container.removeEventListener('mouseenter', handleMouseEnter);
       container.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('scroll', handleMouseLeave);
       if (rafId) cancelAnimationFrame(rafId);
     };
   }, [containerRef]);
@@ -62,7 +70,7 @@ export default function CustomCursor(props: CustomCursorProps) {
   return (
     <div
       ref={customCursorRef}
-      className='fixed opacity-0 px-8 py-2 pointer-events-none bg-primary text-secondary rounded-[50%] z-10 -rotate-12 -translate-x-1/2 -translate-y-3/4 [will-change:left,top]'
+      className='fixed opacity-0 px-8 py-2 pointer-events-none bg-primary text-secondary rounded-[50%] z-10 -rotate-12 -translate-x-1/2 -translate-y-3/4 will-change-[left,top]'
     >
       <div className='rotate-12 text-lg font-cursor'>Scroll</div>
     </div>
