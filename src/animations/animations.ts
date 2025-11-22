@@ -41,6 +41,15 @@ export const slideInTopAnimationMobile: Variants = {
   },
 };
 
+export const slideInUpAnimation: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: easeInOut },
+  },
+};
+
 export const fadeInAnimation: Variants = {
   hidden: { opacity: 0 },
   show: {

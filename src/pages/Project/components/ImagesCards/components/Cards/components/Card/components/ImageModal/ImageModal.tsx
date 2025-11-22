@@ -1,6 +1,7 @@
 import { motion as m, AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { IoClose } from 'react-icons/io5';
 
 interface ImageModalProps {
   isOpen: boolean;
@@ -87,51 +88,48 @@ export default function ImageModal(props: ImageModalProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, pointerEvents: 'auto' }}
           exit={{ opacity: 0, pointerEvents: 'none' }}
-          transition={{ duration: 0.2 }}
-          className='fixed inset-0 z-[9999] flex items-center justify-center p-4'
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+          className='fixed inset-0 z-9999 flex items-center justify-center p-4 sm:p-8'
           onClick={handleClose}
         >
           {/* Backdrop */}
-          <div className='absolute inset-0 bg-black/80 backdrop-blur-sm' />
+          <m.div
+            initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            animate={{ opacity: 1, backdropFilter: 'blur(12px)' }}
+            exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            transition={{ duration: 0.3 }}
+            className='absolute inset-0 bg-black/90'
+          />
 
           {/* Modal Content */}
           <m.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className='relative z-10 flex items-center justify-center'
+            className='relative z-10 max-w-full max-h-full flex flex-col items-center'
             onClick={(e) => e.stopPropagation()}
           >
-            <div className='relative bg-white/[0.05] ring-1 ring-white/20 rounded-2xl p-2 backdrop-blur-md'>
-              {/* Close button */}
-              <button
-                onClick={handleClose}
-                className='absolute -top-2 -right-2 z-10 w-8 h-8 bg-white/10 hover:bg-white/20 ring-1 ring-white/20 rounded-full flex items-center justify-center text-white transition-colors duration-200'
-                aria-label='Close modal'
-              >
-                <svg
-                  width='16'
-                  height='16'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                >
-                  <line x1='18' y1='6' x2='6' y2='18'></line>
-                  <line x1='6' y1='6' x2='18' y2='18'></line>
-                </svg>
-              </button>
+            {/* Close button */}
+            <m.button
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              onClick={handleClose}
+              className='absolute -top-12 right-0 sm:-right-12 z-20 w-10 h-10 bg-white/10 hover:bg-white/20 ring-1 ring-white/20 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110 hover:rotate-90 backdrop-blur-md'
+              aria-label='Close modal'
+            >
+              <IoClose className='w-5 h-5' />
+            </m.button>
 
+            <div className='relative bg-[#1a1a1a] ring-1 ring-white/10 rounded-2xl overflow-hidden shadow-2xl shadow-black/50'>
               {/* Image or Video */}
-              <div className='rounded-xl overflow-hidden bg-black'>
+              <div className='relative'>
                 {isVideo ? (
                   <iframe
                     key={src}
                     src={getGoogleDriveEmbedUrl(src)}
-                    className='w-[90vw] sm:w-[70vw] aspect-video block'
+                    className='w-[90vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] aspect-video block bg-black'
                     allow='autoplay; fullscreen'
                     allowFullScreen
                     loading='eager'
@@ -140,7 +138,7 @@ export default function ImageModal(props: ImageModalProps) {
                   <img
                     src={src}
                     alt={alt}
-                    className='max-w-[90vw] max-h-[90vh] w-auto h-auto block'
+                    className='max-w-[90vw] max-h-[85vh] w-auto h-auto block object-contain bg-black'
                   />
                 )}
               </div>

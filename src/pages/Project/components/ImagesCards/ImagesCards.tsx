@@ -1,39 +1,25 @@
 import { motion as m } from 'framer-motion';
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Cards } from './components';
-import { updateOffset, isMobile } from 'helpers/helpers';
 import { ImagesCardsProps } from './interface';
+import { useCarousel } from 'hooks';
 
 export default function ImagesCards({ images }: ImagesCardsProps) {
-  const [offset, setOffset] = useState<number>(0);
-  const [resetKey, setResetKey] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [needsResetAfterModal, setNeedsResetAfterModal] =
     useState<boolean>(false);
 
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  // Memoize callback to prevent unnecessary re-renders
-  const updateOffsetCallback = useCallback(() => {
-    updateOffset(wrapperRef, contentRef, setOffset);
-  }, []);
+  const {
+    offset,
+    resetKey,
+    wrapperRef,
+    contentRef,
+    resetCarousel,
+    updateOffsetCallback,
+  } = useCarousel(false);
 
   const handleImagesLoaded = useCallback(() => {
     updateOffsetCallback();
-  }, [updateOffsetCallback]);
-
-  const resetCarousel = useCallback(() => {
-    setOffset(0);
-    if (contentRef.current) {
-      contentRef.current.style.transform = 'translateX(0px) translateZ(0)';
-    }
-    setResetKey((prev) => prev + 1);
-
-    // Multiple updates to ensure layout is correct
-    [100, 300, 500].forEach((delay) => {
-      setTimeout(updateOffsetCallback, delay);
-    });
   }, [updateOffsetCallback]);
 
   // Handle modal state changes
@@ -63,14 +49,8 @@ export default function ImagesCards({ images }: ImagesCardsProps) {
     };
   }, [needsResetAfterModal, resetCarousel]);
 
-  // Handle resize and orientation changes
+  // Handle orientation changes manually to support modal logic
   useEffect(() => {
-    updateOffsetCallback();
-
-    const mobile = isMobile();
-    const fallbackDelay = mobile ? 500 : 1000;
-    const fallbackTimer = setTimeout(updateOffsetCallback, fallbackDelay);
-
     const handleOrientationChange = () => {
       if (isModalOpen) {
         setNeedsResetAfterModal(true);
@@ -79,21 +59,15 @@ export default function ImagesCards({ images }: ImagesCardsProps) {
       }
     };
 
-    window.addEventListener('resize', updateOffsetCallback);
     window.addEventListener('orientationchange', handleOrientationChange);
 
     return () => {
-      window.removeEventListener('resize', updateOffsetCallback);
       window.removeEventListener('orientationchange', handleOrientationChange);
-      clearTimeout(fallbackTimer);
     };
-  }, [updateOffsetCallback, isModalOpen, resetCarousel]);
+  }, [isModalOpen, resetCarousel]);
 
   return (
-    <div
-      ref={wrapperRef}
-      className='relative z-[1] pt-9 md:pt-16 pb-20 md:pb-24'
-    >
+    <div ref={wrapperRef} className='relative z-1 pt-9 md:pt-10 pb-20 md:pb-24'>
       <m.div
         key={resetKey}
         ref={contentRef}

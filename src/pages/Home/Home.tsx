@@ -24,7 +24,7 @@ export default function Home() {
           className='relative'
         >
           <div
-            className='absolute -inset-x-4 -top-6 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent'
+            className='absolute -inset-x-4 -top-6 h-px bg-linear-to-r from-transparent via-white/10 to-transparent'
             aria-hidden
           />
           <m.div
@@ -37,7 +37,7 @@ export default function Home() {
             <Handwriting />
           </div>
           <div
-            className='absolute -inset-x-4 -bottom-6 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent'
+            className='absolute -inset-x-4 -bottom-6 h-px bg-linear-to-r from-transparent via-white/10 to-transparent'
             aria-hidden
           />
         </m.div>

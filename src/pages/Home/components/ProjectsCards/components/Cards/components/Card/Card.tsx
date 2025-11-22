@@ -46,7 +46,7 @@ export default function Card({ id, title, technology, image }: IProjectCard) {
         controls.start({ scale: 1, transition: { duration: 0.06 } })
       }
       transition={{ type: 'spring', stiffness: 240, damping: 20, mass: 0.3 }}
-      className='group relative h-0 min-w-[85%] pb-[55%] md:pb-[40%] md:min-w-[70%] lg:pb-[30%] lg:min-w-[55%] xl:pb-[25%] xl:min-w-[45%] rounded-3xl outline-none ring-0 hover:ring-1 hover:ring-blue-400 focus-visible:ring-1 focus-visible:ring-blue-400 transition-shadow duration-200 ease-out hover:shadow-[0_10px_30px_-6px_rgba(59,130,246,0.25)] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] will-change-transform cursor-pointer select-none overflow-hidden bg-[#1a1a1a]'
+      className='group relative h-0 min-w-[85%] pb-[55%] md:pb-[40%] md:min-w-[70%] lg:pb-[30%] lg:min-w-[55%] xl:pb-[25%] xl:min-w-[45%] rounded-3xl outline-none ring-1 ring-white/10 hover:ring-2 hover:ring-primary/50 focus-visible:ring-2 focus-visible:ring-primary/50 transition duration-300 ease-out hover:shadow-[0_20px_40px_-12px_rgba(59,130,246,0.3)] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] will-change-transform cursor-pointer select-none overflow-hidden bg-[#1a1a1a]'
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') handleTap();
       }}
@@ -103,20 +103,20 @@ export default function Card({ id, title, technology, image }: IProjectCard) {
 
       {/* Gradient overlay */}
       <div
-        className='absolute inset-0 rounded-3xl bg-gradient-to-t from-black/70 via-black/30 to-transparent z-2'
+        className='absolute inset-0 rounded-3xl bg-linear-to-t from-black/90 via-black/40 to-transparent z-2 opacity-80 group-hover:opacity-100 transition-opacity duration-300'
         aria-hidden='true'
       />
 
       {/* Content */}
-      <div className='absolute inset-0 rounded-3xl flex flex-col justify-between p-3 sm:p-6 z-3'>
-        <div className='inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-white/90 backdrop-blur-[2px] px-2 py-1 rounded-md bg-black/30 ring-1 ring-white/10 w-max'>
+      <div className='absolute inset-0 rounded-3xl flex flex-col justify-between p-4 sm:p-6 z-3'>
+        <div className='inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-white backdrop-blur-md px-3 py-1.5 rounded-full bg-black/60 border border-white/10 shadow-lg w-max transform transition-transform duration-300 group-hover:translate-y-1'>
           <span
-            className='h-1.5 w-1.5 rounded-full bg-primary inline-block'
+            className='h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(59,130,246,0.6)] inline-block'
             aria-hidden='true'
           />
           {technology}
         </div>
-        <h3 className='text-base sm:text-lg md:text-xl font-semibold tracking-tight text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)] text-end'>
+        <h3 className='text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-white drop-shadow-lg text-end transform transition-transform duration-300 group-hover:-translate-y-1'>
           {title}
         </h3>
       </div>

@@ -4,24 +4,24 @@ import { slideInRightAnimation } from 'animations/animations';
 
 export default function Link({ link, icon: Icon, type }: IContactLink) {
   return (
-    <m.div
-      variants={slideInRightAnimation}
-      className='group flex items-center gap-4 sm:gap-5'
-    >
-      <div className='w-4 h-4 text-white/80 group-hover:text-primary transition-colors'>
-        <Icon className='w-full h-full' />
-      </div>
+    <m.div variants={slideInRightAnimation}>
       <a
-        className='relative text-sm sm:text-base font-light hover:text-primaryLight transition-colors'
         href={type === 'link' ? link : `mailto:${link}`}
         target='_blank'
         rel='noopener noreferrer'
+        className='group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10 transition-all duration-300'
       >
-        {link}
-        <span
-          aria-hidden
-          className='absolute left-0 -bottom-1 h-px w-0 bg-gradient-to-r from-primary to-primaryLight transition-all duration-300 group-hover:w-full'
-        />
+        <div className='flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-white/5 text-white/80 group-hover:text-primary group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-300'>
+          <Icon className='w-4 h-4 sm:w-5 sm:h-5' />
+        </div>
+        <div className='flex flex-col'>
+          <span className='text-[10px] sm:text-xs text-white/40 uppercase tracking-wider font-medium mb-0.5'>
+            {type === 'link' ? 'Social' : 'Email'}
+          </span>
+          <span className='text-xs sm:text-base font-medium text-white/90 group-hover:text-white transition-colors'>
+            {link.replace(/^https?:\/\//, '').replace(/^mailto:/, '')}
+          </span>
+        </div>
       </a>
     </m.div>
   );

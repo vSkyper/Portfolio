@@ -3,6 +3,7 @@ import { ImagesCards, Links, Technologies } from './components';
 import { projectsDetails } from 'constants/constants';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion as m } from 'framer-motion';
+import { IoArrowBack } from 'react-icons/io5';
 import {
   slideInTopAnimation,
   slideInTopAnimationMobile,
@@ -69,22 +70,73 @@ export default function Project() {
       variants={animation()}
       initial='hidden'
       animate='show'
-      className='relative w-full min-h-full'
+      className='relative w-full min-h-full pb-20'
     >
-      <section className='container mx-auto w-11/12 py-8 sm:py-10 md:py-12'>
-        <div className='rounded-3xl bg-white/[0.03] ring-1 ring-white/10 backdrop-blur-md p-5 sm:p-7 md:p-8'>
-          <div className='text-3xl sm:text-4xl font-bold tracking-tight'>
-            {project.title}
+      {/* Background Elements */}
+      <div className='fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none'>
+        <div className='absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] opacity-20' />
+        <div className='absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px] opacity-20' />
+      </div>
+
+      {/* Back Button */}
+      <m.button
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2 }}
+        onClick={() => navigate('/')}
+        className='fixed top-4 left-4 sm:top-8 sm:left-8 z-40 p-3 rounded-full bg-black/20 hover:bg-black/40 text-white/80 hover:text-white backdrop-blur-md ring-1 ring-white/10 transition-all duration-300 hover:scale-110 group'
+        aria-label='Go back to home'
+      >
+        <IoArrowBack className='w-5 h-5 sm:w-6 sm:h-6 group-hover:-translate-x-1 transition-transform' />
+      </m.button>
+
+      <section className='container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 sm:py-24 max-w-7xl'>
+        <div className='grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12'>
+          {/* Main Content - Left Column */}
+          <div className='lg:col-span-8 space-y-6 sm:space-y-8'>
+            <div className='space-y-4 sm:space-y-6'>
+              <h1 className='text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white'>
+                {project.title}
+              </h1>
+              <div className='prose prose-invert max-w-none'>
+                <div
+                  className='text-sm sm:text-lg text-white/70 leading-relaxed'
+                  dangerouslySetInnerHTML={{ __html: project.description }}
+                />
+              </div>
+            </div>
+
+            {/* Technologies Section */}
+            <div className='space-y-4 pt-4 border-t border-white/10'>
+              <h3 className='text-sm font-medium text-white/40 uppercase tracking-wider'>
+                Technologies
+              </h3>
+              <div>
+                <Technologies technologies={project.technologies} />
+              </div>
+            </div>
           </div>
-          <div
-            className='text-sm sm:text-lg mt-3 text-white/80'
-            dangerouslySetInnerHTML={{ __html: project.description }}
-          />
-          <Technologies technologies={project.technologies} />
-          <Links links={project.links} />
+
+          {/* Sidebar - Right Column */}
+          <div className='lg:col-span-4 space-y-8'>
+            {project.links.length > 0 && (
+              <div className='rounded-3xl bg-white/5 ring-1 ring-white/10 backdrop-blur-xl p-6 sm:p-8 sticky top-24'>
+                <h3 className='text-lg font-semibold text-white mb-2'>
+                  Project Links
+                </h3>
+                <div>
+                  <Links links={project.links} />
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </section>
-      <section className='container mx-auto w-11/12'>
+
+      <section className='container mx-auto px-4 sm:px-6 lg:px-8 pb-20 max-w-7xl'>
+        <h3 className='text-xl sm:text-2xl font-bold text-white pl-2 border-l-4 border-primary'>
+          Gallery
+        </h3>
         <ImagesCards images={project.images} />
       </section>
     </m.main>
