@@ -112,11 +112,8 @@ export default function ImageModal(props: ImageModalProps) {
           >
             {/* Close button */}
             <m.button
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
               onClick={handleClose}
-              className='absolute -top-12 right-0 sm:-right-12 z-20 w-10 h-10 bg-white/10 hover:bg-white/20 ring-1 ring-white/20 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110 hover:rotate-90 backdrop-blur-md'
+              className='absolute top-2 right-2 lg:-top-12 lg:-right-12 z-20 w-10 h-10 bg-black/50 hover:bg-black/70 lg:bg-white/10 lg:hover:bg-white/20 ring-1 ring-white/20 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110 hover:rotate-90 backdrop-blur-md'
               aria-label='Close modal'
             >
               <IoClose className='w-5 h-5' />
