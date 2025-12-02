@@ -26,7 +26,7 @@ export const contactLinks: IContactLink[] = [
 
 export const projectsCards: IProjectCard[] = [
   {
-    id: 'Aukciszek',
+    id: 'aukciszek',
     title: 'Aukciszek',
     technology: 'Next.js/FastAPI',
     image: '/images/projects/aukciszek/aukciszek-1.webp',
@@ -38,8 +38,8 @@ export const projectsCards: IProjectCard[] = [
     image: '/images/projects/learnhub/learnhub-1.webp',
   },
   {
-    id: 'cryptocurrency',
-    title: 'Cryptocurrency',
+    id: 'coinpulse',
+    title: 'CoinPulse',
     technology: 'React',
     image: '/images/projects/cryptocurrency/cryptocurrency-1.webp',
   },
@@ -53,7 +53,7 @@ export const projectsCards: IProjectCard[] = [
 
 export const projectsDetails: IProjectDetails[] = [
   {
-    id: 'Aukciszek',
+    id: 'aukciszek',
     title: 'Aukciszek',
     description:
       "This privacy-first platform for conducting anonymous reverse auctions was successfully built as a collaborative Master's Thesis. The system eliminates the need to trust a central authority by utilizing Multi-Party Computation (MPC) and Secret Sharing schemes.<br /><br />Sensitive bid data is split into cryptographic 'shares' directly in the user's browser before ever reaching the network. These shares are distributed across independent Python servers, which collaborate to mathematically determine the winning offer without ever seeing or reconstructing the actual bid amounts.<br /><br />While we built the system as a team, my primary role involved implementing these cryptographic protocols and designing the secure, synchronous communication architecture between the computation servers. On the client side, I helped the team integrate the frontend logic to ensure a smooth user experience. The project is split into two repositories: the server logic (backend) and the user interface (client).",
@@ -103,14 +103,14 @@ export const projectsDetails: IProjectDetails[] = [
     links: [],
   },
   {
-    id: 'cryptocurrency',
-    title: 'Cryptocurrency',
+    id: 'coinpulse',
+    title: 'CoinPulse',
     description:
       "This dashboard serves as a central hub for tracking the crypto market. I designed it to be intuitive and fast, allowing users to instantly search for assets without digging through endless lists. Key features include a detailed data table for sorting by price or volume, interactive charts for visualizing historical price movements, and a built-in currency converter. It's a complete tool for anyone looking to monitor digital assets and analyze market trends.",
     images: [
-      '/images/projects/cryptocurrency/cryptocurrency-1.webp',
-      '/images/projects/cryptocurrency/cryptocurrency-2.webp',
-      '/images/projects/cryptocurrency/cryptocurrency-3.webp',
+      '/images/projects/coinpulse/coinpulse-1.webp',
+      '/images/projects/coinpulse/coinpulse-2.webp',
+      '/images/projects/coinpulse/coinpulse-3.webp',
     ],
     technologies: [
       'React',
@@ -122,11 +122,11 @@ export const projectsDetails: IProjectDetails[] = [
     ],
     links: [
       {
-        link: 'https://vcryptocurrency.netlify.app',
+        link: 'https://vcoinpulse.netlify.app',
         icon: AiOutlineGlobal,
       },
       {
-        link: 'https://github.com/vSkyper/Cryptocurrency',
+        link: 'https://github.com/vSkyper/CoinPulse',
         icon: SiGithub,
       },
     ],
