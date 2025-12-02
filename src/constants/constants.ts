@@ -41,7 +41,7 @@ export const projectsCards: IProjectCard[] = [
     id: 'coinpulse',
     title: 'CoinPulse',
     technology: 'React',
-    image: '/images/projects/cryptocurrency/cryptocurrency-1.webp',
+    image: '/images/projects/coinpulse/coinpulse-1.webp',
   },
   {
     id: 'terminal',
