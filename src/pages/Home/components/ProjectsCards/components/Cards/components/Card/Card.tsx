@@ -1,6 +1,6 @@
 import { motion as m, useAnimation } from 'framer-motion';
 import { IProjectCard } from 'interfaces/interfaces';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
 
 export default function Card({ id, title, technology, image }: IProjectCard) {

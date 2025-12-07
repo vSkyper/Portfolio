@@ -1,7 +1,7 @@
 import { IProjectDetails } from 'interfaces/interfaces';
 import { ImagesCards, Links, Technologies } from './components';
 import { projectsDetails } from 'constants/constants';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router';
 import { motion as m } from 'framer-motion';
 import { IoArrowBack } from 'react-icons/io5';
 import {

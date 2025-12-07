@@ -1,5 +1,5 @@
 import { Home, Project } from 'pages';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router';
 import { ScrollToTop } from './components';
 
 export default function App() {
