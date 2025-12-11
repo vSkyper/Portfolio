@@ -52,14 +52,22 @@ export default function ImageModal(props: ImageModalProps) {
 
     clearSelection();
     document.addEventListener('keydown', handleEscapeKey);
+    
+    // Lock scroll on both body and html to ensure it works across browsers/devices
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    
     window.dispatchEvent(
       new CustomEvent('modalStateChange', { detail: { isOpen: true } })
     );
 
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
-      document.body.style.overflow = 'unset';
+      
+      // Restore scroll
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      
       clearSelection();
       window.dispatchEvent(
         new CustomEvent('modalStateChange', { detail: { isOpen: false } })
@@ -102,7 +110,7 @@ export default function ImageModal(props: ImageModalProps) {
             animate={{ opacity: 1, backdropFilter: 'blur(16px)' }}
             exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
             transition={{ duration: 0.3 }}
-            className='absolute inset-0 bg-black/80'
+            className='absolute inset-0 bg-black/80 touch-none'
           />
 
           {/* Close button */}
