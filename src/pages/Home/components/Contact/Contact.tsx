@@ -24,7 +24,7 @@ export default function Contact() {
           aria-hidden
         />
         <div
-          className='absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2'
+          className='absolute top-0 right-0 w-125 h-125 bg-primary/5 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2'
           aria-hidden
         />
 

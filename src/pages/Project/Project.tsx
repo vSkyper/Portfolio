@@ -70,12 +70,12 @@ export default function Project() {
       variants={animation()}
       initial='hidden'
       animate='show'
-      className='relative w-full min-h-full pb-20'
+      className='relative w-full min-h-dvh pb-20'
     >
       {/* Background Elements */}
       <div className='fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none'>
-        <div className='absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] opacity-20' />
-        <div className='absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px] opacity-20' />
+        <div className='absolute top-[-10%] right-[-5%] w-125 h-125 bg-primary/10 rounded-full blur-[100px] opacity-20' />
+        <div className='absolute bottom-[-10%] left-[-5%] w-125 h-125 bg-secondary/10 rounded-full blur-[100px] opacity-20' />
       </div>
 
       {/* Back Button */}

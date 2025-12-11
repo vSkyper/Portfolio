@@ -127,14 +127,21 @@ export default function ImageModal(props: ImageModalProps) {
               {/* Image or Video */}
               <div className='relative'>
                 {isVideo ? (
-                  <iframe
-                    key={src}
-                    src={getGoogleDriveEmbedUrl(src)}
-                    className='w-[95vw] sm:w-[90vw] md:w-[85vw] lg:w-[80vw] aspect-video block bg-black'
-                    allow='autoplay; fullscreen'
-                    allowFullScreen
-                    loading='eager'
-                  />
+                  <div
+                    className='relative aspect-video bg-black'
+                    style={{
+                      width: 'min(95vw, 80vh * 1.7778)',
+                    }}
+                  >
+                    <iframe
+                      key={src}
+                      src={getGoogleDriveEmbedUrl(src)}
+                      className='absolute inset-0 w-full h-full'
+                      allow='autoplay; fullscreen'
+                      allowFullScreen
+                      loading='eager'
+                    />
+                  </div>
                 ) : (
                   <img
                     src={src}
