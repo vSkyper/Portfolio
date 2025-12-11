@@ -130,7 +130,7 @@ export default function ImageModal(props: ImageModalProps) {
                   <div
                     className='relative aspect-video bg-black'
                     style={{
-                      width: 'min(95vw, 80vh * 1.7778)',
+                      width: 'min(95vw, calc(70dvh * 1.7778))',
                     }}
                   >
                     <iframe

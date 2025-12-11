@@ -17,7 +17,7 @@ export default function Project() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const project: IProjectDetails | undefined = projectsDetails.find(
-    (project) => project.id === id
+    (project) => project.id.toLowerCase() === id?.toLowerCase()
   );
 
   const animation = () => {
@@ -70,7 +70,7 @@ export default function Project() {
       variants={animation()}
       initial='hidden'
       animate='show'
-      className='relative w-full min-h-dvh pb-20'
+      className='relative w-full min-h-screen pb-20'
     >
       {/* Background Elements */}
       <div className='fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none'>
