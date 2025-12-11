@@ -89,44 +89,48 @@ export default function ImageModal(props: ImageModalProps) {
           animate={{ opacity: 1, pointerEvents: 'auto' }}
           exit={{ opacity: 0, pointerEvents: 'none' }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
-          className='fixed inset-0 z-9999 flex items-center justify-center p-4 sm:p-8'
+          className='fixed inset-0 z-9999 flex items-center justify-center p-2 sm:p-8'
           onClick={handleClose}
         >
           {/* Backdrop */}
           <m.div
             initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-            animate={{ opacity: 1, backdropFilter: 'blur(12px)' }}
+            animate={{ opacity: 1, backdropFilter: 'blur(16px)' }}
             exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
             transition={{ duration: 0.3 }}
-            className='absolute inset-0 bg-black/90'
+            className='absolute inset-0 bg-black/80'
           />
+
+          {/* Close button */}
+          <m.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ delay: 0.1 }}
+            onClick={handleClose}
+            className='absolute top-4 right-4 sm:top-6 sm:right-6 z-50 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 text-white/70 hover:text-white backdrop-blur-md ring-1 ring-white/10 transition-all duration-300 hover:scale-110 hover:rotate-90'
+            aria-label='Close modal'
+          >
+            <IoClose className='w-6 h-6 sm:w-8 sm:h-8' />
+          </m.button>
 
           {/* Modal Content */}
           <m.div
-            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            initial={{ scale: 0.95, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            exit={{ scale: 0.95, opacity: 0, y: 20 }}
+            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
             className='relative z-10 max-w-full max-h-full flex flex-col items-center'
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button */}
-            <m.button
-              onClick={handleClose}
-              className='absolute top-2 right-2 lg:-top-12 lg:-right-12 z-20 w-10 h-10 bg-black/50 hover:bg-black/70 lg:bg-white/10 lg:hover:bg-white/20 ring-1 ring-white/20 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110 hover:rotate-90 backdrop-blur-md'
-              aria-label='Close modal'
-            >
-              <IoClose className='w-5 h-5' />
-            </m.button>
-
-            <div className='relative bg-[#1a1a1a] ring-1 ring-white/10 rounded-2xl overflow-hidden shadow-2xl shadow-black/50'>
+            <div className='relative bg-black/40 backdrop-blur-xl ring-1 ring-white/10 rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_0_100px_-20px_rgba(0,0,0,0.7)]'>
               {/* Image or Video */}
               <div className='relative'>
                 {isVideo ? (
                   <iframe
                     key={src}
                     src={getGoogleDriveEmbedUrl(src)}
-                    className='w-[90vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] aspect-video block bg-black'
+                    className='w-[95vw] sm:w-[90vw] md:w-[85vw] lg:w-[80vw] aspect-video block bg-black'
                     allow='autoplay; fullscreen'
                     allowFullScreen
                     loading='eager'
@@ -135,7 +139,7 @@ export default function ImageModal(props: ImageModalProps) {
                   <img
                     src={src}
                     alt={alt}
-                    className='max-w-[90vw] max-h-[85vh] w-auto h-auto block object-contain bg-black'
+                    className='max-w-[95vw] max-h-[85vh] w-auto h-auto block object-contain bg-black'
                   />
                 )}
               </div>

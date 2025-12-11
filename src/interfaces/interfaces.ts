@@ -4,6 +4,7 @@ export interface IContactLink {
   link: string;
   icon: IconType;
   type: string;
+  title: string;
 }
 
 export interface IProjectCard {

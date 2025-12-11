@@ -11,16 +11,19 @@ export const contactLinks: IContactLink[] = [
     link: 'https://www.linkedin.com/in/mateusz-piwowarski',
     icon: SiLinkedin,
     type: 'link',
+    title: 'LinkedIn',
   },
   {
     link: 'https://github.com/vSkyper',
     icon: SiGithub,
     type: 'link',
+    title: 'GitHub',
   },
   {
     link: 'mateuszpiwowarski887@gmail.com',
     icon: SiGmail,
     type: 'mail',
+    title: 'Email',
   },
 ];
 

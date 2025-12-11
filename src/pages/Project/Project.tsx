@@ -151,9 +151,14 @@ export default function Project() {
       </section>
 
       <section className='container mx-auto px-4 sm:px-6 lg:px-8 pb-20 max-w-7xl'>
-        <h3 className='text-xl sm:text-2xl font-bold text-white pl-2 border-l-4 border-primary'>
-          Gallery
-        </h3>
+        <div className='mb-6 sm:mb-8'>
+          <h3 className='text-2xl sm:text-3xl font-bold text-white mb-2'>
+            Project <span className='text-white/40'>Gallery</span>
+          </h3>
+          <p className='text-white/60 text-sm sm:text-base'>
+            Drag to explore screenshots and media
+          </p>
+        </div>
         <ImagesCards images={project.images} />
       </section>
     </m.main>
