@@ -16,7 +16,14 @@ export default function Navbar() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const offset = 80; // Height of the navbar + some padding
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
     }
   };
 
@@ -24,7 +31,7 @@ export default function Navbar() {
     <m.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 select-none ${
         scrolled
           ? 'bg-[#0a0a0a]/80 backdrop-blur-xl py-4 shadow-lg shadow-black/5'
           : 'bg-transparent py-6'
@@ -32,7 +39,7 @@ export default function Navbar() {
     >
       <div className='container mx-auto w-11/12 flex items-center justify-between'>
         <div
-          className='text-xl font-bold cursor-pointer relative group'
+          className='text-xl font-bold cursor-pointer relative group select-none'
           onClick={() => scrollToSection('home')}
         >
           <span className='bg-clip-text text-transparent bg-linear-to-r from-white to-white/60 group-hover:from-primary group-hover:to-primaryLight transition-all duration-300'>
@@ -44,7 +51,7 @@ export default function Navbar() {
           {['Projects', 'Contact'].map((item) => (
             <li
               key={item}
-              className='relative px-4 py-2 cursor-pointer group overflow-hidden rounded-full'
+              className='relative px-4 py-2 cursor-pointer group overflow-hidden rounded-full select-none'
               onClick={() => scrollToSection(item.toLowerCase())}
             >
               <span className='relative z-10 group-hover:text-white transition-colors duration-300'>

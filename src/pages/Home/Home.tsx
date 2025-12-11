@@ -51,11 +51,20 @@ export default function Home() {
               experiences with code and creativity.
             </p>
             <button
-              onClick={() =>
-                document
-                  .getElementById('projects')
-                  ?.scrollIntoView({ behavior: 'smooth' })
-              }
+              onClick={() => {
+                const element = document.getElementById('projects');
+                if (element) {
+                  const offset = 80;
+                  const elementPosition = element.getBoundingClientRect().top;
+                  const offsetPosition =
+                    elementPosition + window.scrollY - offset;
+
+                  window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth',
+                  });
+                }
+              }}
               className='px-6 py-2.5 sm:px-8 sm:py-3 text-sm sm:text-base rounded-full bg-white text-black font-semibold hover:bg-white/90 transition-all hover:scale-105 active:scale-95'
             >
               View My Work
