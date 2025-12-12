@@ -55,8 +55,14 @@ body {
       transparent 60%
     ),
     linear-gradient(180deg, #020617 0%, #000 40%);
-  background-attachment: fixed;
+  background-attachment: scroll;
   font-family: 'Inter', sans-serif;
+}
+
+@media (min-width: 768px) {
+  body {
+    background-attachment: fixed;
+  }
 }
 
 /* subtle grid overlay for depth */

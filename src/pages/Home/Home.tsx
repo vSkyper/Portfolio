@@ -10,11 +10,11 @@ export default function Home() {
       {/* decorative background glows */}
       <div
         aria-hidden
-        className='pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-primary/30 blur-3xl'
+        className='pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-primary/30 blur-xl md:blur-3xl will-change-transform'
       />
       <div
         aria-hidden
-        className='pointer-events-none absolute top-1/3 -right-24 h-72 w-72 rounded-full bg-[#F55644]/20 blur-3xl'
+        className='pointer-events-none absolute top-1/3 -right-24 h-72 w-72 rounded-full bg-[#F55644]/20 blur-xl md:blur-3xl will-change-transform'
       />
 
       {/* hello */}

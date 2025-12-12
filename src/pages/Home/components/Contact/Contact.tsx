@@ -9,22 +9,22 @@ export default function Contact() {
     <div className='relative py-6 sm:py-10'>
       {/* Decorative background elements */}
       <div
-        className='absolute -top-20 -right-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-30 pointer-events-none'
+        className='absolute -top-20 -right-20 w-96 h-96 bg-primary/20 rounded-full blur-xl md:blur-3xl opacity-30 pointer-events-none will-change-transform'
         aria-hidden
       />
       <div
-        className='absolute -bottom-20 -left-20 w-80 h-80 bg-[#F55644]/10 rounded-full blur-3xl opacity-30 pointer-events-none'
+        className='absolute -bottom-20 -left-20 w-80 h-80 bg-[#F55644]/10 rounded-full blur-xl md:blur-3xl opacity-30 pointer-events-none will-change-transform'
         aria-hidden
       />
 
-      <div className='relative rounded-3xl bg-[#0a0a0a]/80 ring-1 ring-white/10 backdrop-blur-2xl p-4 sm:p-10 md:p-14 shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden'>
+      <div className='relative rounded-3xl bg-[#0a0a0a]/80 ring-1 ring-white/10 backdrop-blur-none md:backdrop-blur-2xl p-4 sm:p-10 md:p-14 shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden'>
         {/* Subtle gradient overlay */}
         <div
           className='absolute inset-0 bg-linear-to-br from-white/5 via-transparent to-transparent pointer-events-none'
           aria-hidden
         />
         <div
-          className='absolute top-0 right-0 w-125 h-125 bg-primary/5 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2'
+          className='absolute top-0 right-0 w-125 h-125 bg-primary/5 rounded-full blur-2xl md:blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2 will-change-transform'
           aria-hidden
         />
 

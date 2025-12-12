@@ -1,4 +1,13 @@
+import { isMobile } from 'helpers/helpers';
+import { useEffect, useState } from 'react';
+
 export default function Svg() {
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    setMobile(isMobile());
+  }, []);
+
   return (
     <svg
       viewBox='0 0 1600 800'
@@ -21,40 +30,48 @@ export default function Svg() {
           gradientUnits='userSpaceOnUse'
         >
           <stop stopColor='#0B7E95'>
-            <animate
-              attributeName='stop-color'
-              values='#0B7E95;#7AB5DC;#F55644;#FFAB45;#0B7E95'
-              dur='6s'
-              begin='4s'
-              repeatCount='indefinite'
-            />
+            {!mobile && (
+              <animate
+                attributeName='stop-color'
+                values='#0B7E95;#7AB5DC;#F55644;#FFAB45;#0B7E95'
+                dur='6s'
+                begin='4s'
+                repeatCount='indefinite'
+              />
+            )}
           </stop>
           <stop offset='.3' stopColor='#FFAB45'>
-            <animate
-              attributeName='stop-color'
-              values='#FFAB45;#0B7E95;#7AB5DC;#F55644;#FFAB45'
-              dur='6s'
-              begin='4s'
-              repeatCount='indefinite'
-            />
+            {!mobile && (
+              <animate
+                attributeName='stop-color'
+                values='#FFAB45;#0B7E95;#7AB5DC;#F55644;#FFAB45'
+                dur='6s'
+                begin='4s'
+                repeatCount='indefinite'
+              />
+            )}
           </stop>
           <stop offset='.6' stopColor='#F55644'>
-            <animate
-              attributeName='stop-color'
-              values='#F55644;#FFAB45;#0B7E95;#7AB5DC;#F55644'
-              dur='6s'
-              begin='4s'
-              repeatCount='indefinite'
-            />
+            {!mobile && (
+              <animate
+                attributeName='stop-color'
+                values='#F55644;#FFAB45;#0B7E95;#7AB5DC;#F55644'
+                dur='6s'
+                begin='4s'
+                repeatCount='indefinite'
+              />
+            )}
           </stop>
           <stop offset='.9' stopColor='#7AB5DC'>
-            <animate
-              attributeName='stop-color'
-              values='#7AB5DC;#F55644;#FFAB45;#0B7E95;#7AB5DC'
-              dur='6s'
-              begin='4s'
-              repeatCount='indefinite'
-            />
+            {!mobile && (
+              <animate
+                attributeName='stop-color'
+                values='#7AB5DC;#F55644;#FFAB45;#0B7E95;#7AB5DC'
+                dur='6s'
+                begin='4s'
+                repeatCount='indefinite'
+              />
+            )}
           </stop>
         </linearGradient>
       </defs>
