@@ -2,8 +2,11 @@ import { Contact, Handwriting, ProjectsCards, TechStack } from './components';
 import { Navbar } from 'components';
 import { motion as m } from 'framer-motion';
 import { containerAnimation, slideInTopAnimation } from 'animations/animations';
+import { isMobile } from 'helpers/helpers';
 
 export default function Home() {
+  const mobile = isMobile();
+
   return (
     <main className='relative w-full min-h-full overflow-hidden'>
       <Navbar />
@@ -87,8 +90,8 @@ export default function Home() {
       >
         <div className='mb-8 sm:mb-10 md:mb-12 flex flex-col items-start'>
           <m.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={mobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={mobile ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             className='text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-4'
@@ -96,8 +99,8 @@ export default function Home() {
             Featured <span className='text-white/40'>Work</span>
           </m.h2>
           <m.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={mobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={mobile ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             className='text-base sm:text-lg text-white/60 max-w-xl'

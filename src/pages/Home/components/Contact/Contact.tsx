@@ -3,8 +3,11 @@ import { Form, Links } from './components';
 import 'react-toastify/dist/ReactToastify.css';
 import { motion as m } from 'framer-motion';
 import { slideInLeftAnimation } from 'animations/animations';
+import { isMobile } from 'helpers/helpers';
 
 export default function Contact() {
+  const mobile = isMobile();
+
   return (
     <div className='relative py-6 sm:py-10'>
       {/* Decorative background elements */}
@@ -31,8 +34,8 @@ export default function Contact() {
         <div className='relative z-10'>
           <m.div
             variants={slideInLeftAnimation}
-            initial='hidden'
-            whileInView='show'
+            initial={mobile ? 'show' : 'hidden'}
+            whileInView={mobile ? undefined : 'show'}
             viewport={{ once: true }}
             className='text-xl sm:text-4xl font-bold tracking-tight text-white'
           >
@@ -40,8 +43,8 @@ export default function Contact() {
           </m.div>
           <m.p
             variants={slideInLeftAnimation}
-            initial='hidden'
-            whileInView='show'
+            initial={mobile ? 'show' : 'hidden'}
+            whileInView={mobile ? undefined : 'show'}
             viewport={{ once: true }}
             className='mt-2 sm:mt-3 text-xs sm:text-lg text-white/60 max-w-2xl'
           >

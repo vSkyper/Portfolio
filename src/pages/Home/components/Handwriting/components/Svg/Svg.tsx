@@ -1,12 +1,7 @@
 import { isMobile } from 'helpers/helpers';
-import { useEffect, useState } from 'react';
 
 export default function Svg() {
-  const [mobile, setMobile] = useState(false);
-
-  useEffect(() => {
-    setMobile(isMobile());
-  }, []);
+  const mobile = isMobile();
 
   return (
     <svg

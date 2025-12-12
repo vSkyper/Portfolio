@@ -8,6 +8,7 @@ import {
   SiGit,
 } from 'react-icons/si';
 import { motion as m } from 'framer-motion';
+import { isMobile } from 'helpers/helpers';
 
 const technologies = [
   { name: 'React', icon: SiReact, color: '#61DAFB' },
@@ -20,6 +21,8 @@ const technologies = [
 ];
 
 export default function TechStack() {
+  const mobile = isMobile();
+
   return (
     <div className='py-8 sm:py-10'>
       <h3 className='text-center text-lg sm:text-xl font-semibold mb-6 sm:mb-8 text-white/80'>
@@ -29,8 +32,8 @@ export default function TechStack() {
         {technologies.map((tech, index) => (
           <m.div
             key={tech.name}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={mobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={mobile ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
             className='flex flex-col items-center gap-2 group'
