@@ -51,7 +51,7 @@ export const after = (count: number, f: () => void) => {
 export const isMobile = (): boolean => {
   if (typeof window === 'undefined') return false;
 
-  const isMobileWidth = window.innerWidth < 768;
+  const isMobileWidth = window.innerWidth < 1024;
 
   const userAgent = navigator.userAgent.toLowerCase();
   const isMobileUA =

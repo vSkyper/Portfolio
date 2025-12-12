@@ -36,7 +36,7 @@ export default function Contact() {
             variants={slideInLeftAnimation}
             initial={mobile ? 'show' : 'hidden'}
             whileInView={mobile ? undefined : 'show'}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '0px 0px -50px 0px' }}
             className='text-xl sm:text-4xl font-bold tracking-tight text-white'
           >
             Let's work together
@@ -45,7 +45,7 @@ export default function Contact() {
             variants={slideInLeftAnimation}
             initial={mobile ? 'show' : 'hidden'}
             whileInView={mobile ? undefined : 'show'}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '0px 0px -50px 0px' }}
             className='mt-2 sm:mt-3 text-xs sm:text-lg text-white/60 max-w-2xl'
           >
             Have a project in mind or just want to say hi? I'm always open to
