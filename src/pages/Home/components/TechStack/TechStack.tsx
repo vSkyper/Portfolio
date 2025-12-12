@@ -34,7 +34,7 @@ export default function TechStack() {
             key={tech.name}
             initial={mobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             whileInView={mobile ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '0px 0px -50px 0px' }}
+            viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
             className='flex flex-col items-center gap-2 group'
           >

@@ -92,7 +92,7 @@ export default function Home() {
           <m.h2
             initial={mobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             whileInView={mobile ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '0px 0px -50px 0px' }}
+            viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             className='text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-4'
           >
@@ -101,7 +101,7 @@ export default function Home() {
           <m.p
             initial={mobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             whileInView={mobile ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '0px 0px -50px 0px' }}
+            viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             className='text-base sm:text-lg text-white/60 max-w-xl'
           >
