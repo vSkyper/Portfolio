@@ -12,10 +12,7 @@ export default function ProjectsCards() {
   }, [updateOffsetCallback]);
 
   return (
-    <div
-      ref={wrapperRef}
-      className='relative z-1 pt-2 sm:pt-6 lg:pt-10 xl:pt-12'
-    >
+    <div ref={wrapperRef} className='relative z-1 pt-2 sm:pt-4'>
       <m.div
         key={resetKey}
         ref={contentRef}

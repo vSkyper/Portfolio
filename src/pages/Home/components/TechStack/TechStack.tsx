@@ -40,9 +40,7 @@ export default function TechStack() {
                   viewport: { once: true },
                   transition: { delay: index * 0.1 },
                 })}
-            className={`flex flex-col items-center gap-2 group ${
-              mobile ? 'opacity-100! transform-none!' : ''
-            }`}
+            className='flex flex-col items-center gap-2 group'
           >
             <div className='p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/5 ring-1 ring-white/10 transition-all duration-300 group-hover:bg-white/10 group-hover:scale-110'>
               <tech.icon

@@ -88,8 +88,8 @@ export default function Home() {
         id='projects'
         className='relative container mx-auto w-11/12 py-10 sm:py-14 md:py-16'
       >
-        <m.div className='mb-8 sm:mb-10 md:mb-12 flex flex-col items-start'>
-          <m.h2
+        <div className='mb-8 sm:mb-10 md:mb-12 flex flex-col items-start'>
+          <m.div
             {...(mobile
               ? {}
               : {
@@ -98,13 +98,11 @@ export default function Home() {
                   viewport: { once: true },
                   transition: { delay: 0.1 },
                 })}
-            className={`text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-4 ${
-              mobile ? 'opacity-100! transform-none!' : ''
-            }`}
+            className='text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4'
           >
             Featured <span className='text-white/40'>Work</span>
-          </m.h2>
-          <m.p
+          </m.div>
+          <m.div
             {...(mobile
               ? {}
               : {
@@ -113,14 +111,12 @@ export default function Home() {
                   viewport: { once: true },
                   transition: { delay: 0.2 },
                 })}
-            className={`text-base sm:text-lg text-white/60 max-w-xl ${
-              mobile ? 'opacity-100! transform-none!' : ''
-            }`}
+            className='text-base sm:text-lg text-white/60 max-w-xl'
           >
             A collection of projects that showcase my passion for building
             digital products. Drag to explore.
-          </m.p>
-        </m.div>
+          </m.div>
+        </div>
         <ProjectsCards />
       </section>
 

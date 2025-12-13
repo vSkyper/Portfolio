@@ -41,13 +41,11 @@ export default function Contact() {
                   whileInView: 'show',
                   viewport: { once: true },
                 })}
-            className={`text-xl sm:text-4xl font-bold tracking-tight text-white ${
-              mobile ? 'opacity-100! transform-none!' : ''
-            }`}
+            className='text-xl sm:text-4xl font-bold tracking-tight text-white'
           >
             Let's work together
           </m.div>
-          <m.p
+          <m.div
             variants={slideInLeftAnimation}
             {...(mobile
               ? {}
@@ -56,14 +54,12 @@ export default function Contact() {
                   whileInView: 'show',
                   viewport: { once: true },
                 })}
-            className={`mt-2 sm:mt-3 text-xs sm:text-lg text-white/60 max-w-2xl ${
-              mobile ? 'opacity-100! transform-none!' : ''
-            }`}
+            className='mt-2 sm:mt-3 text-xs sm:text-lg text-white/60 max-w-2xl'
           >
             Have a project in mind or just want to say hi? I'm always open to
             discussing new projects, creative ideas or opportunities to be part
             of your visions.
-          </m.p>
+          </m.div>
 
           <div className='flex flex-col lg:flex-row gap-6 sm:gap-12 lg:gap-20 mt-6 sm:mt-12'>
             <div className='flex-1 order-2 lg:order-1'>

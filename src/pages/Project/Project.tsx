@@ -3,7 +3,7 @@ import { ImagesCards, Links, Technologies } from './components';
 import { projectsDetails } from 'constants/constants';
 import { useParams, useNavigate } from 'react-router';
 import { motion as m } from 'framer-motion';
-import { IoArrowBack } from 'react-icons/io5';
+import { IoArrowBack, IoCodeSlash, IoLink } from 'react-icons/io5';
 import {
   slideInTopAnimation,
   slideInTopAnimationMobile,
@@ -84,22 +84,36 @@ export default function Project() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2 }}
         onClick={() => navigate('/')}
-        className='fixed top-4 left-4 sm:top-8 sm:left-8 z-40 p-3 rounded-full bg-black/20 hover:bg-black/40 text-white/80 hover:text-white backdrop-blur-md ring-1 ring-white/10 transition-all duration-300 hover:scale-110 group'
+        className='fixed top-6 left-6 sm:top-8 sm:left-8 z-40 flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 hover:bg-black/40 text-white/80 hover:text-white backdrop-blur-md ring-1 ring-white/10 transition-all duration-300 hover:scale-105 hover:ring-white/20 group'
         aria-label='Go back to home'
       >
-        <IoArrowBack className='w-5 h-5 sm:w-6 sm:h-6 group-hover:-translate-x-1 transition-transform' />
+        <IoArrowBack className='w-5 h-5 group-hover:-translate-x-1 transition-transform' />
+        <span className='hidden sm:inline text-sm font-medium'>Back</span>
       </m.button>
 
-      <section className='container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 sm:py-24 max-w-7xl'>
-        <div className='grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12'>
-          {/* Main Content - Left Column */}
+      {/* Main Content */}
+      <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-12 sm:pb-20'>
+        <div className='grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12'>
+          {/* Left Column - Project Info */}
           <div className='lg:col-span-8 space-y-6 sm:space-y-8'>
-            <div className='space-y-4 sm:space-y-6'>
-              <h1 className='text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white'>
+            {/* Header */}
+            <m.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className='space-y-3 sm:space-y-4'
+            >
+              <div className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 ring-1 ring-white/10 backdrop-blur-sm'>
+                <span className='w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse' />
+                <span className='text-xs font-medium text-blue-200 tracking-wide uppercase'>
+                  Project Details
+                </span>
+              </div>
+              <h1 className='text-2xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight'>
                 {project.title}
               </h1>
               <div className='prose prose-invert max-w-none'>
-                <div className='text-sm sm:text-lg text-white/70 leading-relaxed'>
+                <div className='text-sm sm:text-lg text-white/60 leading-relaxed max-w-2xl'>
                   {project.description
                     .split(/<br\s*\/?>/i)
                     .map((line, i, arr) => (
@@ -121,46 +135,63 @@ export default function Project() {
                     ))}
                 </div>
               </div>
-            </div>
+            </m.div>
 
-            {/* Technologies Section */}
-            <div className='space-y-4 pt-4 border-t border-white/10'>
-              <h3 className='text-sm font-medium text-white/40 uppercase tracking-wider'>
-                Technologies
-              </h3>
-              <div>
-                <Technologies technologies={project.technologies} />
-              </div>
-            </div>
+            {/* Technologies */}
+            <m.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className='space-y-3 sm:space-y-4'
+            >
+              <h2 className='text-lg sm:text-xl font-semibold text-white flex items-center gap-2'>
+                <IoCodeSlash className='text-blue-400' />
+                Technologies Used
+              </h2>
+              <Technologies technologies={project.technologies} />
+            </m.div>
           </div>
 
-          {/* Sidebar - Right Column */}
-          <div className='lg:col-span-4 space-y-8'>
+          {/* Right Column - Sidebar */}
+          <div className='lg:col-span-4 space-y-6'>
             {project.links.length > 0 && (
-              <div className='rounded-3xl bg-white/5 ring-1 ring-white/10 backdrop-blur-xl p-6 sm:p-8 sticky top-24'>
-                <h3 className='text-lg font-semibold text-white mb-2'>
-                  Project Links
-                </h3>
-                <div>
+              <m.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6 }}
+                className='sticky top-24 p-6 rounded-2xl bg-white/5 backdrop-blur-md ring-1 ring-white/10 space-y-6'
+              >
+                <div className='space-y-2'>
+                  <h3 className='text-lg font-semibold text-white flex items-center gap-2'>
+                    <IoLink className='text-blue-400' />
+                    Project Links
+                  </h3>
+                  <p className='text-sm text-white/50'>
+                    Explore the source code or view the live application.
+                  </p>
+                </div>
+
+                <div className='space-y-3'>
                   <Links links={project.links} />
                 </div>
-              </div>
+              </m.div>
             )}
           </div>
         </div>
-      </section>
 
-      <section className='container mx-auto px-4 sm:px-6 lg:px-8 pb-20 max-w-7xl'>
-        <div className='mb-6 sm:mb-8'>
-          <h3 className='text-2xl sm:text-3xl font-bold text-white mb-2'>
-            Project <span className='text-white/40'>Gallery</span>
-          </h3>
-          <p className='text-white/60 text-sm sm:text-base'>
-            Drag to explore screenshots and media
-          </p>
+        {/* Gallery */}
+        <div className='container mx-auto pb-20 max-w-7xl mt-12 sm:mt-16'>
+          <div className='mb-6 sm:mb-8'>
+            <h3 className='text-2xl sm:text-3xl font-bold text-white mb-2'>
+              Project <span className='text-white/40'>Gallery</span>
+            </h3>
+            <p className='text-white/60 text-sm sm:text-base'>
+              Drag to explore screenshots and media
+            </p>
+          </div>
+          <ImagesCards images={project.images} />
         </div>
-        <ImagesCards images={project.images} />
-      </section>
+      </div>
     </m.main>
   );
 }

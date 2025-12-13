@@ -6,29 +6,18 @@ html {
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-}
 
-body {
-  min-height: 100dvh;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
+  overflow-x: clip;
 
-#root {
-  min-height: 100dvh;
-  width: 100%;
-}
-
-html {
+  /* Hide scrollbar (Firefox/IE/Edge) */
   -ms-overflow-style: none;
   scrollbar-width: none;
-  overflow-x: hidden;
+
   background-color: #000;
   overscroll-behavior: none;
 }
+
+/* Hide scrollbar (Chrome/Safari/Webkit) */
 ::-webkit-scrollbar {
   display: none;
   width: 0;
@@ -36,9 +25,18 @@ html {
 }
 
 body {
+  min-height: 100dvh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  overflow-x: clip;
+
   color: #fff;
+  font-family: 'Inter', sans-serif;
   overscroll-behavior: none;
-  /* layered ambient background */
+
+  /* Layered ambient background */
   background: radial-gradient(
       900px 600px at 10% -10%,
       rgba(10, 126, 149, 0.18),
@@ -55,8 +53,13 @@ body {
       transparent 60%
     ),
     linear-gradient(180deg, #020617 0%, #000 40%);
+
   background-attachment: scroll;
-  font-family: 'Inter', sans-serif;
+}
+
+#root {
+  min-height: 100dvh;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -65,7 +68,7 @@ body {
   }
 }
 
-/* subtle grid overlay for depth */
+/* Subtle grid overlay for depth */
 body::after {
   content: '';
   position: fixed;
