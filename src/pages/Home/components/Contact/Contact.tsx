@@ -36,8 +36,11 @@ export default function Contact() {
             variants={slideInLeftAnimation}
             initial={mobile ? 'show' : 'hidden'}
             whileInView={mobile ? undefined : 'show'}
+            animate={mobile ? 'show' : undefined}
             viewport={{ once: true }}
-            className='text-xl sm:text-4xl font-bold tracking-tight text-white'
+            className={`text-xl sm:text-4xl font-bold tracking-tight text-white ${
+              mobile ? 'opacity-100! transform-none!' : ''
+            }`}
           >
             Let's work together
           </m.div>
@@ -45,8 +48,11 @@ export default function Contact() {
             variants={slideInLeftAnimation}
             initial={mobile ? 'show' : 'hidden'}
             whileInView={mobile ? undefined : 'show'}
+            animate={mobile ? 'show' : undefined}
             viewport={{ once: true }}
-            className='mt-2 sm:mt-3 text-xs sm:text-lg text-white/60 max-w-2xl'
+            className={`mt-2 sm:mt-3 text-xs sm:text-lg text-white/60 max-w-2xl ${
+              mobile ? 'opacity-100! transform-none!' : ''
+            }`}
           >
             Have a project in mind or just want to say hi? I'm always open to
             discussing new projects, creative ideas or opportunities to be part
