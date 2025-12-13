@@ -34,10 +34,13 @@ export default function Contact() {
         <div className='relative z-10'>
           <m.div
             variants={slideInLeftAnimation}
-            initial={mobile ? 'show' : 'hidden'}
-            whileInView={mobile ? undefined : 'show'}
-            animate={mobile ? 'show' : undefined}
-            viewport={{ once: true }}
+            {...(mobile
+              ? {}
+              : {
+                  initial: 'hidden',
+                  whileInView: 'show',
+                  viewport: { once: true },
+                })}
             className={`text-xl sm:text-4xl font-bold tracking-tight text-white ${
               mobile ? 'opacity-100! transform-none!' : ''
             }`}
@@ -46,10 +49,13 @@ export default function Contact() {
           </m.div>
           <m.p
             variants={slideInLeftAnimation}
-            initial={mobile ? 'show' : 'hidden'}
-            whileInView={mobile ? undefined : 'show'}
-            animate={mobile ? 'show' : undefined}
-            viewport={{ once: true }}
+            {...(mobile
+              ? {}
+              : {
+                  initial: 'hidden',
+                  whileInView: 'show',
+                  viewport: { once: true },
+                })}
             className={`mt-2 sm:mt-3 text-xs sm:text-lg text-white/60 max-w-2xl ${
               mobile ? 'opacity-100! transform-none!' : ''
             }`}
