@@ -10,17 +10,18 @@ export default function Home() {
   return (
     <main className='relative w-full min-h-full overflow-hidden'>
       <Navbar />
-      {/* decorative background glows */}
+
+      {/* Decorative background glows */}
       <div
         aria-hidden
-        className='pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-primary/30 blur-xl md:blur-3xl will-change-transform'
+        className='pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-primary/30 blur-xl md:blur-3xl'
       />
       <div
         aria-hidden
-        className='pointer-events-none absolute top-1/3 -right-24 h-72 w-72 rounded-full bg-[#F55644]/20 blur-xl md:blur-3xl will-change-transform'
+        className='pointer-events-none absolute top-1/3 -right-24 h-72 w-72 rounded-full bg-[#F55644]/20 blur-xl md:blur-3xl'
       />
 
-      {/* hello */}
+      {/* Hello Section */}
       <section
         id='home'
         className='relative container mx-auto w-11/12 pt-24 sm:pt-24 md:pt-32 lg:pt-40 pb-8 sm:pb-10'
@@ -83,34 +84,29 @@ export default function Home() {
 
       <TechStack />
 
-      {/* projects */}
+      {/* Projects Section */}
       <section
         id='projects'
         className='relative container mx-auto w-11/12 py-10 sm:py-14 md:py-16'
       >
         <div className='mb-8 sm:mb-10 md:mb-12 flex flex-col items-start'>
           <m.div
-            {...(mobile
-              ? {}
-              : {
-                  initial: { opacity: 0, y: 20 },
-                  whileInView: { opacity: 1, y: 0 },
-                  viewport: { once: true },
-                  transition: { delay: 0.1 },
-                })}
+            initial={mobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={mobile ? { opacity: 1, y: 0 } : undefined}
+            whileInView={mobile ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
             className='text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4'
           >
             Featured <span className='text-white/40'>Work</span>
           </m.div>
+
           <m.div
-            {...(mobile
-              ? {}
-              : {
-                  initial: { opacity: 0, y: 20 },
-                  whileInView: { opacity: 1, y: 0 },
-                  viewport: { once: true },
-                  transition: { delay: 0.2 },
-                })}
+            initial={mobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={mobile ? { opacity: 1, y: 0 } : undefined}
+            whileInView={mobile ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
             className='text-base sm:text-lg text-white/60 max-w-xl'
           >
             A collection of projects that showcase my passion for building
@@ -120,7 +116,7 @@ export default function Home() {
         <ProjectsCards />
       </section>
 
-      {/* contact */}
+      {/* Contact Section */}
       <section
         id='contact'
         className='relative container mx-auto w-11/12 py-12 sm:py-16 md:py-20'

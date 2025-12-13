@@ -32,14 +32,11 @@ export default function TechStack() {
         {technologies.map((tech, index) => (
           <m.div
             key={tech.name}
-            {...(mobile
-              ? {}
-              : {
-                  initial: { opacity: 0, y: 20 },
-                  whileInView: { opacity: 1, y: 0 },
-                  viewport: { once: true },
-                  transition: { delay: index * 0.1 },
-                })}
+            initial={mobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={mobile ? { opacity: 1, y: 0 } : undefined}
+            whileInView={mobile ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
             className='flex flex-col items-center gap-2 group'
           >
             <div className='p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/5 ring-1 ring-white/10 transition-all duration-300 group-hover:bg-white/10 group-hover:scale-110'>

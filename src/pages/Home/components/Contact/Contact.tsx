@@ -12,11 +12,11 @@ export default function Contact() {
     <div className='relative py-6 sm:py-10'>
       {/* Decorative background elements */}
       <div
-        className='absolute -top-20 -right-20 w-96 h-96 bg-primary/20 rounded-full blur-xl md:blur-3xl opacity-30 pointer-events-none will-change-transform'
+        className='absolute -top-20 -right-20 w-96 h-96 bg-primary/20 rounded-full blur-xl md:blur-3xl opacity-30 pointer-events-none'
         aria-hidden
       />
       <div
-        className='absolute -bottom-20 -left-20 w-80 h-80 bg-[#F55644]/10 rounded-full blur-xl md:blur-3xl opacity-30 pointer-events-none will-change-transform'
+        className='absolute -bottom-20 -left-20 w-80 h-80 bg-[#F55644]/10 rounded-full blur-xl md:blur-3xl opacity-30 pointer-events-none'
         aria-hidden
       />
 
@@ -27,33 +27,27 @@ export default function Contact() {
           aria-hidden
         />
         <div
-          className='absolute top-0 right-0 w-125 h-125 bg-primary/5 rounded-full blur-2xl md:blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2 will-change-transform'
+          className='absolute top-0 right-0 w-125 h-125 bg-primary/5 rounded-full blur-2xl md:blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2'
           aria-hidden
         />
 
         <div className='relative z-10'>
           <m.div
             variants={slideInLeftAnimation}
-            {...(mobile
-              ? {}
-              : {
-                  initial: 'hidden',
-                  whileInView: 'show',
-                  viewport: { once: true },
-                })}
+            initial={mobile ? 'show' : 'hidden'}
+            whileInView={mobile ? undefined : 'show'}
+            animate={mobile ? 'show' : undefined}
+            viewport={{ once: true }}
             className='text-xl sm:text-4xl font-bold tracking-tight text-white'
           >
             Let's work together
           </m.div>
           <m.div
             variants={slideInLeftAnimation}
-            {...(mobile
-              ? {}
-              : {
-                  initial: 'hidden',
-                  whileInView: 'show',
-                  viewport: { once: true },
-                })}
+            initial={mobile ? 'show' : 'hidden'}
+            whileInView={mobile ? undefined : 'show'}
+            animate={mobile ? 'show' : undefined}
+            viewport={{ once: true }}
             className='mt-2 sm:mt-3 text-xs sm:text-lg text-white/60 max-w-2xl'
           >
             Have a project in mind or just want to say hi? I'm always open to
