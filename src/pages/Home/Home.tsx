@@ -86,7 +86,7 @@ export default function Home() {
             </m.div>
           </m.div>
 
-          <div className='mt-16 sm:mt-14 w-full relative z-10'>
+          <div className=' mt-6 sm:mt-14 w-full relative z-10'>
             <TechStack />
           </div>
         </div>
