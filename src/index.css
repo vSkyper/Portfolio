@@ -15,20 +15,22 @@ html {
   background-color: #000;
 
   /* Layered ambient background */
+  --blue-gradient-size: 1200px 1200px;
+  --blue-gradient-pos: 10% -10%;
   --red-gradient-size: 400px 300px;
   --red-gradient-pos-y: 5%;
 
   background-image: radial-gradient(
-      1000px 700px at 10% -10%,
-      rgba(10, 126, 149, 0.18),
-      transparent 65%
+      var(--blue-gradient-size) at var(--blue-gradient-pos),
+      rgba(10, 126, 149, 0.16),
+      transparent 60%
     ),
     radial-gradient(
       var(--red-gradient-size) at 105% var(--red-gradient-pos-y),
       rgba(245, 86, 68, 0.15),
-      transparent 65%
+      transparent 60%
     ),
-    linear-gradient(180deg, #020617 0%, #000 100%);
+    linear-gradient(180deg, #000 0%, #000 100%);
 
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -37,6 +39,8 @@ html {
 
 @media (min-width: 640px) {
   html {
+    --blue-gradient-size: 1900px 900px;
+    --blue-gradient-pos: 0% 0%;
     --red-gradient-size: 900px 700px;
     --red-gradient-pos-y: 30%;
   }
