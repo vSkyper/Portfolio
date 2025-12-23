@@ -13,7 +13,33 @@ html {
   scrollbar-width: none;
 
   background-color: #000;
+
+  /* Layered ambient background */
+  --red-gradient-size: 400px 300px;
+  --red-gradient-pos-y: 5%;
+
+  background-image: radial-gradient(
+      1000px 700px at 10% -10%,
+      rgba(10, 126, 149, 0.18),
+      transparent 65%
+    ),
+    radial-gradient(
+      var(--red-gradient-size) at 105% var(--red-gradient-pos-y),
+      rgba(245, 86, 68, 0.15),
+      transparent 65%
+    ),
+    linear-gradient(180deg, #020617 0%, #000 100%);
+
+  background-repeat: no-repeat;
+  background-attachment: scroll;
   overscroll-behavior: none;
+}
+
+@media (min-width: 640px) {
+  html {
+    --red-gradient-size: 900px 700px;
+    --red-gradient-pos-y: 30%;
+  }
 }
 
 /* Hide scrollbar (Chrome/Safari/Webkit) */
@@ -24,8 +50,8 @@ html {
 }
 
 body {
-  min-height: 100dvh;
   width: 100%;
+  min-height: 100dvh;
   margin: 0;
   padding: 0;
 
@@ -34,37 +60,11 @@ body {
   color: #fff;
   font-family: 'Inter', sans-serif;
   overscroll-behavior: none;
-
-  /* Layered ambient background */
-  background: radial-gradient(
-      900px 600px at 10% -10%,
-      rgba(10, 126, 149, 0.18),
-      transparent 60%
-    ),
-    radial-gradient(
-      700px 500px at 110% 10%,
-      rgba(245, 86, 68, 0.16),
-      transparent 60%
-    ),
-    radial-gradient(
-      900px 700px at 50% 120%,
-      rgba(122, 181, 220, 0.12),
-      transparent 60%
-    ),
-    linear-gradient(180deg, #020617 0%, #000 40%);
-
-  background-attachment: scroll;
 }
 
 #root {
   min-height: 100dvh;
   width: 100%;
-}
-
-@media (min-width: 768px) {
-  body {
-    background-attachment: fixed;
-  }
 }
 
 /* Subtle grid overlay for depth */

@@ -8,26 +8,16 @@ export default function Home() {
   const mobile = isMobile();
 
   return (
-    <main className='relative w-full'>
+    <main className='relative w-full overflow-hidden'>
       <Navbar />
 
-      {/* Full Screen Intro Section (Hello + TechStack) */}
+      {/* Intro Section (Hello + TechStack) */}
       <section
         id='home'
-        className='relative min-h-dvh w-full flex flex-col items-center justify-center overflow-hidden py-24 sm:py-0'
+        className='relative w-full flex flex-col items-center pt-28 sm:pt-32 pb-16 sm:pb-20'
       >
-        {/* Decorative background glows - Enhanced */}
-        <div
-          aria-hidden
-          className='pointer-events-none absolute top-[-10%] left-[-10%] h-125 w-125 rounded-full bg-primary/20 blur-[100px] opacity-40 mix-blend-screen'
-        />
-        <div
-          aria-hidden
-          className='pointer-events-none absolute bottom-[-10%] right-[-10%] h-125 w-125 rounded-full bg-[#F55644]/15 blur-[100px] opacity-40 mix-blend-screen'
-        />
-
         {/* Content Wrapper */}
-        <div className='container mx-auto w-11/12 flex flex-col items-center justify-center flex-1'>
+        <div className='container mx-auto w-11/12 flex flex-col items-center'>
           <m.div
             variants={containerAnimation}
             initial='hidden'
@@ -51,7 +41,7 @@ export default function Home() {
             </m.div>
 
             {/* Handwriting SVG */}
-            <div className='relative flex items-center justify-center w-full max-w-3xl -mt-6 sm:-mt-24 pointer-events-none select-none'>
+            <div className='relative flex items-center justify-center w-full max-w-3xl sm:-mb-16 -mt-6 sm:-mt-24 pointer-events-none select-none'>
               <Handwriting />
             </div>
 
@@ -86,7 +76,13 @@ export default function Home() {
             </m.div>
           </m.div>
 
-          <div className=' mt-6 sm:mt-14 w-full relative z-10'>
+          {/* Decorative separator line */}
+          <div
+            aria-hidden
+            className='mt-12 sm:mt-14 h-px w-[80%] max-w-2xl mx-auto bg-linear-to-r from-transparent via-white/10 to-transparent'
+          />
+
+          <div className='mt-10 sm:mt-12 w-full relative z-10'>
             <TechStack />
           </div>
         </div>
