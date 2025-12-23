@@ -51,7 +51,7 @@ export default function Home() {
             </m.div>
 
             {/* Handwriting SVG */}
-            <div className='relative flex items-center justify-center w-full max-w-3xl -mt-6 sm:-mt-10 md:-mt-14 lg:-mt-24 pointer-events-none select-none'>
+            <div className='relative flex items-center justify-center w-full max-w-3xl -mt-6 sm:-mt-24 pointer-events-none select-none'>
               <Handwriting />
             </div>
 
@@ -59,7 +59,7 @@ export default function Home() {
               variants={slideInTopAnimation}
               className='mt-6 sm:mt-6 text-center max-w-xl relative z-20'
             >
-              <p className='text-sm sm:text-base md:text-lg bg-clip-text text-transparent bg-linear-to-b from-white via-white/90 to-white/60 mb-8 sm:mb-8 leading-relaxed px-4 sm:px-0 font-medium'>
+              <p className='text-sm sm:text-lg bg-clip-text text-transparent bg-linear-to-b from-white via-white/90 to-white/60 mb-8 sm:mb-8 leading-relaxed px-4 sm:px-0 font-medium'>
                 Frontend Developer & Backend Enthusiast crafting digital
                 experiences with code and creativity.
               </p>
@@ -95,9 +95,9 @@ export default function Home() {
       {/* Projects Section */}
       <section
         id='projects'
-        className='relative container mx-auto w-11/12 py-6 sm:py-8 md:py-10'
+        className='relative container mx-auto w-11/12 py-6 sm:py-10'
       >
-        <div className='mb-4 sm:mb-6 md:mb-8 flex flex-col items-start'>
+        <div className='mb-4 sm:mb-8 flex flex-col items-start'>
           <m.div
             initial={mobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             animate={mobile ? { opacity: 1, y: 0 } : undefined}
@@ -127,7 +127,7 @@ export default function Home() {
       {/* Contact Section */}
       <section
         id='contact'
-        className='relative container mx-auto w-11/12 py-8 sm:py-10 md:py-12'
+        className='relative container mx-auto w-11/12 py-8 sm:py-12'
       >
         <Contact />
       </section>

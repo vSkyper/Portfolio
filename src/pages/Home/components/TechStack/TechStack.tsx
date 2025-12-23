@@ -28,7 +28,7 @@ export default function TechStack() {
       <h3 className='text-center text-sm sm:text-base font-semibold mb-6 sm:mb-8 text-white/50 uppercase tracking-widest'>
         Technologies
       </h3>
-      <div className='flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 px-4'>
+      <div className='flex flex-wrap justify-center gap-6 sm:gap-10 px-4'>
         {technologies.map((tech, index) => (
           <m.div
             key={tech.name}
@@ -45,7 +45,7 @@ export default function TechStack() {
                 style={{ backgroundColor: tech.color }}
               />
               <div className='relative p-3 sm:p-4 rounded-2xl bg-white/5 ring-1 ring-white/5 group-hover:ring-white/20 group-hover:bg-white/10 transition-all duration-300 group-hover:-translate-y-1 ease-out'>
-                <tech.icon className='w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 transition-all duration-300 grayscale group-hover:grayscale-0' />
+                <tech.icon className='w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300 grayscale group-hover:grayscale-0' />
               </div>
             </div>
             <span className='text-[10px] sm:text-xs font-medium text-white/40 group-hover:text-white transition-colors duration-300'>

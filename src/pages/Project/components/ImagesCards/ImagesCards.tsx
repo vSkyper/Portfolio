@@ -67,7 +67,7 @@ export default function ImagesCards({ images }: ImagesCardsProps) {
   }, [isModalOpen, resetCarousel]);
 
   return (
-    <div ref={wrapperRef} className='relative z-1 pt-4 md:pt-6 pb-12 md:pb-16'>
+    <div ref={wrapperRef} className='relative z-1 pt-4 sm:pt-6 pb-12 sm:pb-16'>
       <m.div
         key={resetKey}
         ref={contentRef}

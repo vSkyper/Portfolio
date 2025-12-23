@@ -12,22 +12,22 @@ export default function Contact() {
     <div className='relative py-6 sm:py-10'>
       {/* Decorative background elements */}
       <div
-        className='absolute -top-20 -right-20 w-96 h-96 bg-primary/20 rounded-full blur-xl md:blur-3xl opacity-30 pointer-events-none'
+        className='absolute -top-20 -right-20 w-96 h-96 bg-primary/20 rounded-full blur-xl sm:blur-3xl opacity-30 pointer-events-none'
         aria-hidden
       />
       <div
-        className='absolute -bottom-20 -left-20 w-80 h-80 bg-[#F55644]/10 rounded-full blur-xl md:blur-3xl opacity-30 pointer-events-none'
+        className='absolute -bottom-20 -left-20 w-80 h-80 bg-[#F55644]/10 rounded-full blur-xl sm:blur-3xl opacity-30 pointer-events-none'
         aria-hidden
       />
 
-      <div className='relative rounded-3xl bg-[#0a0a0a]/80 ring-1 ring-white/10 backdrop-blur-none md:backdrop-blur-2xl p-4 sm:p-6 md:p-8 shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden'>
+      <div className='relative rounded-3xl bg-[#0a0a0a]/80 ring-1 ring-white/10 backdrop-blur-none sm:backdrop-blur-2xl p-4 sm:p-8 shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden'>
         {/* Subtle gradient overlay */}
         <div
           className='absolute inset-0 bg-linear-to-br from-white/5 via-transparent to-transparent pointer-events-none'
           aria-hidden
         />
         <div
-          className='absolute top-0 right-0 w-125 h-125 bg-primary/5 rounded-full blur-2xl md:blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2'
+          className='absolute top-0 right-0 w-125 h-125 bg-primary/5 rounded-full blur-2xl sm:blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2'
           aria-hidden
         />
 
@@ -55,11 +55,11 @@ export default function Contact() {
             of your visions.
           </m.div>
 
-          <div className='flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12 mt-4 sm:mt-6'>
-            <div className='flex-1 order-2 lg:order-1'>
+          <div className='flex flex-col sm:flex-row gap-6 sm:gap-12 mt-4 sm:mt-6'>
+            <div className='flex-1 order-2 sm:order-1'>
               <Form />
             </div>
-            <div className='lg:w-1/3 order-1 lg:order-2 flex flex-col gap-4 sm:gap-6'>
+            <div className='sm:w-1/3 order-1 sm:order-2 flex flex-col gap-4 sm:gap-6'>
               <div>
                 <h3 className='text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4'>
                   Connect with me

@@ -63,7 +63,7 @@ export default function Card({ image }: CardProps) {
           controls.start({ scale: 1, transition: { duration: 0.06 } })
         }
         transition={{ type: 'spring', stiffness: 240, damping: 20, mass: 0.3 }}
-        className='min-w-[70%] md:min-w-[45%] lg:min-w-[35%] xl:min-w-[30%] h-0 pb-[45%] md:pb-[30%] lg:pb-[25%] xl:pb-[20%] cursor-pointer group select-none relative rounded-2xl outline-none ring-1 ring-white/10 hover:ring-2 hover:ring-primary/50 focus-visible:ring-2 focus-visible:ring-primary/50 transition duration-300 ease-out hover:shadow-[0_20px_40px_-12px_rgba(122,181,220,0.3)] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] will-change-transform overflow-hidden bg-white/5 backdrop-blur-sm'
+        className='min-w-[70%] sm:min-w-[30%] h-0 pb-[45%] sm:pb-[20%] cursor-pointer group select-none relative rounded-2xl outline-none ring-1 ring-white/10 hover:ring-2 hover:ring-primary/50 focus-visible:ring-2 focus-visible:ring-primary/50 transition duration-300 ease-out hover:shadow-[0_20px_40px_-12px_rgba(122,181,220,0.3)] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] will-change-transform overflow-hidden bg-white/5 backdrop-blur-sm'
         role='button'
         tabIndex={0}
         onKeyDown={(e) => {

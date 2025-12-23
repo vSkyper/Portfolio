@@ -92,10 +92,10 @@ export default function Project() {
       </m.button>
 
       {/* Main Content */}
-      <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-20 pb-12 sm:pb-16'>
-        <div className='grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-6 lg:gap-10'>
+      <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-8 pt-20 sm:pt-20 pb-12 sm:pb-16'>
+        <div className='grid grid-cols-1 sm:grid-cols-12 gap-6 sm:gap-10'>
           {/* Left Column - Project Info */}
-          <div className='lg:col-span-8 space-y-4 sm:space-y-6'>
+          <div className='sm:col-span-8 space-y-4 sm:space-y-6'>
             {/* Header */}
             <m.div
               initial={{ opacity: 0, y: 20 }}
@@ -109,7 +109,7 @@ export default function Project() {
                   Project Details
                 </span>
               </div>
-              <h1 className='text-2xl sm:text-3xl lg:text-5xl font-bold text-white tracking-tight'>
+              <h1 className='text-2xl sm:text-5xl font-bold text-white tracking-tight'>
                 {project.title}
               </h1>
               <div className='prose prose-invert max-w-none'>
@@ -153,7 +153,7 @@ export default function Project() {
           </div>
 
           {/* Right Column - Sidebar */}
-          <div className='lg:col-span-4 space-y-4 sm:space-y-5'>
+          <div className='sm:col-span-4 space-y-4 sm:space-y-5'>
             {project.links.length > 0 && (
               <m.div
                 initial={{ opacity: 0, x: 20 }}
