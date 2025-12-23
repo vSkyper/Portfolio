@@ -20,7 +20,7 @@ export default function Link({ link, icon: Icon, title }: IContactLink) {
             <span className='text-[10px] sm:text-xs font-semibold text-white group-hover:text-primary transition-colors'>
               {title}
             </span>
-            <span className='text-[9px] sm:text-[10px] text-white/40 truncate max-w-32 sm:max-w-58'>
+            <span className='text-[9px] sm:text-[10px] text-white/40 truncate max-w-58'>
               {title === 'Email' ? link : link.replace(/^https?:\/\//, '')}
             </span>
           </div>

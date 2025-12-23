@@ -109,7 +109,7 @@ export default function Card({ image }: CardProps) {
 
         {/* Background image */}
         <div
-          className={`absolute inset-0 bg-cover bg-center bg-no-repeat rounded-3xl transition-all duration-500 z-1 ${
+          className={`absolute inset-0 bg-cover bg-center bg-no-repeat rounded-2xl transition-all duration-500 z-1 ${
             imagesReady ? 'opacity-100' : 'opacity-0'
           } group-hover:brightness-75`}
           style={{
