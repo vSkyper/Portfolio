@@ -12,7 +12,7 @@ export default function ProjectsCards() {
   }, [updateOffsetCallback]);
 
   return (
-    <div ref={wrapperRef} className='relative z-1 pt-2 sm:pt-4'>
+    <div ref={wrapperRef} className='relative z-1 pt-2 sm:pt-3'>
       <m.div
         key={resetKey}
         ref={contentRef}
@@ -20,7 +20,7 @@ export default function ProjectsCards() {
         dragConstraints={offset > 0 ? { left: -offset, right: 0 } : undefined}
         initial={{ x: 0 }}
         whileTap={{ cursor: 'grabbing' }}
-        className={`flex gap-3 sm:gap-6 outline-none will-change-transform select-none ${
+        className={`flex gap-3 sm:gap-4 outline-none will-change-transform select-none ${
           offset > 0 ? 'cursor-grab' : 'cursor-default'
         }`}
       >

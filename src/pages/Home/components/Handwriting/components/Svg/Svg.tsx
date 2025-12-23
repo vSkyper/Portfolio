@@ -6,7 +6,7 @@ export default function Svg() {
   return (
     <svg
       viewBox='0 0 1600 800'
-      className='[stroke-dasharray:4674] animate-handwriting scale-90 sm:scale-[.8] md:scale-[.7] lg:scale-50'
+      className='[stroke-dasharray:4674] animate-handwriting scale-90 sm:scale-[.75] md:scale-[.65] lg:scale-[.45]'
     >
       <path
         stroke='url(#a)'

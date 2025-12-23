@@ -1,5 +1,6 @@
 import { motion as m } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { FiGithub } from 'react-icons/fi';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -31,13 +32,18 @@ export default function Navbar() {
     <m.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 select-none ${
+      transition={{ duration: 0.5 }}
+      className={`fixed z-50 left-1/2 -translate-x-1/2 transition-all duration-500 ease-in-out ${
         scrolled
-          ? 'bg-[#0a0a0a]/80 backdrop-blur-xl py-4 shadow-lg shadow-black/5'
-          : 'bg-transparent py-6'
+          ? 'top-4 w-[90%] sm:w-112.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-lg shadow-black/10 py-2.5'
+          : 'top-0 w-full rounded-none bg-transparent border border-transparent py-6'
       }`}
     >
-      <div className='container mx-auto w-11/12 flex items-center justify-between'>
+      <div
+        className={`flex items-center justify-between transition-all duration-500 ${
+          scrolled ? 'px-4 sm:px-6 w-full' : 'container mx-auto w-11/12'
+        }`}
+      >
         <div
           className='text-xl font-bold cursor-pointer relative group select-none'
           onClick={() => scrollToSection('home')}
@@ -47,19 +53,30 @@ export default function Navbar() {
           </span>
           <div className='absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full' />
         </div>
-        <ul className='flex gap-1 sm:gap-2 text-sm sm:text-base font-medium text-white/80'>
+
+        <ul className='flex items-center gap-2 sm:gap-2'>
           {['Projects', 'Contact'].map((item) => (
             <li
               key={item}
-              className='relative px-4 py-2 cursor-pointer group overflow-hidden rounded-full select-none'
               onClick={() => scrollToSection(item.toLowerCase())}
+              className='relative px-2 py-1.5 sm:px-3 text-xs sm:text-sm font-medium text-white/70 hover:text-white transition-colors duration-300'
             >
-              <span className='relative z-10 group-hover:text-white transition-colors duration-300'>
-                {item}
-              </span>
-              <div className='absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out' />
+              {item}
             </li>
           ))}
+          <li className='w-px h-4 bg-white/10 mx-1 sm:mx-2' />
+          <li>
+            <a
+              href='https://github.com/vSkyper'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='flex items-center justify-center -ml-1 sm:ml-0 w-8 h-8 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold bg-white text-black rounded-full hover:bg-white/90 transition-all hover:scale-105 active:scale-95'
+              aria-label='GitHub Profile'
+            >
+              <span className='hidden sm:inline'>GitHub</span>
+              <FiGithub className='sm:hidden w-4 h-4' />
+            </a>
+          </li>
         </ul>
       </div>
     </m.nav>

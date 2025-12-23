@@ -24,11 +24,11 @@ export default function TechStack() {
   const mobile = isMobile();
 
   return (
-    <div className='py-8 sm:py-10'>
-      <h3 className='text-center text-lg sm:text-xl font-semibold mb-6 sm:mb-8 text-white/80'>
-        Technologies I work with
+    <div className='py-6 sm:py-8 w-full'>
+      <h3 className='text-center text-sm sm:text-base font-semibold mb-6 sm:mb-8 text-white/50 uppercase tracking-widest'>
+        Technologies
       </h3>
-      <div className='flex flex-wrap justify-center gap-4 sm:gap-8 md:gap-12 px-2'>
+      <div className='flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 px-4'>
         {technologies.map((tech, index) => (
           <m.div
             key={tech.name}
@@ -37,15 +37,18 @@ export default function TechStack() {
             whileInView={mobile ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
-            className='flex flex-col items-center gap-2 group'
+            className='flex flex-col items-center gap-3 group cursor-default'
           >
-            <div className='p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/5 ring-1 ring-white/10 transition-all duration-300 group-hover:bg-white/10 group-hover:scale-110'>
-              <tech.icon
-                className='w-6 h-6 sm:w-8 sm:h-8'
-                style={{ color: tech.color }}
+            <div className='relative flex items-center justify-center'>
+              <div
+                className='absolute inset-0 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500'
+                style={{ backgroundColor: tech.color }}
               />
+              <div className='relative p-3 sm:p-4 rounded-2xl bg-white/5 ring-1 ring-white/5 group-hover:ring-white/20 group-hover:bg-white/10 transition-all duration-300 group-hover:-translate-y-1 ease-out'>
+                <tech.icon className='w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 transition-all duration-300 grayscale group-hover:grayscale-0' />
+              </div>
             </div>
-            <span className='text-[10px] sm:text-xs md:text-sm text-white/60 group-hover:text-white transition-colors'>
+            <span className='text-[10px] sm:text-xs font-medium text-white/40 group-hover:text-white transition-colors duration-300'>
               {tech.name}
             </span>
           </m.div>

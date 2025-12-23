@@ -92,28 +92,28 @@ export default function Project() {
       </m.button>
 
       {/* Main Content */}
-      <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-12 sm:pb-20'>
-        <div className='grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12'>
+      <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-20 pb-12 sm:pb-16'>
+        <div className='grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-6 lg:gap-10'>
           {/* Left Column - Project Info */}
-          <div className='lg:col-span-8 space-y-6 sm:space-y-8'>
+          <div className='lg:col-span-8 space-y-4 sm:space-y-6'>
             {/* Header */}
             <m.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className='space-y-3 sm:space-y-4'
+              className='space-y-3 sm:space-y-3'
             >
-              <div className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 ring-1 ring-white/10 backdrop-blur-sm'>
-                <span className='w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse' />
-                <span className='text-xs font-medium text-blue-200 tracking-wide uppercase'>
+              <div className='inline-flex items-center gap-2 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/5 ring-1 ring-white/10 backdrop-blur-sm'>
+                <span className='w-1.5 h-1.5 sm:w-1.5 sm:h-1.5 rounded-full bg-blue-400 animate-pulse' />
+                <span className='text-[10px] sm:text-[11px] font-medium text-blue-200 tracking-wide uppercase'>
                   Project Details
                 </span>
               </div>
-              <h1 className='text-2xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight'>
+              <h1 className='text-2xl sm:text-3xl lg:text-5xl font-bold text-white tracking-tight'>
                 {project.title}
               </h1>
               <div className='prose prose-invert max-w-none'>
-                <div className='text-sm sm:text-lg text-white/60 leading-relaxed max-w-2xl'>
+                <div className='text-sm sm:text-base text-white/60 leading-relaxed max-w-2xl'>
                   {project.description
                     .split(/<br\s*\/?>/i)
                     .map((line, i, arr) => (
@@ -142,9 +142,9 @@ export default function Project() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className='space-y-3 sm:space-y-4'
+              className='space-y-3 sm:space-y-3'
             >
-              <h2 className='text-lg sm:text-xl font-semibold text-white flex items-center gap-2'>
+              <h2 className='text-base sm:text-lg font-semibold text-white flex items-center gap-2'>
                 <IoCodeSlash className='text-blue-400' />
                 Technologies Used
               </h2>
@@ -153,25 +153,25 @@ export default function Project() {
           </div>
 
           {/* Right Column - Sidebar */}
-          <div className='lg:col-span-4 space-y-6'>
+          <div className='lg:col-span-4 space-y-4 sm:space-y-5'>
             {project.links.length > 0 && (
               <m.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
-                className='sticky top-24 p-6 rounded-2xl bg-white/5 backdrop-blur-md ring-1 ring-white/10 space-y-6'
+                className='sticky top-24 p-4 sm:p-5 rounded-2xl bg-white/5 backdrop-blur-md ring-1 ring-white/10 space-y-3 sm:space-y-4'
               >
-                <div className='space-y-2'>
-                  <h3 className='text-lg font-semibold text-white flex items-center gap-2'>
+                <div className='space-y-1 sm:space-y-2'>
+                  <h3 className='text-sm sm:text-base font-semibold text-white flex items-center gap-2'>
                     <IoLink className='text-blue-400' />
                     Project Links
                   </h3>
-                  <p className='text-sm text-white/50'>
+                  <p className='text-xs sm:text-sm text-white/50'>
                     Explore the source code or view the live application.
                   </p>
                 </div>
 
-                <div className='space-y-3'>
+                <div className='space-y-2 sm:space-y-3'>
                   <Links links={project.links} />
                 </div>
               </m.div>
@@ -180,12 +180,12 @@ export default function Project() {
         </div>
 
         {/* Gallery */}
-        <div className='container mx-auto pb-20 max-w-7xl mt-12 sm:mt-16'>
-          <div className='mb-6 sm:mb-8'>
-            <h3 className='text-2xl sm:text-3xl font-bold text-white mb-2'>
+        <div className='container mx-auto pb-20 max-w-7xl mt-8 sm:mt-10'>
+          <div className='mb-4 sm:mb-6'>
+            <h3 className='text-xl sm:text-2xl font-bold text-white mb-1'>
               Project <span className='text-white/40'>Gallery</span>
             </h3>
-            <p className='text-white/60 text-sm sm:text-base'>
+            <p className='text-white/60 text-xs sm:text-sm'>
               Drag to explore screenshots and media
             </p>
           </div>

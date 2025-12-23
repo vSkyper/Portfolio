@@ -4,9 +4,7 @@ import { toast } from 'react-toastify';
 import emailjs from '@emailjs/browser';
 import { IOnSubmit } from './interface';
 
-const OnSubmit = (data: IOnSubmit): SubmitHandler<ISendMailForm> => {
-  const { reset } = data;
-
+const OnSubmit = ({ resetField }: IOnSubmit): SubmitHandler<ISendMailForm> => {
   return async (formData: ISendMailForm) => {
     try {
       if (
@@ -18,16 +16,16 @@ const OnSubmit = (data: IOnSubmit): SubmitHandler<ISendMailForm> => {
         return;
       }
 
-      const { senderName, email, message } = formData;
+      const { from_name, from_email, message } = formData;
 
-      if (!senderName || !email || !message) return;
+      if (!from_name || !from_email || !message) return;
 
       const sendMail = emailjs.send(
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_ID,
         {
-          senderName,
-          email,
+          from_name,
+          from_email,
           message,
         },
         import.meta.env.VITE_PUBLIC_KEY
@@ -37,7 +35,9 @@ const OnSubmit = (data: IOnSubmit): SubmitHandler<ISendMailForm> => {
         pending: 'Sending message!',
         success: {
           render: () => {
-            reset();
+            resetField('from_name');
+            resetField('from_email');
+            resetField('message');
             return 'Message sent!';
           },
         },

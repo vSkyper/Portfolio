@@ -38,7 +38,7 @@ export interface IProjectDetails {
 }
 
 export interface ISendMailForm {
-  senderName: string;
-  email: string;
+  from_name: string;
+  from_email: string;
   message: string;
 }

@@ -20,7 +20,7 @@ export default function Contact() {
         aria-hidden
       />
 
-      <div className='relative rounded-3xl bg-[#0a0a0a]/80 ring-1 ring-white/10 backdrop-blur-none md:backdrop-blur-2xl p-4 sm:p-10 md:p-14 shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden'>
+      <div className='relative rounded-3xl bg-[#0a0a0a]/80 ring-1 ring-white/10 backdrop-blur-none md:backdrop-blur-2xl p-4 sm:p-6 md:p-8 shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden'>
         {/* Subtle gradient overlay */}
         <div
           className='absolute inset-0 bg-linear-to-br from-white/5 via-transparent to-transparent pointer-events-none'
@@ -38,7 +38,7 @@ export default function Contact() {
             whileInView={mobile ? undefined : 'show'}
             animate={mobile ? 'show' : undefined}
             viewport={{ once: true }}
-            className='text-xl sm:text-4xl font-bold tracking-tight text-white'
+            className='text-xl sm:text-2xl font-bold tracking-tight text-white'
           >
             Let's work together
           </m.div>
@@ -48,14 +48,14 @@ export default function Contact() {
             whileInView={mobile ? undefined : 'show'}
             animate={mobile ? 'show' : undefined}
             viewport={{ once: true }}
-            className='mt-2 sm:mt-3 text-xs sm:text-lg text-white/60 max-w-2xl'
+            className='mt-2 sm:mt-2 text-xs sm:text-sm text-white/60 max-w-2xl'
           >
             Have a project in mind or just want to say hi? I'm always open to
             discussing new projects, creative ideas or opportunities to be part
             of your visions.
           </m.div>
 
-          <div className='flex flex-col lg:flex-row gap-6 sm:gap-12 lg:gap-20 mt-6 sm:mt-12'>
+          <div className='flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12 mt-4 sm:mt-6'>
             <div className='flex-1 order-2 lg:order-1'>
               <Form />
             </div>
