@@ -14,16 +14,16 @@ export default function Home() {
       {/* Full Screen Intro Section (Hello + TechStack) */}
       <section
         id='home'
-        className='relative h-screen w-full flex flex-col items-center justify-center overflow-hidden'
+        className='relative min-h-dvh w-full flex flex-col items-center justify-center overflow-hidden py-24 sm:py-0'
       >
         {/* Decorative background glows - Enhanced */}
         <div
           aria-hidden
-          className='pointer-events-none absolute top-[-10%] left-[-10%] h-[500px] w-[500px] rounded-full bg-primary/20 blur-[100px] opacity-40 mix-blend-screen'
+          className='pointer-events-none absolute top-[-10%] left-[-10%] h-125 w-125 rounded-full bg-primary/20 blur-[100px] opacity-40 mix-blend-screen'
         />
         <div
           aria-hidden
-          className='pointer-events-none absolute bottom-[-10%] right-[-10%] h-[500px] w-[500px] rounded-full bg-[#F55644]/15 blur-[100px] opacity-40 mix-blend-screen'
+          className='pointer-events-none absolute bottom-[-10%] right-[-10%] h-125 w-125 rounded-full bg-[#F55644]/15 blur-[100px] opacity-40 mix-blend-screen'
         />
 
         {/* Content Wrapper */}
@@ -37,7 +37,7 @@ export default function Home() {
             {/* Intro Badge */}
             <m.div
               variants={slideInTopAnimation}
-              className='mb-8 sm:mb-8 mt-12 sm:mt-0 relative z-10'
+              className='mb-8 relative z-10'
             >
               <div className='inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md shadow-lg shadow-black/5'>
                 <span className='relative flex h-2 w-2'>
