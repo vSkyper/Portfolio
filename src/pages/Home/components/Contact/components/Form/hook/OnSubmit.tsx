@@ -1,26 +1,31 @@
 import { ISendMailForm } from 'interfaces/interfaces';
 import { SubmitHandler } from 'react-hook-form';
-import { toast } from 'react-toastify';
 import emailjs from '@emailjs/browser';
 import { IOnSubmit } from './interface';
+import { useState } from 'react';
 
-const OnSubmit = ({ resetField }: IOnSubmit): SubmitHandler<ISendMailForm> => {
-  return async (formData: ISendMailForm) => {
+const useOnSubmit = ({ resetField }: IOnSubmit) => {
+  const [status, setStatus] = useState<
+    'idle' | 'loading' | 'success' | 'error'
+  >('idle');
+
+  const onSubmit: SubmitHandler<ISendMailForm> = async (formData) => {
+    setStatus('loading');
+
     try {
       if (
         !import.meta.env.VITE_SERVICE_ID ||
         !import.meta.env.VITE_TEMPLATE_ID ||
         !import.meta.env.VITE_PUBLIC_KEY
       ) {
-        toast.error('Something went wrong!');
-        return;
+        throw new Error('Missing configuration');
       }
 
       const { from_name, from_email, message } = formData;
 
       if (!from_name || !from_email || !message) return;
 
-      const sendMail = emailjs.send(
+      await emailjs.send(
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_ID,
         {
@@ -31,22 +36,24 @@ const OnSubmit = ({ resetField }: IOnSubmit): SubmitHandler<ISendMailForm> => {
         import.meta.env.VITE_PUBLIC_KEY
       );
 
-      toast.promise(sendMail, {
-        pending: 'Sending message!',
-        success: {
-          render: () => {
-            resetField('from_name');
-            resetField('from_email');
-            resetField('message');
-            return 'Message sent!';
-          },
-        },
-        error: 'Message was not sent!',
-      });
+      setStatus('success');
+      resetField('from_name');
+      resetField('from_email');
+      resetField('message');
+
+      setTimeout(() => {
+        setStatus('idle');
+      }, 3000);
     } catch (e) {
-      throw e;
+      console.error(e);
+      setStatus('error');
+      setTimeout(() => {
+        setStatus('idle');
+      }, 3000);
     }
   };
+
+  return { onSubmit, status };
 };
 
-export default OnSubmit;
+export default useOnSubmit;

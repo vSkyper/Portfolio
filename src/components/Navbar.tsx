@@ -40,8 +40,8 @@ export default function Navbar() {
       }`}
     >
       <div
-        className={`flex items-center justify-between transition-all duration-500 ${
-          scrolled ? 'px-4 sm:px-6 w-full' : 'container mx-auto w-11/12'
+        className={`flex items-center justify-between transition-all duration-500 container mx-auto ${
+          scrolled ? 'px-4 sm:px-6 w-full' : 'w-11/12'
         }`}
       >
         <div

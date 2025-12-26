@@ -1,6 +1,4 @@
-import { ToastContainer } from 'react-toastify';
 import { Form, Links } from './components';
-import 'react-toastify/dist/ReactToastify.css';
 import { motion as m } from 'framer-motion';
 import { slideInLeftAnimation } from 'animations/animations';
 import { isMobile } from 'helpers/helpers';
@@ -70,15 +68,6 @@ export default function Contact() {
           </div>
         </div>
       </div>
-      <ToastContainer
-        position='bottom-right'
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeButton={true}
-        theme='dark'
-        toastClassName='!bg-[#1a1a1a] !text-white !rounded-xl !ring-1 !ring-white/10'
-      />
     </div>
   );
 }

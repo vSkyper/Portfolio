@@ -1,15 +1,52 @@
 import { slideInUpAnimation } from 'animations/animations';
 import { motion as m } from 'framer-motion';
 import validator from 'validator';
-import { FieldsProps } from './interface';
 import { FiUser, FiMail, FiMessageSquare } from 'react-icons/fi';
+import { useFormContext } from 'react-hook-form';
+import { ISendMailForm } from 'interfaces/interfaces';
+import { useEffect } from 'react';
 
-export default function Fields(props: FieldsProps) {
-  const { register } = props;
+export default function Fields() {
+  const {
+    register,
+    formState: { errors },
+    setValue,
+    trigger,
+  } = useFormContext<ISendMailForm>();
+
+  useEffect(() => {
+    // Check for browser auto-filled/restored values after mount
+    const timer = setTimeout(() => {
+      const nameInput = document.getElementById(
+        'from_name'
+      ) as HTMLInputElement;
+      const emailInput = document.getElementById(
+        'from_email'
+      ) as HTMLInputElement;
+      const messageInput = document.getElementById(
+        'message'
+      ) as HTMLTextAreaElement;
+
+      if (nameInput?.value) {
+        setValue('from_name', nameInput.value);
+        trigger('from_name');
+      }
+      if (emailInput?.value) {
+        setValue('from_email', emailInput.value);
+        trigger('from_email');
+      }
+      if (messageInput?.value) {
+        setValue('message', messageInput.value);
+        trigger('message');
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [setValue, trigger]);
 
   return (
     <>
-      <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-4'>
+      <m.div className='grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-4'>
         <m.div variants={slideInUpAnimation} className='relative group'>
           <label
             htmlFor='from_name'
@@ -27,10 +64,23 @@ export default function Fields(props: FieldsProps) {
               type='text'
               autoComplete='name'
               placeholder='John Doe'
-              className='w-full bg-white/5 text-white placeholder-white/20 text-xs sm:text-xs rounded-lg sm:rounded-xl border border-white/10 focus:border-primary/50 focus:ring-4 focus:ring-primary/10 focus:bg-white/10 transition-all duration-300 pl-9 sm:pl-9 p-2.5 sm:p-2.5 outline-none'
-              {...register('from_name', { required: true })}
+              className={`w-full bg-white/5 text-white placeholder-white/20 text-xs sm:text-xs rounded-lg sm:rounded-xl border ${
+                errors.from_name
+                  ? 'border-red-500/50 focus:border-red-500'
+                  : 'border-white/10 focus:border-primary/50'
+              } focus:ring-4 ${
+                errors.from_name
+                  ? 'focus:ring-red-500/10'
+                  : 'focus:ring-primary/10'
+              } focus:bg-white/10 transition-all duration-300 pl-9 sm:pl-9 p-2.5 sm:p-2.5 outline-none`}
+              {...register('from_name', { required: 'Name is required' })}
             />
           </div>
+          {errors.from_name && (
+            <span className='text-[10px] text-red-400 mt-1 block'>
+              {errors.from_name.message}
+            </span>
+          )}
         </m.div>
         <m.div variants={slideInUpAnimation} className='relative group'>
           <label
@@ -45,19 +95,34 @@ export default function Fields(props: FieldsProps) {
             </div>
             <input
               title='Email'
+              id='from_email'
               type='email'
               inputMode='email'
               autoComplete='email'
               placeholder='john@example.com'
-              className='w-full bg-white/5 text-white placeholder-white/20 text-xs sm:text-xs rounded-lg sm:rounded-xl border border-white/10 focus:border-primary/50 focus:ring-4 focus:ring-primary/10 focus:bg-white/10 transition-all duration-300 pl-9 sm:pl-9 p-2.5 sm:p-2.5 outline-none'
+              className={`w-full bg-white/5 text-white placeholder-white/20 text-xs sm:text-xs rounded-lg sm:rounded-xl border ${
+                errors.from_email
+                  ? 'border-red-500/50 focus:border-red-500'
+                  : 'border-white/10 focus:border-primary/50'
+              } focus:ring-4 ${
+                errors.from_email
+                  ? 'focus:ring-red-500/10'
+                  : 'focus:ring-primary/10'
+              } focus:bg-white/10 transition-all duration-300 pl-9 sm:pl-9 p-2.5 sm:p-2.5 outline-none`}
               {...register('from_email', {
-                required: true,
-                validate: (value) => validator.isEmail(value),
+                required: 'Email is required',
+                validate: (value: string) =>
+                  validator.isEmail(value) || 'Invalid email address',
               })}
             />
           </div>
+          {errors.from_email && (
+            <span className='text-[10px] text-red-400 mt-1 block'>
+              {errors.from_email.message}
+            </span>
+          )}
         </m.div>
-      </div>
+      </m.div>
       <m.div variants={slideInUpAnimation} className='relative group'>
         <label
           htmlFor='message'
@@ -73,10 +138,21 @@ export default function Fields(props: FieldsProps) {
             rows={5}
             id='message'
             placeholder='Tell me about your project...'
-            className='w-full resize-none bg-white/5 text-white placeholder-white/20 text-xs sm:text-xs rounded-lg sm:rounded-xl border border-white/10 focus:border-primary/50 focus:ring-4 focus:ring-primary/10 focus:bg-white/10 transition-all duration-300 pl-9 sm:pl-9 p-2.5 sm:p-2.5 outline-none'
-            {...register('message', { required: true })}
+            className={`w-full resize-none bg-white/5 text-white placeholder-white/20 text-xs sm:text-xs rounded-lg sm:rounded-xl border ${
+              errors.message
+                ? 'border-red-500/50 focus:border-red-500'
+                : 'border-white/10 focus:border-primary/50'
+            } focus:ring-4 ${
+              errors.message ? 'focus:ring-red-500/10' : 'focus:ring-primary/10'
+            } focus:bg-white/10 transition-all duration-300 pl-9 sm:pl-9 p-2.5 sm:p-2.5 outline-none`}
+            {...register('message', { required: 'Message is required' })}
           />
         </div>
+        {errors.message && (
+          <span className='text-[10px] text-red-400 mt-1 block'>
+            {errors.message.message}
+          </span>
+        )}
       </m.div>
     </>
   );
