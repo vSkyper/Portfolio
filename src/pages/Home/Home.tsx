@@ -20,7 +20,7 @@ export default function Home() {
       {/* Intro Section (Hello + TechStack) */}
       <section
         id='home'
-        className='relative w-full flex flex-col items-center pt-28 sm:pt-32 pb-16 sm:pb-20'
+        className='relative w-full flex flex-col items-center pt-28 sm:pt-32 pb-16'
       >
         {/* Content Wrapper */}
         <div className='container mx-auto w-11/12 flex flex-col items-center'>
