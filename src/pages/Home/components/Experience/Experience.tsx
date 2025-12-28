@@ -32,7 +32,7 @@ export default function Experience() {
         {/* Vertical Line */}
         <div className='absolute left-8 sm:left-1/2 top-0 bottom-0 w-px bg-linear-to-b from-transparent via-white/10 to-transparent -translate-x-1/2' />
 
-        <div className='flex flex-col gap-12 sm:gap-24'>
+        <div className='flex flex-col gap-8 sm:gap-24'>
           {experience.map((item, index) => {
             const isEven = index % 2 === 0;
 
@@ -50,20 +50,20 @@ export default function Experience() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className={`relative p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors duration-300 ${
+                    className={`relative p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors duration-300 ${
                       isEven ? 'sm:mr-12' : 'sm:ml-12'
                     }`}
                   >
                     <span className='absolute -top-3 left-4 px-3 py-1 text-[10px] font-mono font-medium text-white/60 bg-black border border-white/10 rounded-full'>
                       {item.period}
                     </span>
-                    <h3 className='text-lg font-bold text-white mb-1'>
+                    <h3 className='text-base sm:text-lg font-bold text-white mb-1'>
                       {item.role}
                     </h3>
-                    <h4 className='text-sm text-primary mb-3'>
+                    <h4 className='text-xs sm:text-sm text-primary mb-3'>
                       {item.company}
                     </h4>
-                    <p className='text-sm text-white/60 leading-relaxed'>
+                    <p className='text-xs sm:text-sm text-white/60 leading-relaxed'>
                       {item.description}
                     </p>
                   </m.div>
