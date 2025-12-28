@@ -47,7 +47,7 @@ export default function Card({ id, title, technology, image }: IProjectCard) {
         controls.start({ scale: 1, transition: { duration: 0.06 } })
       }
       transition={{ type: 'spring', stiffness: 240, damping: 20, mass: 0.3 }}
-      className='group relative h-0 min-w-[70%] pb-[45%] sm:pb-[18%] sm:min-w-[30%] rounded-2xl outline-none ring-1 ring-white/10 hover:ring-2 hover:ring-primary/50 focus-visible:ring-2 focus-visible:ring-primary/50 transition duration-300 ease-out hover:shadow-[0_20px_40px_-12px_rgba(122,181,220,0.3)] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] will-change-transform cursor-pointer select-none overflow-hidden bg-white/5 backdrop-blur-none sm:backdrop-blur-sm'
+      className='group relative h-0 min-w-[70%] sm:min-w-[30%] pb-[45%] sm:pb-[18%] rounded-2xl outline-none ring-1 ring-white/10 hover:ring-2 hover:ring-primary/50 focus-visible:ring-2 focus-visible:ring-primary/50 transition duration-300 ease-out hover:shadow-[0_20px_40px_-12px_rgba(122,181,220,0.3)] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] will-change-transform cursor-pointer select-none overflow-hidden bg-white/5 backdrop-blur-none sm:backdrop-blur-sm'
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') handleTap();
       }}
