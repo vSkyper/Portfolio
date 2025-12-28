@@ -48,7 +48,7 @@ export default function Navbar() {
           className='text-xl font-bold cursor-pointer relative group select-none'
           onClick={() => scrollToSection('home')}
         >
-          <span className='bg-clip-text text-transparent bg-linear-to-r from-white to-white/60 group-hover:from-primary group-hover:to-primaryLight transition-all duration-300'>
+          <span className='bg-clip-text text-transparent bg-linear-to-r from-white to-white/60 group-hover:from-primary group-hover:to-primaryLight transition-all duration-300 select-none'>
             MP
           </span>
           <div className='absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full' />
@@ -59,7 +59,7 @@ export default function Navbar() {
             <li
               key={item}
               onClick={() => scrollToSection(item.toLowerCase())}
-              className='relative px-2 py-1.5 sm:px-3 text-xs sm:text-sm font-medium text-white/70 hover:text-white transition-colors duration-300 cursor-pointer'
+              className='relative px-2 py-1.5 sm:px-3 text-xs sm:text-sm font-medium text-white/70 hover:text-white transition-colors duration-300 cursor-pointer select-none'
             >
               {item}
             </li>
@@ -70,7 +70,7 @@ export default function Navbar() {
               href='https://github.com/vSkyper'
               target='_blank'
               rel='noopener noreferrer'
-              className='flex items-center justify-center -ml-1 sm:ml-0 w-8 h-8 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold bg-white text-black rounded-full hover:bg-white/90 transition-all hover:scale-105 active:scale-95'
+              className='flex items-center justify-center -ml-1 sm:ml-0 w-8 h-8 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold bg-white text-black rounded-full hover:bg-white/90 transition-all hover:scale-105 active:scale-95 select-none'
               aria-label='GitHub Profile'
             >
               <span className='hidden sm:inline'>GitHub</span>
