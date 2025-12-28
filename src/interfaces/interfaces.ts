@@ -42,3 +42,12 @@ export interface ISendMailForm {
   from_email: string;
   message: string;
 }
+
+export interface IExperience {
+  id: string;
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+  image?: string;
+}

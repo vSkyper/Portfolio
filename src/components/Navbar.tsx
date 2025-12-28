@@ -35,12 +35,12 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
       className={`fixed z-50 left-1/2 -translate-x-1/2 transition-all duration-500 ease-in-out ${
         scrolled
-          ? 'top-4 w-[90%] sm:w-112.5 rounded-full bg-black/80 backdrop-blur-xl border border-white/10 shadow-lg shadow-black/20 py-2.5'
+          ? 'top-4 w-[90%] sm:w-112.5 rounded-full bg-black/20 backdrop-blur-3xl backdrop-saturate-150 border border-white/10 shadow-xl shadow-black/10 py-2.5'
           : 'top-0 w-full rounded-none bg-transparent border border-transparent py-6'
       }`}
     >
       <div
-        className={`flex items-center justify-between transition-all duration-500 container mx-auto ${
+        className={`flex items-center justify-between transition-all duration-500 container mx-auto gap-8 sm:gap-12 ${
           scrolled ? 'px-4 sm:px-6 w-full' : 'w-11/12'
         }`}
       >
@@ -54,12 +54,12 @@ export default function Navbar() {
           <div className='absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full' />
         </div>
 
-        <ul className='flex items-center gap-2 sm:gap-2'>
-          {['Projects', 'Contact'].map((item) => (
+        <ul className='flex items-center gap-2'>
+          {['About', 'Projects', 'Contact'].map((item) => (
             <li
               key={item}
               onClick={() => scrollToSection(item.toLowerCase())}
-              className='relative px-2 py-1.5 sm:px-3 text-xs sm:text-sm font-medium text-white/70 hover:text-white transition-colors duration-300'
+              className='relative px-2 py-1.5 sm:px-3 text-xs sm:text-sm font-medium text-white/70 hover:text-white transition-colors duration-300 cursor-pointer'
             >
               {item}
             </li>

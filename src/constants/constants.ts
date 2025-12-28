@@ -1,5 +1,6 @@
 import {
   IContactLink,
+  IExperience,
   IProjectCard,
   IProjectDetails,
 } from 'interfaces/interfaces';
@@ -96,13 +97,20 @@ export const projectsDetails: IProjectDetails[] = [
     id: 'learnhub',
     title: 'LearnHub',
     description:
-      'Developed as a collaborative Engineering Thesis, LearnHub is a dedicated remote learning platform tailored for small study groups. Working closely with my team, we aimed to create a virtual classroom environment that feels personal and effective. The system provides teachers with a suite of powerful tools to present educational materials, manage the class flow, and observe student progress in real-time. A key focus was enabling seamless interaction; using WebRTC, we implemented full voice and video communication to ensure smooth connectivity. Teachers can also step in to offer one-on-one assistance to specific students, mimicking the direct support found in physical classrooms.',
+      'Developed as a collaborative Engineering Thesis, LearnHub is a dedicated remote learning platform tailored for small study groups. Working closely with my team, we aimed to create a virtual classroom environment that feels personal and effective. The system provides teachers with a suite of powerful tools to present educational materials, manage the class flow, and observe student progress in real-time. A key focus was enabling seamless interaction; we utilized the Region Capture API to observe student activity within embedded websites, and integrated Whereby for high-quality audio, video, and hand-raising features. Teachers can also step in to offer one-on-one assistance to specific students, mimicking the direct support found in physical classrooms.',
     images: [
       '/images/projects/learnhub/learnhub-1.webp',
       '/images/projects/learnhub/learnhub-2.webp',
       '/images/projects/learnhub/learnhub-3.webp',
     ],
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Firebase', 'WebRTC'],
+    technologies: [
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'Firebase',
+      'Region Capture API',
+      'Whereby',
+    ],
     links: [],
   },
   {
@@ -155,5 +163,32 @@ export const projectsDetails: IProjectDetails[] = [
         icon: SiGithub,
       },
     ],
+  },
+];
+
+export const experience: IExperience[] = [
+  {
+    id: '1',
+    role: 'Lead QA Analyst',
+    company: 'SIS LLC',
+    period: 'Jun 2023 - Present',
+    description:
+      'Progressed from Intern to Lead QA Analyst. Specializing in Microsoft Dynamics 365 F&O ecosystem. Leading client analysis, solution design, and cross-platform testing strategies. Combines Quality Assurance with Product Analysis.',
+  },
+  {
+    id: '2',
+    role: "Master's Degree in Cybersecurity",
+    company: 'Adam Mickiewicz University, Poznań',
+    period: 'Feb 2024 - Oct 2025',
+    description:
+      "Specialization in Cybersecurity with Grade 5. Master's Thesis: 'Aukciszek' - Engineered a privacy-first auction platform backend using Python (FastAPI) and MPC. Implemented cryptographic protocols for secure bidding and assisted with frontend integration.",
+  },
+  {
+    id: '3',
+    role: "Engineer's Degree in Computer Science",
+    company: 'Adam Mickiewicz University, Poznań',
+    period: 'Oct 2020 - Feb 2024',
+    description:
+      "Graduated with Grade 5. Engineering Thesis: 'LearnHub' - I co-developed a remote learning application using React, Firebase, Region Capture API, and Whereby for real-time virtual classroom collaboration.",
   },
 ];

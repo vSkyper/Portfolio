@@ -1,4 +1,10 @@
-import { Contact, Handwriting, ProjectsCards, TechStack } from './components';
+import {
+  Contact,
+  Experience,
+  Handwriting,
+  ProjectsCards,
+  TechStack,
+} from './components';
 import { Navbar } from 'components';
 import { motion as m } from 'framer-motion';
 import { containerAnimation, slideInTopAnimation } from 'animations/animations';
@@ -86,6 +92,11 @@ export default function Home() {
             <TechStack />
           </div>
         </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id='about' className='relative w-full'>
+        <Experience />
       </section>
 
       {/* Projects Section */}
