@@ -1,4 +1,4 @@
-import { IProjectMedia } from 'interfaces/interfaces';
+import type { IProjectMedia } from 'interfaces/interfaces';
 import { Card } from './components';
 import { useImagePreloader } from 'hooks';
 import { useMemo } from 'react';

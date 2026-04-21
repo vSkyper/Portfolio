@@ -1,7 +1,7 @@
 import { motion as m } from 'framer-motion';
 import { useEffect, useState, useCallback } from 'react';
 import { Cards } from './components';
-import { ImagesCardsProps } from './interface';
+import type { ImagesCardsProps } from './interface';
 import { useCarousel } from 'hooks';
 
 export default function ImagesCards({ images }: ImagesCardsProps) {
@@ -25,7 +25,7 @@ export default function ImagesCards({ images }: ImagesCardsProps) {
   // Handle modal state changes
   useEffect(() => {
     const handleModalStateChange = (
-      event: CustomEvent<{ isOpen: boolean }>
+      event: CustomEvent<{ isOpen: boolean }>,
     ) => {
       const modalIsOpen = event.detail.isOpen;
       setIsModalOpen(modalIsOpen);
@@ -38,13 +38,13 @@ export default function ImagesCards({ images }: ImagesCardsProps) {
 
     window.addEventListener(
       'modalStateChange',
-      handleModalStateChange as EventListener
+      handleModalStateChange as EventListener,
     );
 
     return () => {
       window.removeEventListener(
         'modalStateChange',
-        handleModalStateChange as EventListener
+        handleModalStateChange as EventListener,
       );
     };
   }, [needsResetAfterModal, resetCarousel]);
@@ -67,7 +67,7 @@ export default function ImagesCards({ images }: ImagesCardsProps) {
   }, [isModalOpen, resetCarousel]);
 
   return (
-    <div ref={wrapperRef} className='relative z-1 pt-4 sm:pt-6 pb-12 sm:pb-16'>
+    <div ref={wrapperRef} className="relative z-1 pt-4 sm:pt-6 pb-12 sm:pb-16">
       <m.div
         key={resetKey}
         ref={contentRef}

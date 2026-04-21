@@ -1,4 +1,4 @@
-import { IProjectMedia } from 'interfaces/interfaces';
+import type { IProjectMedia } from 'interfaces/interfaces';
 
 export interface CardsProps {
   images: (string | IProjectMedia)[];

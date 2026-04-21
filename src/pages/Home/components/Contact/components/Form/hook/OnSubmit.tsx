@@ -1,7 +1,7 @@
-import { ISendMailForm } from 'interfaces/interfaces';
-import { SubmitHandler } from 'react-hook-form';
+import type { ISendMailForm } from 'interfaces/interfaces';
+import type { SubmitHandler } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
-import { IOnSubmit } from './interface';
+import type { IOnSubmit } from './interface';
 import { useState } from 'react';
 
 const useOnSubmit = ({ resetField }: IOnSubmit) => {
@@ -33,7 +33,7 @@ const useOnSubmit = ({ resetField }: IOnSubmit) => {
           from_email,
           message,
         },
-        import.meta.env.VITE_PUBLIC_KEY
+        import.meta.env.VITE_PUBLIC_KEY,
       );
 
       setStatus('success');

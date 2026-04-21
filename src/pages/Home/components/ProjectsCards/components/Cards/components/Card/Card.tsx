@@ -1,6 +1,6 @@
 import { motion as m, useAnimation } from 'framer-motion';
-import { IProjectCard } from 'interfaces/interfaces';
-import { NavigateFunction, useNavigate } from 'react-router';
+import type { IProjectCard } from 'interfaces/interfaces';
+import { type NavigateFunction, useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
 import { FiArrowUpRight } from 'react-icons/fi';
 
@@ -47,24 +47,24 @@ export default function Card({ id, title, technology, image }: IProjectCard) {
         controls.start({ scale: 1, transition: { duration: 0.06 } })
       }
       transition={{ type: 'spring', stiffness: 240, damping: 20, mass: 0.3 }}
-      className='group relative h-0 min-w-[70%] sm:min-w-[30%] pb-[45%] sm:pb-[18%] rounded-2xl outline-none ring-1 ring-white/10 hover:ring-2 hover:ring-primary/50 focus-visible:ring-2 focus-visible:ring-primary/50 transition duration-300 ease-out hover:shadow-[0_20px_40px_-12px_rgba(122,181,220,0.3)] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] will-change-transform cursor-pointer select-none overflow-hidden bg-white/5 backdrop-blur-none sm:backdrop-blur-sm'
+      className="group relative h-0 min-w-[70%] sm:min-w-[30%] pb-[45%] sm:pb-[18%] rounded-2xl outline-none ring-1 ring-white/10 hover:ring-2 hover:ring-primary/50 focus-visible:ring-2 focus-visible:ring-primary/50 transition duration-300 ease-out hover:shadow-[0_20px_40px_-12px_rgba(122,181,220,0.3)] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] will-change-transform cursor-pointer select-none overflow-hidden bg-white/5 backdrop-blur-none sm:backdrop-blur-sm"
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') handleTap();
       }}
-      role='button'
+      role="button"
       tabIndex={0}
       aria-label={`View ${title} project`}
     >
       {/* Loading indicator */}
       {!imagesReady && (
         <div
-          className='absolute inset-0 flex items-center justify-center z-10'
-          aria-hidden='true'
+          className="absolute inset-0 flex items-center justify-center z-10"
+          aria-hidden="true"
         >
-          <div className='relative'>
+          <div className="relative">
             {/* Spinning ring */}
             <m.div
-              className='w-12 h-12 rounded-full border-2 border-white/10 border-t-primary'
+              className="w-12 h-12 rounded-full border-2 border-white/10 border-t-primary"
               animate={{ rotate: 360 }}
               transition={{
                 duration: 1,
@@ -74,7 +74,7 @@ export default function Card({ id, title, technology, image }: IProjectCard) {
             />
             {/* Pulsing center dot */}
             <m.div
-              className='absolute inset-0 flex items-center justify-center'
+              className="absolute inset-0 flex items-center justify-center"
               animate={{
                 scale: [1, 1.2, 1],
                 opacity: [0.5, 0.8, 0.5],
@@ -85,7 +85,7 @@ export default function Card({ id, title, technology, image }: IProjectCard) {
                 ease: 'easeInOut',
               }}
             >
-              <div className='w-2 h-2 rounded-full bg-primary' />
+              <div className="w-2 h-2 rounded-full bg-primary" />
             </m.div>
           </div>
         </div>
@@ -99,35 +99,35 @@ export default function Card({ id, title, technology, image }: IProjectCard) {
         style={{
           backgroundImage: `url(${image})`,
         }}
-        aria-hidden='true'
+        aria-hidden="true"
       />
 
       {/* Gradient overlay */}
       <div
-        className='absolute inset-0 rounded-2xl bg-linear-to-t from-black/90 via-black/40 to-transparent z-2 opacity-80 group-hover:opacity-90 transition-opacity duration-300'
-        aria-hidden='true'
+        className="absolute inset-0 rounded-2xl bg-linear-to-t from-black/90 via-black/40 to-transparent z-2 opacity-80 group-hover:opacity-90 transition-opacity duration-300"
+        aria-hidden="true"
       />
 
       {/* Content */}
-      <div className='absolute inset-0 rounded-2xl flex flex-col justify-between p-4 sm:p-5 z-3'>
-        <div className='flex justify-between items-start'>
-          <div className='inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-medium text-white backdrop-blur-none sm:backdrop-blur-md px-2.5 py-1 rounded-full bg-black/50 border border-white/10 shadow-lg transform transition-transform duration-300 group-hover:translate-y-1'>
+      <div className="absolute inset-0 rounded-2xl flex flex-col justify-between p-4 sm:p-5 z-3">
+        <div className="flex justify-between items-start">
+          <div className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-medium text-white backdrop-blur-none sm:backdrop-blur-md px-2.5 py-1 rounded-full bg-black/50 border border-white/10 shadow-lg transform transition-transform duration-300 group-hover:translate-y-1">
             <span
-              className='h-1 w-1 rounded-full bg-primary shadow-[0_0_8px_rgba(122,181,220,0.6)] inline-block'
-              aria-hidden='true'
+              className="h-1 w-1 rounded-full bg-primary shadow-[0_0_8px_rgba(122,181,220,0.6)] inline-block"
+              aria-hidden="true"
             />
             {technology}
           </div>
-          <div className='w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/50 backdrop-blur-none sm:backdrop-blur-md border border-white/10 flex items-center justify-center opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300'>
-            <FiArrowUpRight className='w-3.5 h-3.5 sm:w-4 sm:h-4 text-white' />
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/50 backdrop-blur-none sm:backdrop-blur-md border border-white/10 flex items-center justify-center opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+            <FiArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
           </div>
         </div>
 
-        <div className='transform transition-transform duration-300 group-hover:-translate-y-1'>
-          <h3 className='text-base sm:text-xl font-bold tracking-tight text-white drop-shadow-lg mb-1'>
+        <div className="transform transition-transform duration-300 group-hover:-translate-y-1">
+          <h3 className="text-base sm:text-xl font-bold tracking-tight text-white drop-shadow-lg mb-1">
             {title}
           </h3>
-          <div className='h-0.5 w-0 bg-primary group-hover:w-8 transition-all duration-500 ease-out' />
+          <div className="h-0.5 w-0 bg-primary group-hover:w-8 transition-all duration-500 ease-out" />
         </div>
       </div>
     </m.div>
