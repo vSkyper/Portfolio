@@ -1,2 +1,3 @@
-export { default as ImageModal } from './ImageModal';
-export type { ImageModalProps } from './interface';
+import ImageModal from './ImageModal';
+
+export default ImageModal;

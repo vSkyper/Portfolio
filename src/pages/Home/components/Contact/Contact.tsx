@@ -36,6 +36,7 @@ export default function Contact() {
             whileInView={mobile ? undefined : 'show'}
             animate={mobile ? 'show' : undefined}
             viewport={{ once: true }}
+            style={{ willChange: 'transform, opacity' }}
             className='text-xl sm:text-2xl font-bold tracking-tight text-white'
           >
             Let's work together
@@ -46,6 +47,7 @@ export default function Contact() {
             whileInView={mobile ? undefined : 'show'}
             animate={mobile ? 'show' : undefined}
             viewport={{ once: true }}
+            style={{ willChange: 'transform, opacity' }}
             className='mt-2 sm:mt-2 text-xs sm:text-sm text-white/60 max-w-2xl'
           >
             Have a project in mind or just want to say hi? I'm always open to

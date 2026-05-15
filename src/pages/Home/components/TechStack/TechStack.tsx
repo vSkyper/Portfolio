@@ -23,21 +23,39 @@ const technologies = [
 export default function TechStack() {
   const mobile = isMobile();
 
+  const container = {
+    hidden: { opacity: mobile ? 1 : 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: mobile ? 1 : 0, y: mobile ? 0 : 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  };
+
   return (
     <div className='py-6 sm:py-8 w-full'>
       <h3 className='text-center text-sm sm:text-base font-semibold mb-6 sm:mb-8 text-white/50 uppercase tracking-widest'>
         Technologies
       </h3>
-      <div className='flex flex-wrap justify-center gap-6 sm:gap-10 px-4'>
-        {technologies.map((tech, index) => (
+      <m.div 
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        className='flex flex-wrap justify-center gap-6 sm:gap-10 px-4'
+      >
+        {technologies.map((tech) => (
           <m.div
             key={tech.name}
-            initial={mobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            animate={mobile ? { opacity: 1, y: 0 } : undefined}
-            whileInView={mobile ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            className='flex flex-col items-center gap-3 group cursor-default'
+            variants={item}
+            className='flex flex-col items-center gap-3 group cursor-default will-change-transform'
+            style={{ willChange: 'transform, opacity' }}
           >
             <div className='relative flex items-center justify-center'>
               <div
@@ -53,7 +71,7 @@ export default function TechStack() {
             </span>
           </m.div>
         ))}
-      </div>
+      </m.div>
     </div>
   );
 }

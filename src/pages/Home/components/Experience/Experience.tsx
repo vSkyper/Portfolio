@@ -16,7 +16,7 @@ export default function Experience() {
   return (
     <m.div
       ref={containerRef}
-      style={{ opacity }}
+      style={{ opacity, willChange: 'opacity' }}
       className='relative w-full py-10 sm:py-20'
     >
       <div className='flex flex-col items-center mb-10 sm:mb-16'>
@@ -50,6 +50,7 @@ export default function Experience() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
                     transition={{ duration: 0.5, delay: 0.2 }}
+                    style={{ willChange: 'transform, opacity' }}
                     className={`relative p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors duration-300 ${
                       isEven ? 'sm:mr-12' : 'sm:ml-12'
                     }`}

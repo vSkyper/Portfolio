@@ -2,26 +2,16 @@ import { motion as m, AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 import { isMobile } from 'helpers/helpers';
 import { createPortal } from 'react-dom';
-import { IoClose } from 'react-icons/io5';
+import { ModalControls, VideoPlayer } from './components';
+import type { ImageModalProps } from './interface';
 
-interface ImageModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  src: string;
-  alt: string;
-  isVideo: boolean;
-}
-
-const getGoogleDriveEmbedUrl = (url: string): string => {
-  const fileIdMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-  if (fileIdMatch) {
-    return `https://drive.google.com/file/d/${fileIdMatch[1]}/preview`;
-  }
-  return url;
-};
-
-export default function ImageModal(props: ImageModalProps) {
-  const { isOpen, onClose, src, alt, isVideo } = props;
+export default function ImageModal({
+  isOpen,
+  onClose,
+  src,
+  alt,
+  isVideo,
+}: ImageModalProps) {
   const mobile = isMobile();
 
   const clearSelection = () => {
@@ -58,7 +48,7 @@ export default function ImageModal(props: ImageModalProps) {
     document.documentElement.style.overflow = 'hidden';
 
     window.dispatchEvent(
-      new CustomEvent('modalStateChange', { detail: { isOpen: true } })
+      new CustomEvent('modalStateChange', { detail: { isOpen: true } }),
     );
 
     return () => {
@@ -70,7 +60,7 @@ export default function ImageModal(props: ImageModalProps) {
 
       clearSelection();
       window.dispatchEvent(
-        new CustomEvent('modalStateChange', { detail: { isOpen: false } })
+        new CustomEvent('modalStateChange', { detail: { isOpen: false } }),
       );
     };
   }, [isOpen]);
@@ -113,20 +103,11 @@ export default function ImageModal(props: ImageModalProps) {
             className='absolute inset-0 bg-black/80 touch-none'
           />
 
-          {/* Close button */}
-          <m.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ delay: 0.1 }}
-            onClick={handleClose}
-            className={`absolute top-4 right-4 sm:top-6 sm:right-6 z-50 p-2 sm:p-3 rounded-full bg-black/50 hover:bg-white/10 text-white/70 hover:text-white backdrop-blur-md ring-1 ring-white/10 transition-all duration-300 hover:scale-110 hover:rotate-90 ${
-              isVideo && mobile ? 'landscape:hidden' : ''
-            }`}
-            aria-label='Close modal'
-          >
-            <IoClose className='w-6 h-6 sm:w-8 sm:h-8' />
-          </m.button>
+          <ModalControls
+            onClose={handleClose}
+            isVideo={isVideo}
+            mobile={mobile}
+          />
 
           {/* Modal Content */}
           <m.div
@@ -147,25 +128,7 @@ export default function ImageModal(props: ImageModalProps) {
               {/* Image or Video */}
               <div className='relative'>
                 {isVideo ? (
-                  <div
-                    className={`relative aspect-video bg-black ${
-                      mobile
-                        ? 'landscape:w-dvw! landscape:h-dvh! landscape:aspect-auto'
-                        : ''
-                    }`}
-                    style={{
-                      width: 'min(95vw, 80vh * 1.7778)',
-                    }}
-                  >
-                    <iframe
-                      key={src}
-                      src={getGoogleDriveEmbedUrl(src)}
-                      className='absolute inset-0 w-full h-full'
-                      allow='autoplay; fullscreen'
-                      allowFullScreen
-                      loading='eager'
-                    />
-                  </div>
+                  <VideoPlayer src={src} mobile={mobile} />
                 ) : (
                   <img
                     src={src}
@@ -179,6 +142,6 @@ export default function ImageModal(props: ImageModalProps) {
         </m.div>
       )}
     </AnimatePresence>,
-    document.body
+    document.body,
   );
 }
