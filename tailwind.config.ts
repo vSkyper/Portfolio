@@ -12,15 +12,10 @@ export default {
         secondary: '#252829',
       },
       animation: {
-        handwriting: 'handwriting 4s linear',
         'custom-cursor': 'custom-cursor 0.5s ease-in-out both',
         'custom-cursor-out': 'custom-cursor-out 0.2s ease-in-out both',
       },
       keyframes: {
-        handwriting: {
-          '0%': { strokeDashoffset: 4674 },
-          '100%': { strokeDashoffset: 0 },
-        },
         'custom-cursor': {
           '0%': {
             scale: 0,
