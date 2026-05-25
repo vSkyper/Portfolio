@@ -129,7 +129,6 @@ export const projectsDetails: IProjectDetails[] = [
       'Vite',
       'TypeScript',
       'Tailwind CSS',
-      'MUI',
       'CoinGecko API',
     ],
     links: [
