@@ -12,7 +12,7 @@ export default function ProjectSidebar({ links }: IProjectDetailsLinks) {
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.6 }}
       style={{ willChange: 'transform, opacity' }}
-      className='sticky top-24 p-4 sm:p-5 rounded-2xl bg-white/5 backdrop-blur-md ring-1 ring-white/10 space-y-3 sm:space-y-4'
+      className='sticky top-24 p-5 sm:p-6 rounded-3xl bg-white/5 border border-white/5 shadow-2xl space-y-4 sm:space-y-6'
     >
       <div className='space-y-1 sm:space-y-2'>
         <h3 className='text-sm sm:text-base font-semibold text-white flex items-center gap-2'>

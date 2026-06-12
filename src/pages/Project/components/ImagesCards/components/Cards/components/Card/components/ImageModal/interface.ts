@@ -4,4 +4,6 @@ export interface ImageModalProps {
   src: string;
   alt: string;
   isVideo: boolean;
+  onNext?: () => void;
+  onPrev?: () => void;
 }

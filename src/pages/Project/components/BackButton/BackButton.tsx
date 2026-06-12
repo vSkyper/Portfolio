@@ -11,11 +11,11 @@ export default function BackButton() {
       transition={{ delay: 0.2 }}
       style={{ willChange: 'transform, opacity' }}
       onClick={() => navigate('/')}
-      className="fixed top-6 left-6 sm:top-8 sm:left-8 z-40 flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 hover:bg-black/40 text-white/80 hover:text-white backdrop-blur-md ring-1 ring-white/10 transition-all duration-300 hover:scale-105 hover:ring-white/20 group"
+      className="fixed top-6 left-4 sm:top-8 sm:left-8 z-40 flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/5 hover:bg-white/15 text-white/90 hover:text-white ring-1 ring-white/15 hover:ring-white/30 transition-all duration-300 hover:scale-105 shadow-lg group"
       aria-label="Go back to home"
     >
-      <IoArrowBack className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-      <span className="hidden sm:inline text-sm font-medium">Back</span>
+      <IoArrowBack className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-x-1 transition-transform" />
+      <span className="text-sm font-medium tracking-wide">Back</span>
     </m.button>
   );
 }

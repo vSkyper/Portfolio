@@ -7,9 +7,9 @@ export default function Link({ link, icon: Icon }: IProjectDetailsLink) {
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white/5 hover:bg-white/10 ring-1 ring-white/10 hover:ring-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
+      className="group flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-white/3 border border-white/5 hover:bg-white/8 hover:border-white/10 transition-all duration-300 hover:shadow-lg hover:shadow-white/5"
     >
-      <div className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-black/40 ring-1 ring-white/10 group-hover:ring-primary/50 transition-all duration-300 group-hover:scale-110">
+      <div className="shrink-0 flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-black/40 border border-white/10 group-hover:border-primary/50 transition-all duration-300 group-hover:scale-110">
         <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/80 group-hover:text-primary transition-colors" />
       </div>
 

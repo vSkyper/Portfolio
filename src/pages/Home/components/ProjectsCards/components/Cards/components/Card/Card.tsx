@@ -8,16 +8,11 @@ import { CardLoader } from './components';
 export default function Card({ id, title, technology, image }: IProjectCard) {
   const navigate: NavigateFunction = useNavigate();
   const controls = useAnimation();
-  const [imagesReady, setImagesReady] = useState(false);
+  const [imagesReady, setImagesReady] = useState(() => !image);
 
   // Preload thumbnail/media and toggle `imagesReady` on load/error
   useEffect(() => {
-    setImagesReady(false);
-
-    if (!image) {
-      setImagesReady(true);
-      return;
-    }
+    if (!image) return;
 
     const img = new Image();
     const onReady = () => setImagesReady(true);
@@ -48,7 +43,7 @@ export default function Card({ id, title, technology, image }: IProjectCard) {
         controls.start({ scale: 1, transition: { duration: 0.06 } })
       }
       transition={{ type: 'spring', stiffness: 240, damping: 20, mass: 0.3 }}
-      className="group relative h-0 min-w-[70%] sm:min-w-[30%] pb-[45%] sm:pb-[18%] rounded-2xl outline-none ring-1 ring-white/10 hover:ring-2 hover:ring-primary/50 focus-visible:ring-2 focus-visible:ring-primary/50 transition duration-300 ease-out hover:shadow-[0_20px_40px_-12px_rgba(122,181,220,0.3)] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] will-change-transform cursor-pointer select-none overflow-hidden bg-white/5 backdrop-blur-none sm:backdrop-blur-sm"
+      className="group relative h-0 min-w-[70%] sm:min-w-[30%] pb-[45%] sm:pb-[18%] rounded-2xl outline-none ring-1 ring-white/10 hover:ring-2 hover:ring-primary/50 focus-visible:ring-2 focus-visible:ring-primary/50 transition duration-300 ease-out hover:shadow-[0_20px_40px_-12px_rgba(122,181,220,0.3)] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] will-change-transform cursor-pointer select-none overflow-hidden bg-white/5"
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') handleTap();
       }}
@@ -78,14 +73,14 @@ export default function Card({ id, title, technology, image }: IProjectCard) {
       {/* Content */}
       <div className="absolute inset-0 rounded-2xl flex flex-col justify-between p-4 sm:p-5 z-3">
         <div className="flex justify-between items-start">
-          <div className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-medium text-white backdrop-blur-none sm:backdrop-blur-md px-2.5 py-1 rounded-full bg-black/50 border border-white/10 shadow-lg transform transition-transform duration-300 group-hover:translate-y-1">
+          <div className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-medium text-white px-2.5 py-1 rounded-full bg-black/60 border border-white/10 shadow-lg transform transition-transform duration-300 group-hover:translate-y-1">
             <span
               className="h-1 w-1 rounded-full bg-primary shadow-[0_0_8px_rgba(122,181,220,0.6)] inline-block"
               aria-hidden="true"
             />
             {technology}
           </div>
-          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/50 backdrop-blur-none sm:backdrop-blur-md border border-white/10 flex items-center justify-center opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/60 border border-white/10 flex items-center justify-center opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
             <FiArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
           </div>
         </div>

@@ -10,7 +10,7 @@ export default function Link({ link, icon: Icon, title }: IContactLink) {
         href={title === 'Email' ? `mailto:${link}` : link}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center justify-between p-2.5 sm:p-3 rounded-xl sm:rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+        className="group flex items-center justify-between p-2.5 sm:p-3 rounded-xl bg-white/3 border border-white/5 hover:bg-white/3 hover:border-white/10 hover:shadow-lg hover:shadow-white/5 transition-all duration-300"
       >
         <div className="flex items-center gap-2 sm:gap-3">
           <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-lg bg-white/5 text-white/80 group-hover:text-white group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">

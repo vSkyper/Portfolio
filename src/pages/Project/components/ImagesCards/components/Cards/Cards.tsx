@@ -1,7 +1,8 @@
 import type { IProjectMedia } from 'interfaces/interfaces';
 import { Card } from './components';
 import { useImagePreloader } from 'hooks';
-import { useMemo } from 'react';
+import { useMemo, useState, useCallback } from 'react';
+import { ImageModal } from './components/Card/components';
 
 interface CardsProps {
   images: (string | IProjectMedia)[];
@@ -9,6 +10,8 @@ interface CardsProps {
 }
 
 export default function Cards({ images, onImagesLoaded }: CardsProps) {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
   const urlsToPreload = useMemo(() => {
     const urls = new Set<string>();
     images.forEach((image) => {
@@ -24,6 +27,24 @@ export default function Cards({ images, onImagesLoaded }: CardsProps) {
 
   useImagePreloader(urlsToPreload, onImagesLoaded);
 
+  const handleNext = useCallback(() => {
+    setSelectedIndex((prev) => prev !== null ? (prev + 1) % images.length : null);
+  }, [images.length]);
+
+  const handlePrev = useCallback(() => {
+    setSelectedIndex((prev) => prev !== null ? (prev - 1 + images.length) % images.length : null);
+  }, [images.length]);
+
+  const handleClose = () => setSelectedIndex(null);
+
+  const selectedImage = selectedIndex !== null ? images[selectedIndex] : null;
+  const isVideo = selectedImage ? typeof selectedImage !== 'string' : false;
+  const mediaUrl = selectedImage
+    ? typeof selectedImage === 'string'
+      ? selectedImage
+      : selectedImage.src
+    : '';
+
   return (
     <>
       {images.map((image, index) => {
@@ -32,8 +53,24 @@ export default function Cards({ images, onImagesLoaded }: CardsProps) {
             ? `${image}-${index}`
             : `${image.src}-${index}`;
 
-        return <Card key={key} image={image} />;
+        return (
+          <Card
+            key={key}
+            image={image}
+            onOpen={() => setSelectedIndex(index)}
+          />
+        );
       })}
+
+      <ImageModal
+        isOpen={selectedIndex !== null}
+        onClose={handleClose}
+        src={mediaUrl}
+        alt="project media"
+        isVideo={isVideo}
+        onNext={images.length > 1 ? handleNext : undefined}
+        onPrev={images.length > 1 ? handlePrev : undefined}
+      />
     </>
   );
 }
